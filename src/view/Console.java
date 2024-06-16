@@ -7,7 +7,7 @@ public class Console {
     public static Scanner scanner = new Scanner(System.in);
 
 
-    public static int lerInt(String a){
+    public static int readInt(String a){
         System.out.print(a);
         int temp =0;
         while (true) {
@@ -25,7 +25,7 @@ public class Console {
     }
     }
 
-    public static String lerString(String a){
+    public static String readString(String a){
         System.out.print(a);
         return scanner.nextLine();
         

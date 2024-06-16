@@ -2,6 +2,8 @@ package model.player;
 
 import java.util.ArrayList;
 
+import controller.HabilityController;
+import model.Hability;
 import view.Console;
 
 public class Player {
@@ -18,7 +20,8 @@ public class Player {
     private String name;
     private String classe;
     private boolean introduction;
-    //private ArrayList<habibily> habibilies;
+    private ArrayList<Hability> habilities;
+    
     //private PotionBag inventario;
     //private Armor armor;
 
@@ -36,6 +39,7 @@ public class Player {
             points = 2;
             
             
+           
         }
         else if(classe == "GUERREIRO"){
             attack = 12;
@@ -46,6 +50,7 @@ public class Player {
             tooling = "Espada do iniciante";
             points = 0;
 
+            
         }else{
             attack = 11;
             defense = 8;
@@ -54,6 +59,8 @@ public class Player {
             agility = 12;
             tooling = "Adagas de iniciante";
             points = 0;
+
+          
         }
     }
 
@@ -167,16 +174,95 @@ public class Player {
         }
         System.out.print("Agilidade: " + agility + " +" + points);
         System.out.println("\t\tArma: " + tooling + " +" + points);
+        
+        int choice = Console.readInt("Escolha onde será colocado seus pontos: ");
+
+        readPoints(choice);
         points--;
 
     }
+    
 
     throw new Exception("Não há pontos disponiveis");
         
         
     }
 
-    public void inventario(){}
+    
+    public void habilities(){
 
+        if (classe == "MAGO") {
+            
+        
+        try {
+            habilities = HabilityController.initializeWizardHability();
+            for(Hability a: habilities){
+                System.out.println(a);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }else if (classe == "GUERREIRO") {
+
+        try {
+            habilities = HabilityController.initializeWarriorHability();
+            for(Hability a: habilities){
+                System.out.println(a);
+            }
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+        }
+
+    }else {
+
+        try {
+            habilities = HabilityController.initializeAssassinHability();
+            for(Hability a: habilities){
+            System.out.println(a);
+        }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    }
+    public void showHabilities(){
+
+        for(Hability a: habilities){
+            System.out.println(a);
+        }
+    }
+    public void inventario(){
+        
+     
+        
+    }
+
+    public void readPoints(int choice){
+
+        switch (choice) {
+            case 1:
+                attack++;
+                break;
+            case 2:
+                defense++;
+                break;
+            case 3:
+                heathy++;
+                break;
+            case 4:
+                mana++;
+                break;
+            case 5:
+                agility++;
+                break;
+            default:
+            System.out.println("Nao existe");
+                break;
+        }
+    }
     
 }
