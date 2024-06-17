@@ -42,7 +42,8 @@ public class Hability {
         return new Hability(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
     }
 
-    public String showHability() {
+    @Override
+    public String toString() {
         return "Habilidade: " + name + "\nCusto: " + energyCost + "\nDano base: " + baseDamage;
     }
 
