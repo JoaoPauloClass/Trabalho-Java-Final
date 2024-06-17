@@ -44,6 +44,10 @@ public class Hability {
 
     @Override
     public String toString() {
-        return "nome: " + name + ", custo: " + energyCost + " Base damage: " + baseDamage; 
+        return "Habilidade: " + name + "\nCusto: " + energyCost + "\nDano base: " + baseDamage;
+    }
+
+    public String useHability() {
+        return "Você usou: " + name;
     }
 }
