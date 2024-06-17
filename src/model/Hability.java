@@ -44,9 +44,14 @@ public class Hability {
         return new Hability(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
     }
     
-    
     @Override
     public String toString() {
-        return "nome: " + name + Color.getBlue() + " custo: " + energyCost + Color.getRed() + " Base damage: " + baseDamage + Color.RESET_COLOR; 
+
+        return "nome: " + name + Color.getBlue() + " custo: " + energyCost + Color.getRed() + " Base damage: " + baseDamage + Color.getResetColor; 
+}
+
+    public String useHability() {
+        return "Você usou: " + name;
+
     }
 }
