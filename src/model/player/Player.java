@@ -3,6 +3,7 @@ package model.player;
 import java.util.ArrayList;
 
 import controller.HabilityController;
+import controller.PotionBag;
 import model.Hability;
 import view.Console;
 
@@ -11,9 +12,11 @@ public class Player {
     
     private int attack;
     private int defense;
-    private int heathy;
+    private int health;
+    private int maxHealth;
     private int agility;
     private int mana;
+    private int maxMana;
     private int floor;
     private int points;
     private String tooling;
@@ -32,8 +35,10 @@ public class Player {
         if (classe == "MAGO") {
             attack = 11;
             defense = 7;
-            heathy = 10;
+            health = 10;
+            maxHealth = 10;
             mana = 13;
+            maxMana = 13;
             agility = 9;
             tooling = "Cajado do iniciante";
             points = 2;
@@ -44,17 +49,20 @@ public class Player {
         else if(classe == "GUERREIRO"){
             attack = 12;
             defense = 12;
-            heathy = 11;
+            health = 11;
+            maxHealth = 11;
             mana = 8;
+            maxMana = 8;
             agility = 7;
             tooling = "Espada do iniciante";
             points = 0;
 
             
-        }else{
+        } else {
             attack = 11;
             defense = 8;
-            heathy = 8;
+            health = 8;
+            maxHealth = 8;
             mana = 11;
             agility = 12;
             tooling = "Adagas de iniciante";
@@ -95,13 +103,13 @@ public class Player {
     }
 
 
-    public int getHeathy() {
-        return heathy;
+    public int getHealth() {
+        return health;
     }
 
 
-    public void setHeathy(int heathy) {
-        this.heathy = heathy;
+    public void setHealth(int heathy) {
+        this.health = heathy;
     }
 
 
@@ -149,7 +157,7 @@ public class Player {
 
         System.out.print("\n\nAtaque: " + attack);
         System.out.println("\tDefesa: " + defense);
-        System.out.print("Vida: " + heathy);
+        System.out.print("Vida: " + health);
         if (classe == "MAGO") {
             System.out.println("\tmana: " + mana);    
         }else{
@@ -166,7 +174,7 @@ public class Player {
 
         System.out.print("\n\nAtaque: " + attack + " +" + points);
         System.out.println("\t\tDefesa: " + defense + " +" + points);
-        System.out.print("Vida: " + heathy + " +" + points);
+        System.out.print("Vida: " + health + " +" + points);
         if (classe == "MAGO") {
             System.out.println("\t\tmana: " + mana + " +" + points);    
         }else{
@@ -187,8 +195,7 @@ public class Player {
         
         
     }
-
-    
+   
     public void habilities(){
 
         if (classe == "MAGO") {
@@ -227,18 +234,13 @@ public class Player {
         }
 
     }
-
     }
+
     public void showHabilities(){
 
         for(Hability a: habilities){
             System.out.println(a);
         }
-    }
-    public void inventario(){
-        
-     
-        
     }
 
     public void readPoints(int choice){
@@ -251,7 +253,7 @@ public class Player {
                 defense++;
                 break;
             case 3:
-                heathy++;
+                health++;
                 break;
             case 4:
                 mana++;
@@ -264,5 +266,24 @@ public class Player {
                 break;
         }
     }
-    
+   
+    public void useHealingPotion() throws Exception{
+        
+        if (health == maxHealth) {
+            throw new Exception("Sua vida está cheia, não há necessidade de usar");
+        } else {
+            PotionBag.usePotion("LIFE");
+            health += 2;
+        }
+
+    }
+
+    public void useManaPotion() throws Exception {
+        if (mana == maxMana) {
+            throw new Exception("Sua energia está cheia, não há necessidade de usar");
+        } else {
+            PotionBag.usePotion("MANA");
+            mana += 2;
+        }
+    }
 }
