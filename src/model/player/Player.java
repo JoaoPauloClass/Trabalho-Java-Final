@@ -1,14 +1,14 @@
 package model.player;
 
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import controller.HabilityController;
 import model.Hability;
+import view.Color;
 import view.Console;
 
 public class Player {
 
-    
     private int attack;
     private int defense;
     private int heathy;
@@ -18,39 +18,34 @@ public class Player {
     private int points;
     private String tooling;
     private String name;
-    private String classe;
+    private String playerClass;
     private boolean introduction;
     private ArrayList<Hability> habilities;
-    
     //private PotionBag inventario;
     //private Armor armor;
 
-    public Player(String name,String classe) {
+    public Player(String name,String playerClass) {
         this.name = name;
-        this.classe = classe;
+        this.playerClass = playerClass;
 
-        if (classe == "MAGO") {
+        if (playerClass == "MAGO") {
             attack = 11;
             defense = 7;
             heathy = 10;
             mana = 13;
             agility = 9;
             tooling = "Cajado do iniciante";
-            points = 2;
-            
-            
-           
+            floor = 5;
+
         }
-        else if(classe == "GUERREIRO"){
+        else if(playerClass == "GUERREIRO"){
             attack = 12;
             defense = 12;
             heathy = 11;
             mana = 8;
             agility = 7;
             tooling = "Espada do iniciante";
-            points = 0;
 
-            
         }else{
             attack = 11;
             defense = 8;
@@ -58,10 +53,31 @@ public class Player {
             mana = 11;
             agility = 12;
             tooling = "Adagas de iniciante";
-            points = 0;
-
-          
+ 
         }
+    }
+
+    
+    
+    public ArrayList<Hability> getHabilities() {
+        return habilities;
+    }
+
+
+
+    public void setHabilities(ArrayList<Hability> habilities) {
+        this.habilities = habilities;
+    }
+
+
+
+    public String getPlayerClass() {
+        return playerClass;
+    }
+
+
+    public void setPlayerClass(String playerClass) {
+        this.playerClass = playerClass;
     }
 
 
@@ -150,11 +166,13 @@ public class Player {
         System.out.print("\n\nAtaque: " + attack);
         System.out.println("\tDefesa: " + defense);
         System.out.print("Vida: " + heathy);
-        if (classe == "MAGO") {
+
+        if (playerClass == "MAGO") {
             System.out.println("\tmana: " + mana);    
         }else{
             System.out.println("\tenergia: "+ mana);
         }
+
         System.out.print("Agilidade: " + agility);
         System.out.println("\tArma: " + tooling);
         
@@ -167,11 +185,13 @@ public class Player {
         System.out.print("\n\nAtaque: " + attack + " +" + points);
         System.out.println("\t\tDefesa: " + defense + " +" + points);
         System.out.print("Vida: " + heathy + " +" + points);
-        if (classe == "MAGO") {
+
+        if (playerClass == "MAGO") {
             System.out.println("\t\tmana: " + mana + " +" + points);    
         }else{
             System.out.println("\tenergia: "+ mana + " +" + points);
         }
+
         System.out.print("Agilidade: " + agility + " +" + points);
         System.out.println("\t\tArma: " + tooling + " +" + points);
         
@@ -181,60 +201,49 @@ public class Player {
         points--;
 
     }
-    
-
     throw new Exception("Não há pontos disponiveis");
-        
-        
+    
     }
 
     
     public void habilities(){
 
-        if (classe == "MAGO") {
-            
-        
+    if (playerClass == "MAGO") {
         try {
             habilities = HabilityController.initializeWizardHability();
-            for(Hability a: habilities){
-                System.out.println(a);
-            }
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-    }else if (classe == "GUERREIRO") {
-
+    }else if (playerClass == "GUERREIRO") {
         try {
             habilities = HabilityController.initializeWarriorHability();
-            for(Hability a: habilities){
-                System.out.println(a);
-            }
+            
         } catch (Exception e) {
             
             System.out.println(e.getMessage());
         }
 
     }else {
-
         try {
             habilities = HabilityController.initializeAssassinHability();
-            for(Hability a: habilities){
-            System.out.println(a);
-        }
-        } catch (Exception e) {
+            
+        }catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
-    }
+}
     public void showHabilities(){
+        
 
         for(Hability a: habilities){
-            System.out.println(a);
-        }
+        System.out.println(a);    
+        
     }
+}
+
     public void inventario(){
         
      
@@ -264,5 +273,6 @@ public class Player {
                 break;
         }
     }
-    
+
+
 }

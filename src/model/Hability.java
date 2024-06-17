@@ -1,5 +1,7 @@
 package model;
 
+import view.Color;
+
 public class Hability {
 
     protected String name;
@@ -41,13 +43,15 @@ public class Hability {
 
         return new Hability(parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
     }
-
+    
     @Override
     public String toString() {
-        return "Habilidade: " + name + "\nCusto: " + energyCost + "\nDano base: " + baseDamage;
-    }
+
+        return "nome: " + name + Color.getBlue() + " custo: " + energyCost + Color.getRed() + " Base damage: " + baseDamage + Color.getResetColor; 
+}
 
     public String useHability() {
         return "Você usou: " + name;
+
     }
 }
