@@ -47,7 +47,7 @@ public class Hability {
     @Override
     public String toString() {
 
-        return "nome: " + name + Color.getBlue() + " custo: " + energyCost + Color.getRed() + " Base damage: " + baseDamage + Color.getResetColor; 
+        return "nome: " + name + Color.getBlue() + " custo: " + energyCost + Color.getRed() + " Base damage: " + baseDamage + Color.getResetColor(); 
 }
 
     public String useHability() {
