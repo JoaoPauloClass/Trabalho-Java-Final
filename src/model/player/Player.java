@@ -46,8 +46,7 @@ public class Player implements Cloneable {
             try {
                 habilities = HabilityController.initializeWizardHability();
             } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             };
 
         } else if (playerClass == "GUERREIRO") {
@@ -63,8 +62,7 @@ public class Player implements Cloneable {
             try {
                 habilities = HabilityController.initializeWarriorHability();
             } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             };
 
         } else {
@@ -79,8 +77,7 @@ public class Player implements Cloneable {
             try {
                 habilities = HabilityController.initializeAssassinHability();
             } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             };
 
         }
