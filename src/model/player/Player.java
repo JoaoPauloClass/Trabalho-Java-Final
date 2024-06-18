@@ -8,7 +8,7 @@ import model.Hability;
 import view.Color;
 import view.Console;
 
-public class Player  implements Cloneable {
+public class Player implements Cloneable {
 
     private int attack;
     private int defense;
@@ -26,8 +26,9 @@ public class Player  implements Cloneable {
     private ArrayList<Hability> habilities;
     private Armor armor;
 
-    public Player() {}
-    
+    public Player() {
+    }
+
     public Player(String name, String playerClass) {
         this.name = name;
         this.playerClass = playerClass;
@@ -42,6 +43,12 @@ public class Player  implements Cloneable {
             agility = 9;
             tooling = "Cajado do iniciante";
             floor = 5;
+            try {
+                habilities = HabilityController.initializeWizardHability();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            };
 
         } else if (playerClass == "GUERREIRO") {
             attack = 12;
@@ -53,6 +60,12 @@ public class Player  implements Cloneable {
             agility = 7;
             tooling = "Espada do iniciante";
             points = 0;
+            try {
+                habilities = HabilityController.initializeWarriorHability();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            };
 
         } else {
 
@@ -63,6 +76,12 @@ public class Player  implements Cloneable {
             mana = 11;
             agility = 12;
             tooling = "Adagas de iniciante";
+            try {
+                habilities = HabilityController.initializeAssassinHability();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            };
 
         }
     }
@@ -150,31 +169,31 @@ public class Player  implements Cloneable {
     public int getPoints() {
         return points;
     }
-    
+
     public void setPoints(int points) {
         this.points = points;
     }
-    
+
     public String getTooling() {
         return tooling;
     }
-    
+
     public void setTooling(String tooling) {
         this.tooling = tooling;
     }
-    
+
     public boolean isIntroduction() {
         return introduction;
     }
-    
+
     public void setIntroduction(boolean introduction) {
         this.introduction = introduction;
     }
-    
+
     public Armor getArmor() {
         return armor;
     }
-    
+
     public void setArmor(Armor armor) {
         this.armor = armor;
     }
