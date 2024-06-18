@@ -10,13 +10,17 @@ import model.player.Player;
 
 import java.io.*;
 
-public class PlayerDataController {
-    public static void savePlayerData(String filename, Player player) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            writer.write(player.getName() + "," + player.getAttack() + "," + player.getDefense() + "," +
-                         player.getHealth() + "," + player.getMana() + "," + player.getAgility());
-        }
+public static void savePlayerData(String filename, Player player) throws IOException {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+        writer.write("Name: " + player.getName() + "\n");
+        writer.write("Attack: " + player.getAttack() + "\n");
+        writer.write("Defense: " + player.getDefense() + "\n");
+        writer.write("Health: " + player.getHeathy() + "\n");
+        writer.write("Mana: " + player.getMana() + "\n");
+        writer.write("Agility: " + player.getAgility() + "\n");
     }
+}
+
 
     public static Player loadPlayerData(String filename) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
