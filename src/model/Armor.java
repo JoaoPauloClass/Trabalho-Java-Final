@@ -56,5 +56,22 @@ public class Armor {
         this.defenseUpgrade = defenseUpgrade;
     }
 
+    public Armor fromString(String line) {
+        String[] list = line.split(", ");
+
+        Armor tempArmor = new Armor(list[0], list[1], Integer.parseInt(list[2]), list[3], Integer.parseInt(list[4]));
+
+        return tempArmor;
+    }
+
+    @Override
+    public String toString() {
+        String txt = "";
+
+        txt += "Armadura: " + name + "\nClasse: " + validClass + "\nBonus de defesa: " + defenseUpgrade +"\nTipo de bonus: " + typeUpgrade + "\nBonus: " + statUpgrade;
+
+        
+        return txt;
+    }
 }
 
