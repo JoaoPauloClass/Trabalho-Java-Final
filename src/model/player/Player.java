@@ -8,7 +8,7 @@ import model.Hability;
 import view.Color;
 import view.Console;
 
-public class Player {
+public class Player  implements Cloneable {
 
     private int attack;
     private int defense;
@@ -26,6 +26,8 @@ public class Player {
     private ArrayList<Hability> habilities;
     private Armor armor;
 
+    public Player() {}
+    
     public Player(String name, String playerClass) {
         this.name = name;
         this.playerClass = playerClass;
@@ -333,6 +335,12 @@ public class Player {
             PotionBag.usePotion("MANA");
             mana += 2;
         }
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        // TODO Auto-generated method stub
+        return super.clone();
     }
 
 }
