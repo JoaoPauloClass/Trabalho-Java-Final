@@ -43,6 +43,7 @@ public class Player implements Cloneable {
             agility = 9;
             tooling = "Cajado do iniciante";
             floor = 5;
+            points = 0;
             try {
                 habilities = HabilityController.initializeWizardHability();
             } catch (Exception e) {
@@ -74,6 +75,7 @@ public class Player implements Cloneable {
             mana = 11;
             agility = 12;
             tooling = "Adagas de iniciante";
+            points = 0;
             try {
                 habilities = HabilityController.initializeAssassinHability();
             } catch (Exception e) {
