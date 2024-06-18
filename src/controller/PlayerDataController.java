@@ -21,13 +21,35 @@ public static void savePlayerData(String filename, Player player) throws IOExcep
     }
 }
 
-
-    public static Player loadPlayerData(String filename) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String[] data = reader.readLine().split(",");
-            return new Player(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]),
-                              Integer.parseInt(data[3]), Integer.parseInt(data[4]), Integer.parseInt(data[5]));
+public static Player loadPlayerData(String filename) throws IOException {
+    try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+        Player player = new Player();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(": ");
+            switch (parts[0]) {
+                case "Name":
+                    player.setName(parts[1]);
+                    break;
+                case "Attack":
+                    player.setAttack(Integer.parseInt(parts[1].trim()));
+                    break;
+                case "Defense":
+                    player.setDefense(Integer.parseInt(parts[1].trim()));
+                    break;
+                case "Health":
+                    player.setHeathy(Integer.parseInt(parts[1].trim()));
+                    break;
+                case "Mana":
+                    player.setMana(Integer.parseInt(parts[1].trim()));
+                    break;
+                case "Agility":
+                    player.setAgility(Integer.parseInt(parts[1].trim()));
+                    break;
+            }
         }
+        return player;
     }
 }
+
 
