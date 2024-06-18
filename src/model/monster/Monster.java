@@ -1,12 +1,13 @@
 package model.monster;
+import model.player.Player;
 
 public abstract class Monster {
 
-    String name;
-    int attack;
-    int defense;
-    int heathy;
-    int agility;
+    protected String name;
+    protected int attack;
+    protected int defense;
+    protected int heathy;
+    protected int agility;
 
     public void showStatus(){
 
@@ -15,12 +16,11 @@ public abstract class Monster {
         System.out.println("\tDefesa: " + defense);
         System.out.print("Vida: " + heathy);
         System.out.print("\tAgilidade: " + agility);
-
     }
 
     
 
-    public abstract void atacar();
+    public abstract void attack(Player player);
 
     public abstract String getSprite();
 

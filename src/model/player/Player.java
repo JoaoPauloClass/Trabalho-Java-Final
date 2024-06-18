@@ -264,5 +264,15 @@ public class Player {
                 break;
         }
     }
+
+    public void takeDamage(int damage){
+
+        // TODO: implementar morte
+        this.heathy -= damage;
+        if (this.heathy < 0) {
+            this.heathy = 0;
+        }
+
+    }
     
 }
