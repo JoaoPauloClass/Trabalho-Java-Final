@@ -25,6 +25,17 @@ public class Player {
     private ArrayList<Hability> habilities;
     // private PotionBag inventario;
     // private Armor armor;
+    
+    public Player(String name, int attack, int defense, int health, int mana, int agility) {
+        this.name = name;
+        this.attack = attack;
+        this.defense = defense;
+        this.health = health;
+        this.mana = mana;
+        this.agility = agility;
+    }
+
+
 
     public Player(String name, String playerClass) {
         this.name = name;
