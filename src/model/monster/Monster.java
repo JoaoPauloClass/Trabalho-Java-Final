@@ -1,13 +1,18 @@
 package model.monster;
 import model.player.Player;
 
-public abstract class Monster {
+public abstract class Monster{
+
+    //TODO: implementar interface atacar.
+    //TODO: implementar metodo para dodge
 
     protected String name;
     protected int attack;
     protected int defense;
     protected int heathy;
     protected int agility;
+
+    public abstract void attack(Player player) throws Exception;
 
     public void showStatus(){
 
@@ -17,10 +22,6 @@ public abstract class Monster {
         System.out.print("Vida: " + heathy);
         System.out.print("\tAgilidade: " + agility);
     }
-
-    
-
-    public abstract void attack(Player player);
 
     public abstract String getSprite();
 

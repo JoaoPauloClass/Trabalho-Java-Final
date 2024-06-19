@@ -6,7 +6,7 @@ import controller.HabilityController;
 import model.Hability;
 import view.Console;
 
-public class Player {
+public class Player{
 
     
     private int attack;
@@ -266,13 +266,11 @@ public class Player {
     }
 
     public void takeDamage(int damage){
-
         // TODO: implementar morte
         this.heathy -= damage;
         if (this.heathy < 0) {
             this.heathy = 0;
         }
-
     }
     
 }
