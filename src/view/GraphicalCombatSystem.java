@@ -1,16 +1,16 @@
 package view;
 
-import controller.Battle;
+
 import model.player.Player;
 
 public class GraphicalCombatSystem {
 
     public static int vida = 10;
     public static int lifeBar = 10;
-    public static int mana = 10;
     public static int manaBar = 10;
 
     public static void MonsterBattle(Player p) {
+
         // Clear console
         System.out.println("\033c");
         // Line 1
@@ -100,17 +100,15 @@ public class GraphicalCombatSystem {
         System.out.println(Color.getResetColor() + ")   |");
 
     }
-
-    public static void manaBarPlayer(Player p, int energy) {
-        mana -= energy;
-
+    public static void manaBarPlayer(Player p,int mana) {
+        
         // Energy
-
+        
         System.out.print(" \t\t\t\t|");
         System.out.print("\tsp:(" + Color.getYellow());
 
         manaBar = 10;
-
+        
         if (manaBar != mana) {
             for (int i = 0; i < mana; i++)
                 System.out.print("|");
@@ -161,10 +159,10 @@ public class GraphicalCombatSystem {
      * return;
      * }
      */
-    public static void playerTable(Player p, int damage, int energy) {
+    public static void playerTable(Player p, int damage,int mana) {
 
         lifeBarPlayer(p, damage);
-        manaBarPlayer(p, energy);
+        manaBarPlayer(p, mana);
 
     }
 
@@ -181,7 +179,7 @@ public class GraphicalCombatSystem {
         
         System.out.println("\033c");
         player.showHabilities();
-        return Console.readInt("\n\nSelecione uma habilidade: ");
+        return Console.readInt("\n\nSelecione uma habilidade ou selecione 0 para sair: ");
 
     }
 
@@ -236,8 +234,6 @@ public class GraphicalCombatSystem {
                 return 0;
 
             case 2:
-                
-                
                 return playerHabilities(player);
 
             case 3:
