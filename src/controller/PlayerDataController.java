@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-
 import model.player.Player;
 
 import java.io.*;
@@ -21,7 +20,7 @@ public class PlayerDataController {
             writer.write("Agility: " + player.getAgility() + "\n");
         }
     }
-    
+
     public static Player loadPlayerData(String filename) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             Player player = new Player();
@@ -52,6 +51,5 @@ public class PlayerDataController {
             return player;
         }
     }
+
 }
-
-

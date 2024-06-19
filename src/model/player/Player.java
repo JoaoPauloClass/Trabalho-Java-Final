@@ -3,11 +3,12 @@ package model.player;
 import java.util.ArrayList;
 import controller.HabilityController;
 import controller.PotionBag;
+import model.Armor;
 import model.Hability;
 import view.Color;
 import view.Console;
 
-public class Player {
+public class Player implements Cloneable {
 
     private int attack;
     private int defense;
@@ -23,9 +24,11 @@ public class Player {
     private String playerClass;
     private boolean introduction;
     private ArrayList<Hability> habilities;
-    // private PotionBag inventario;
-    // private Armor armor;
-    
+    private Armor armor;
+
+    public Player() {
+    }
+  
     public Player(String name, int attack, int defense, int health, int mana, int agility) {
         this.name = name;
         this.attack = attack;
@@ -34,8 +37,6 @@ public class Player {
         this.mana = mana;
         this.agility = agility;
     }
-
-
 
     public Player(String name, String playerClass) {
         this.name = name;
@@ -51,6 +52,12 @@ public class Player {
             agility = 9;
             tooling = "Cajado do iniciante";
             floor = 5;
+            points = 0;
+            try {
+                habilities = HabilityController.initializeWizardHability();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            };
 
         } else if (playerClass == "GUERREIRO") {
             attack = 12;
@@ -62,6 +69,11 @@ public class Player {
             agility = 7;
             tooling = "Espada do iniciante";
             points = 0;
+            try {
+                habilities = HabilityController.initializeWarriorHability();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            };
 
         } else {
 
@@ -72,6 +84,12 @@ public class Player {
             mana = 11;
             agility = 12;
             tooling = "Adagas de iniciante";
+            points = 0;
+            try {
+                habilities = HabilityController.initializeAssassinHability();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            };
 
         }
     }
@@ -154,6 +172,38 @@ public class Player {
 
     public void setFloor(int floor) {
         this.floor = floor;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public String getTooling() {
+        return tooling;
+    }
+
+    public void setTooling(String tooling) {
+        this.tooling = tooling;
+    }
+
+    public boolean isIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(boolean introduction) {
+        this.introduction = introduction;
+    }
+
+    public Armor getArmor() {
+        return armor;
+    }
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
     }
 
     public void showStatus() {
@@ -312,6 +362,11 @@ public class Player {
             PotionBag.usePotion("MANA");
             mana += 2;
         }
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
 }
