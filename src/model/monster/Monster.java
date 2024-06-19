@@ -25,6 +25,8 @@ public abstract class Monster{
 
     public abstract String getSprite();
 
+    public Monster(){}
+
     public Monster(String name, int attack, int defense, int heathy, int agility) {
         this.name = name;
         this.attack = attack;

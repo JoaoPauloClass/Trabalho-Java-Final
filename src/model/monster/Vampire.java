@@ -4,11 +4,11 @@ import java.util.Random;
 
 import model.player.Player;
 
-public class Skeleton extends Monster {
+public class Vampire extends Monster{
     
-
-    public Skeleton(){
-        super("Esqueleto", 7, 2, 6, 4);
+    
+    public Vampire(){
+        super("Vampiro", 8, 2, 8, 10);
     }
 
     public void attack(Player player)throws Exception{
@@ -19,21 +19,25 @@ public class Skeleton extends Monster {
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
-        if (d10 >= 6) {
-            System.out.println("O Esqueleto atira uma flecha em você.");
+        if (d10 >= 8) {
+            System.out.println("O vampiro morde o seu pescoço, drenando seu sangue.");
             if (d10Dodge < 8) {
                 System.out.println("Você é acertado.");
                 dano = attack - 2;
                 System.out.println("Dano recebido: " + dano);
                 player.takeDamage(dano);
+                int restoredHealth = 4;
+                this.heathy += restoredHealth;
+                System.out.println("Após drenar seu sangue, ele se sente mais forte...");
+                System.out.println("Vida restaurada: " + restoredHealth);
             } else {
                 System.out.println("Você consegue esquivar!");
             }
         } else {
-            System.out.println("O Esqueleto avança e te corta com uma espada.");
+            System.out.println("O vampiro te ataca com suas garras afiadas.");
             if (d10Dodge < 8) {
                 System.out.println("Você é acertado.");
-                dano = attack - 2;
+                dano = attack;
                 System.out.println("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
@@ -43,7 +47,9 @@ public class Skeleton extends Monster {
         }
 
     public String getSprite(){
-        //TODO: arte esqueleto
+        //TODO: arte vampiro
         return "";    
     }
+
+
 }

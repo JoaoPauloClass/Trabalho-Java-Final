@@ -28,6 +28,8 @@ public class Slime extends Monster {
             } else {
                 System.out.println("Você consegue esquivar!");
             }
+
+            
         }else{
             System.out.println("O Slime pula em você.");
             if (d10Dodge < 8) {

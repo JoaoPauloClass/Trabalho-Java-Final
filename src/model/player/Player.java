@@ -229,6 +229,7 @@ public class Player{
     }
 
     }
+    
     public void showHabilities(){
 
         for(Hability a: habilities){
