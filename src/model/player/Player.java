@@ -344,6 +344,7 @@ public class Player implements Cloneable {
         }
     }
 
+
     public void useHealingPotion() throws Exception {
 
         if (health == maxHealth) {
@@ -368,5 +369,6 @@ public class Player implements Cloneable {
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
+
 
 }
