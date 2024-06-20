@@ -1,19 +1,13 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-import controller.Battle;
-import model.Hability;
+import model.monster.boss.Minotaur;
 import model.player.Player;
-import view.GraphicalCombatSystem;
 
 public class Main {
     
     public static void main(String[] args) {
        
-                Player p = new Player("gustavo", "GUERREIRO");
-                Player m = new Player("Skeleton", "MAGO");
-                p.habilities();
-                Battle.startBattle(p, m);
+        // * debugging purposes, will be removed in the merge
+        Minotaur minotauro = new Minotaur();
+        Player player = new Player("Jorge", "MAGO");
 
                 //SystemGame.introduction();
                /* try{

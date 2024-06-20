@@ -373,9 +373,9 @@ public class Player implements Cloneable {
 
     public void takeDamage(int damage){
         // TODO: implementar morte
-        this.heathy -= damage;
-        if (this.heathy < 0) {
-            this.heathy = 0;
+        this.health -= damage;
+        if (this.health < 0) {
+            this.health = 0;
         }
     }
     

@@ -7,16 +7,15 @@ import model.player.Player;
 
 public class Minotaur extends Boss{
 
-    //todo ARRUMAR ISSO
     public Minotaur(){
         super("Minotauro", 15, 10, 20, 10, 20);
-        habilities();
+        setHabilities();
     }
 
-    public void habilities(){
+    protected void setHabilities(){
         try {
             habilities = HabilityController.initializeMinotaurHability();
-            for(Hability a: habilities){
+            for (Hability a : habilities) {
                 System.out.println(a);
             }
         } catch (Exception e) {
@@ -24,9 +23,10 @@ public class Minotaur extends Boss{
         }
     }
 
+    //TODO: FAZER ATAQUES MINOTAURO
 	public void attack(Player player) throws Exception {
-		if (!(player instanceof Player)) {
-            throw new Exception("Nenhum player foi passado para a função.");
+		if (player == null) {
+            throw new Exception("Nenhum player foi passado para a função de ataque.");
         }
         Random rand = new Random();
         int d20 = rand.nextInt(20) + 1; // Gera um número entre 1 e 20
@@ -55,9 +55,63 @@ public class Minotaur extends Boss{
         }
 	}
 
+    public void checkHability(Player player) {
+        /*
+         * IA do minotauro vai funcionar assim
+         * -> no turno que ele escolherá (por meio de probabilidade) entre usar
+         * habilidade ou atacar
+         * -> checar se ele tem energia para ele usar habilidade
+         * -> após checado, ele tem 75% de usar a habilidade
+         * -> caso os testes falhem ele ataca normal
+         */
+
+        for (Hability hability : habilities) {
+            // Condição 1: Mana suficiente
+            if (energy >= hability.getEnergyCost()) {
+                // Condição 2: Probabilidade de usar habilidade (simulação de decisão
+                // inteligente)
+                Random rand = new Random();
+                if (rand.nextInt(100) < 75) { // 75% de chance de usar a habilidade
+
+                    try {
+                        useHability(hability, player);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                } else {
+                    try {
+                        attack(player);
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+
+                }
+            } else {
+                try {
+                    attack(player);
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+
+            }
+        }
+
+    }
+    //TODO: custar energia
+    protected void useHability(Hability hability, Player player) throws Exception {
+        if (hability == null || player == null) {
+            throw new Exception("Nenhuma habilidade ou player foi passado para função");
+        }
+
+        System.out.println("O Minotauro usa sua habilidade: " + hability.getName());
+        System.out.println("Dano recebido: " + hability.getBaseDamage());
+        player.takeDamage(hability.getBaseDamage());
+
+    }
+
 	public String getSprite() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getSprite'");
+		// TODO fazer sprite minotauro
+        return "";
 	}
 
 

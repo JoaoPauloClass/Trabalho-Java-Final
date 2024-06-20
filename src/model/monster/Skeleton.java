@@ -12,8 +12,8 @@ public class Skeleton extends Monster {
     }
 
     public void attack(Player player)throws Exception{
-        if (!(player instanceof Player)) {
-            throw new Exception("Nenhum player foi passado para a função.");
+        if (player == null) {
+            throw new Exception("Nenhum player foi passado para a função de ataque.");
         }
         Random rand = new Random();
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10

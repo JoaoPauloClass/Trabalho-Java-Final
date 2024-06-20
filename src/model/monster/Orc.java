@@ -8,8 +8,10 @@ public class Orc extends Monster {
         super("Orc", 8, 4, 10, 2);
     }
 
-    public void attack(Player player){
-
+    public void attack(Player player) throws Exception{
+        if (player == null) {
+            throw new Exception("Nenhum player foi passado para a função de ataque.");
+        }
         Random rand = new Random();
         int d10Attack = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
