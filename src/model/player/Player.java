@@ -304,7 +304,8 @@ public class Player implements Cloneable {
 
     }
 
-    public void showHabilities() {
+    
+    public void showHabilities(){
 
         int mostrar = 1;
         for (Hability a : habilities) {
@@ -344,7 +345,6 @@ public class Player implements Cloneable {
         }
     }
 
-
     public void useHealingPotion() throws Exception {
 
         if (health == maxHealth) {
@@ -371,4 +371,12 @@ public class Player implements Cloneable {
     }
 
 
+    public void takeDamage(int damage){
+        // TODO: implementar morte
+        this.heathy -= damage;
+        if (this.heathy < 0) {
+            this.heathy = 0;
+        }
+    }
+    
 }
