@@ -31,7 +31,7 @@ public class HabilityController {
         }
 
         if (list.isEmpty()) {
-            throw new Exception("Error");
+            throw new Exception("Erro, lista de habilidades vazia");
         }
 
         return list;
@@ -55,7 +55,7 @@ public class HabilityController {
         }
 
         if (list.isEmpty()) {
-            throw new Exception("Error");
+            throw new Exception("Erro, lista de habilidades vazia");
         }
 
         return list;
@@ -79,7 +79,7 @@ public class HabilityController {
         }
 
         if (list.isEmpty()) {
-            throw new Exception("Error");
+            throw new Exception("Erro, lista de habilidades vazia");
         }
 
         return list;
@@ -132,4 +132,5 @@ public class HabilityController {
 
         return list;
     }
+
 }

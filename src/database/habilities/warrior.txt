@@ -1,1 +1,2 @@
-Ataque pesado, 3, 4
+Ataque pesado  , 3, 4
+Corte giratorio, 5, 6
