@@ -5,11 +5,11 @@ import java.util.Random;
 import model.player.Player;
 
 public class Cerberus extends Monster {
-    public Cerberus(){
+    public Cerberus() {
         super("Cerbero", 8, 8, 15, 6);
     }
 
-    public void attack(Player player)throws Exception{
+    public void attack(Player player) throws Exception {
         if (player == null) {
             throw new Exception("Nenhum player foi passado para a função de ataque.");
         }
@@ -43,10 +43,21 @@ public class Cerberus extends Monster {
                 System.out.println("Você consegue esquivar!");
             }
         }
-        }
+    }
 
-    public String getSprite(){
-        //TODO: arte cerbero
-        return "";    
+    public String getSprite() {
+        
+        return "                            /\\_/\\____,\r\n" + //
+                "                  ,___/\\_/\\ \\  ~     /\r\n" + //
+                "                  \\     ~  \\ )   XXX\r\n" + //
+                "                    XXX     /    /\\_/\\___,\r\n" + //
+                "                       \\o-o/-o-o/   ~    /\r\n" + //
+                "                        ) /     \\    XXX\r\n" + //
+                "                       _|    / \\ \\_/\r\n" + //
+                "                    ,-/   _  \\_/   \\\r\n" + //
+                "                   / (   /____,__|  )\r\n" + //
+                "                  (  |_ (    )  \\) _|\r\n" + //
+                "                 _/ _)   \\   \\__/   (_\r\n" + //
+                "                (,-(,(,(,/      \\,),),)";
     }
 }

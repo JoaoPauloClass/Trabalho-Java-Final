@@ -5,13 +5,12 @@ import java.util.Random;
 import model.player.Player;
 
 public class Skeleton extends Monster {
-    
 
-    public Skeleton(){
+    public Skeleton() {
         super("Esqueleto", 7, 2, 6, 4);
     }
 
-    public void attack(Player player)throws Exception{
+    public void attack(Player player) throws Exception {
         if (player == null) {
             throw new Exception("Nenhum player foi passado para a função de ataque.");
         }
@@ -40,10 +39,46 @@ public class Skeleton extends Monster {
                 System.out.println("Você consegue esquivar!");
             }
         }
-        }
+    }
 
-    public String getSprite(){
-        //TODO: arte esqueleto
-        return "";    
+    public String getSprite() {
+
+        return "                            _.--\"\"-._                     \r\n" + //
+                "  .                         .\"         \".                   \r\n" + //
+                " / \\    ,^.         /(     Y             |      )\\          \r\n" + //
+                "/   `---. |--'\\    (  \\__..'--   -   -- -'\"\"-.-'  )         \r\n" + //
+                "|        :|    `>   '.     l_..-------.._l      .'          \r\n" + //
+                "|      __l;__ .'      \"-.__.||_.-'v'-._||`\"----\"            \r\n" + //
+                " \\  .-' | |  `              l._       _.'                   \r\n" + //
+                "  \\/    | |                   l`^^'^^'j                     \r\n" + //
+                "        | |                _   \\_____/     _                \r\n" + //
+                "        j |               l `--__)-'(__.--' |               \r\n" + //
+                "        | |               | /`---``-----'\"1 |  ,-----.      \r\n" + //
+                "        | |               )/  `--' '---'   \\'-'  ___  `-.   \r\n" + //
+                "        | |              //  `-'  '`----'  /  ,-'   I`.  \\  \r\n" + //
+                "      _ L |_            //  `-.-.'`-----' /  /  |   |  `. \\ \r\n" + //
+                "     '._' / \\         _/(   `/   )- ---' ;  /__.J   L.__.\\ :\r\n" + //
+                "      `._;/7(-.......'  /        ) (     |  |            | |\r\n" + //
+                "      `._;l _'--------_/        )-'/     :  |___.    _._./ ;\r\n" + //
+                "        | |                 .__ )-'\\  __  \\  \\  I   1   / / \r\n" + //
+                "        `-'                /   `-\\-(-'   \\ \\  `.|   | ,' /  \r\n" + //
+                "                           \\__  `-'    __/  `-. `---'',-'   \r\n" + //
+                "                              )-._.-- (        `-----'      \r\n" + //
+                "                             )(  l\\ o ('..-.                \r\n" + //
+                "                       _..--' _'-' '--'.-. |                \r\n" + //
+                "                __,,-'' _,,-''            \\ \\               \r\n" + //
+                "               f'. _,,-'                   \\ \\              \r\n" + //
+                "              ()--  |                       \\ \\             \r\n" + //
+                "                \\.  |                       /  \\            \r\n" + //
+                "                  \\ \\                      |._  |           \r\n" + //
+                "                   \\ \\                     |  ()|           \r\n" + //
+                "                    \\ \\                     \\  /            \r\n" + //
+                "                     ) `-.                   | |            \r\n" + //
+                "                    // .__)                  | |            \r\n" + //
+                "                 _.//7'                      | |            \r\n" + //
+                "               '---'                         j_| `          \r\n" + //
+                "                                            (| |            \r\n" + //
+                "                                             |  \\           \r\n" + //
+                "                                             |lllj          ";
     }
 }
