@@ -101,7 +101,7 @@ public class Minotaur extends Boss {
     protected void useHability(Hability hability, Player player) throws Exception {
         if (hability == null || player == null) {
             throw new Exception("Nenhuma habilidade ou player foi passado para função");
-        }   
+        }
 
         System.out.println("O Minotauro usa sua habilidade: " + hability.getName());
         energy -= hability.getEnergyCost();
@@ -111,8 +111,28 @@ public class Minotaur extends Boss {
     }
 
     public String getSprite() {
-        // TODO fazer sprite minotauro
-        return "";
+        
+        return "                                                                _\r\n" + //
+                "                                                              _( (~\\\r\n" + //
+                "       _ _                        /                          ( \\> > \\\r\n" + //
+                "   -/~/ / ~\\                     :;                \\       _  > /(~\\/\r\n" + //
+                "  || | | /\\ ;\\                   |l      _____     |;     ( \\/ /   /\r\n" + //
+                "  _\\\\)\\)\\)/ ;;;                  `8o __-~     ~\\   d|      \\   \\  //\r\n" + //
+                " ///(())(__/~;;\\                  \"88p;.  -. _\\_;.oP        (_._/ /\r\n" + //
+                "(((__   __ \\\\   \\                  `>,% (\\  (\\./)8\"         ;:'  i\r\n" + //
+                ")))--`.'-- (( ;,8 \\               ,;%%%:  ./V^^^V'          ;.   ;.\r\n" + //
+                "((\\   |   /)) .,88  `: ..,,;;;;,-::::::'_::\\   ||\\         ;[8:   ;\r\n" + //
+                " )|  ~-~  |(|(888; ..``'::::8888oooooo.  :\\`^^^/,,~--._    |88::| |\r\n" + //
+                "  \\ -===- /|  \\8;; ``:.      oo.8888888888:`((( o.ooo8888Oo;:;:'  |\r\n" + //
+                " |_~-___-~_|   `-\\.   `        `o`88888888b` )) 888b88888P\"\"'     ;\r\n" + //
+                "  ;~~~~;~~         \"`--_`.       b`888888888;(.,\"888b888\"  ..::;-'\r\n" + //
+                "   ;      ;              ~\"-....  b`8888888:::::.`8888. .:;;;''\r\n" + //
+                "      ;    ;                 `:::. `:::OOO:::::::.`OO' ;;;''\r\n" + //
+                " :       ;                     `.      \"``::::::''    .'\r\n" + //
+                "    ;                           `.   \\_              /\r\n" + //
+                "  ;       ;                       +:   ~~--  `:'  -';\r\n" + //
+                "                                   `:         : .::/\r\n" + //
+                "      ;                            ;;+_  :::. :..;;;";
     }
 
 }

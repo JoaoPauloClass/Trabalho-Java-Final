@@ -4,14 +4,13 @@ import java.util.Random;
 
 import model.player.Player;
 
-public class Vampire extends Monster{
-    
-    
-    public Vampire(){
+public class Vampire extends Monster {
+
+    public Vampire() {
         super("Vampiro", 8, 2, 8, 10);
     }
 
-    public void attack(Player player)throws Exception{
+    public void attack(Player player) throws Exception {
         if (player == null) {
             throw new Exception("Nenhum player foi passado para a função de ataque.");
         }
@@ -44,12 +43,27 @@ public class Vampire extends Monster{
                 System.out.println("Você consegue esquivar!");
             }
         }
-        }
-
-    public String getSprite(){
-        //TODO: arte vampiro
-        return "";    
     }
 
+    public String getSprite() {
+        
+        return "            __.......__\r\n" + //
+                "            .-:::::::::::::-.\r\n" + //
+                "          .:::''':::::::''':::.\r\n" + //
+                "        .:::'     `:::'     `:::. \r\n" + //
+                "   .'\\  ::'   ^^^  `:'  ^^^   '::  /`.\r\n" + //
+                "  :   \\ ::   _.__       __._   :: /   ;\r\n" + //
+                " :     \\`: .' ___\\     /___ `. :'/     ; \r\n" + //
+                ":       /\\   (_|_)\\   /(_|_)   /\\       ;\r\n" + //
+                ":      / .\\   __.' ) ( `.__   /. \\      ;\r\n" + //
+                ":      \\ (        {   }        ) /      ; \r\n" + //
+                " :      `-(     .  ^\"^  .     )-'      ;\r\n" + //
+                "  `.       \\  .'<`-._.-'>'.  /       .'\r\n" + //
+                "    `.      \\    \\;`.';/    /      .'\r\n" + //
+                "      `._    `-._       _.-'    _.'\r\n" + //
+                "       .'`-.__ .'`-._.-'`. __.-'`.\r\n" + //
+                "     .'       `.         .'       `.\r\n" + //
+                "   .'           `-.   .-'           `.";
+    }
 
 }

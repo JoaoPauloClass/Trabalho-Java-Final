@@ -4,12 +4,12 @@ import java.util.Random;
 
 import model.player.Player;
 
-public class Gargoyle extends Monster{
-    public Gargoyle(){
+public class Gargoyle extends Monster {
+    public Gargoyle() {
         super("Gárgula", 8, 4, 7, 6);
     }
 
-    public void attack(Player player)throws Exception{
+    public void attack(Player player) throws Exception {
         if (player == null) {
             throw new Exception("Nenhum player foi passado para a função de ataque.");
         }
@@ -38,11 +38,41 @@ public class Gargoyle extends Monster{
                 System.out.println("Você consegue esquivar!");
             }
         }
-        }
-
-    public String getSprite(){
-        //TODO: arte gargola
-        return "";    
     }
-    
+
+    public String getSprite() {
+        
+        return ",                                                               ,\r\n" + //
+                " \\'.                                                           .'/\r\n" + //
+                "  ),\\                                                         /,(\r\n" + //
+                " /__\\'.                                                     .'/__\\\r\n" + //
+                " \\  `'.'-.__                                           __.-'.'`  /\r\n" + //
+                "  `)   `'-. \\                                         / .-'`   ('\r\n" + //
+                "  /   _.--'\\ '.          ,               ,          .' /'--._   \\\r\n" + //
+                "  |-'`      '. '-.__    / \\             / \\    __.-' .'      `'-|\r\n" + //
+                "  \\         _.`'-.,_'-.|/\\ \\    _,_    / /\\|.-'_,.-'`._         /\r\n" + //
+                "   `\\    .-'       /'-.|| \\ |.-\"   \"-.| / ||.-'\\       '-.    /`\r\n" + //
+                "     )-'`        .'   :||  / -.\\\\ //.- \\  ||:   '.        `'-(\r\n" + //
+                "    /          .'    / \\\\_ |  /o`^'o\\  | _// \\    '.          \\\r\n" + //
+                "    \\       .-'    .'   `--|  `\"/ \\\"`  |--`   '.    '-.       /\r\n" + //
+                "     `)  _.'     .'    .--.; |\\__\"__/| ;.--.    '.     '._  ('\r\n" + //
+                "     /_.'     .-'  _.-'     \\\\ \\/^\\/ //     `-._  '-.     '._\\\r\n" + //
+                "     \\     .'`_.--'          \\\\     //          `--._`'.     /\r\n" + //
+                "      '-._' /`            _   \\\\-.-//   _            `\\ '_.-'\r\n" + //
+                "          `<     _,..--''`|    \\`\"`/    |`''--..,_     >`\r\n" + //
+                "           _\\  ``--..__   \\     `'`     /   __..--``  /_\r\n" + //
+                "          /  '-.__     ``'-;    / \\    ;-'``     __.-'  \\\r\n" + //
+                "         |    _   ``''--..  \\'-' | '-'/  ..--''``   _    |\r\n" + //
+                "         \\     '-.       /   |/--|--\\|   \\       .-'     /\r\n" + //
+                "          '-._    '-._  /    |---|---|    \\  _.-'    _.-'\r\n" + //
+                "              `'-._   '/ / / /---|---\\ \\ \\ \\'   _.-'`\r\n" + //
+                "                   '-./ / / / \\`---`/ \\ \\ \\ \\.-'\r\n" + //
+                "                       `)` `  /'---'\\  ` `(`\r\n" + //
+                "                      /`     |       |     `\\\r\n" + //
+                "                     /  /  | |       | |  \\  \\\r\n" + //
+                "                 .--'  /   | '.     .' |   \\  '--.\r\n" + //
+                "                /_____/|  / \\._\\   /_./ \\  |\\_____\\\r\n" + //
+                "               (/      (/'     \\) (/     `\\)      \\)";
+    }
+
 }

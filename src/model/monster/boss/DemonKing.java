@@ -24,8 +24,8 @@ public class DemonKing extends Boss {
         }
     }
 
-    public void attack(Player player)  throws Exception {
-        
+    public void attack(Player player) throws Exception {
+
         if (player == null) {
             throw new Exception("Nenhum player foi passado para a função de ataque.");
         }
@@ -112,8 +112,16 @@ public class DemonKing extends Boss {
     }
 
     public String getSprite() {
-        // TODO fazer sprite rei demonio
-        return "";
+        
+        return "   ,    ,    /\\   /\\\r\n" + //
+                "  /( /\\ )\\  _\\ \\_/ /_\r\n" + //
+                "  |\\_||_/| < \\_   _/ >\r\n" + //
+                "  \\______/  \\|0   0|/\r\n" + //
+                "    _\\/_   _(_  ^  _)_\r\n" + //
+                "   ( () ) /`\\|V\"\"\"V|/`\\\r\n" + //
+                "     {}   \\  \\_____/  /\r\n" + //
+                "     ()   /\\   )=(   /\\\r\n" + //
+                "     {}  /  \\_/\\=/\\_/  \\";
     }
 
 }

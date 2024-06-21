@@ -1,4 +1,5 @@
-import model.monster.boss.Minotaur;
+import model.monster.*;
+import model.monster.boss.*;
 import model.player.Player;
 
 public class Main {
@@ -6,8 +7,8 @@ public class Main {
     public static void main(String[] args) {
        
         // * debugging purposes, will be removed in the merge
-        Minotaur minotauro = new Minotaur();
-        Player player = new Player("Jorge", "MAGO");
+        Skeleton monster = new Skeleton();
+        System.out.println(monster.getSprite());
 
                 //SystemGame.introduction();
                /* try{
