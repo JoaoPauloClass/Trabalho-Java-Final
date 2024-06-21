@@ -9,7 +9,7 @@ public class Floor {
     private int level;
     private Monster monster;
 
-    public Floor(String name, String description, int level, model.Monster monster) {
+    public Floor(String name, String description, int level, Monster monster) {
         this.name = name;
         this.description = description;
         this.level = level;
@@ -46,6 +46,17 @@ public class Floor {
 
     public void setMonster(Monster monster) {
         this.monster = monster;
+    }
+
+    public static Floor fromString(String line) {
+
+        String[] parts = line.split(", ");
+
+        Monster monster = Monster.fromString(parts[3]);
+
+        Floor tempFloor = new Floor(parts[0], parts[1], Integer.parseInt(parts[2]), monster);
+
+        return tempFloor;
     }
 
 }
