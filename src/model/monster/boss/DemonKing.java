@@ -6,17 +6,17 @@ import controller.HabilityController;
 import model.Hability;
 import model.player.Player;
 
-public class DemonKing extends Boss{
+public class DemonKing extends Boss {
 
-    public DemonKing(){
+    public DemonKing() {
         super("Rei Demônio", 25, 20, 30, 10, 20);
         setHabilities();
     }
 
-    protected void setHabilities(){
+    protected void setHabilities() {
         try {
             habilities = HabilityController.initializeDemonKingHability();
-            for(Hability a: habilities){
+            for (Hability a : habilities) {
                 System.out.println(a);
             }
         } catch (Exception e) {
@@ -24,9 +24,37 @@ public class DemonKing extends Boss{
         }
     }
 
-	public void attack(Player player){
-		// TODO FAZER ATAQUE REI DEMONIO	
-	}
+    public void attack(Player player)  throws Exception {
+        
+        if (player == null) {
+            throw new Exception("Nenhum player foi passado para a função de ataque.");
+        }
+        Random rand = new Random();
+        int d20 = rand.nextInt(20) + 1; // Gera um número entre 1 e 20
+        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int dano = attack;
+        if (d20 >= 6) {
+            System.out.println("O rei demônio lança uma bola de magia negra em sua direção.");
+            if (d10Dodge < 8) {
+                System.out.println("Você é acertado.");
+                dano = attack - 2;
+                System.out.println("Dano recebido: " + dano);
+                player.takeDamage(dano);
+            } else {
+                System.out.println("Você consegue esquivar!");
+            }
+        } else {
+            System.out.println("O rei demônio invoca uma espada flutuante que voa em sua direção.");
+            if (d10Dodge < 8) {
+                System.out.println("Você é acertado.");
+                dano = attack - 2;
+                System.out.println("Dano recebido: " + dano);
+                player.takeDamage(dano);
+            } else {
+                System.out.println("Você consegue esquivar!");
+            }
+        }
+    }
 
     public void checkHability(Player player) {
         /*
@@ -49,13 +77,13 @@ public class DemonKing extends Boss{
                     try {
                         useHability(hability, player);
                     } catch (Exception e) {
-                        // TODO: handle exception
+                        System.out.println(e.getMessage());
                     }
                 } else {
                     try {
                         attack(player);
                     } catch (Exception e) {
-                        // TODO: handle exception
+                        System.out.println(e.getMessage());
                     }
 
                 }
@@ -63,32 +91,29 @@ public class DemonKing extends Boss{
                 try {
                     attack(player);
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    System.out.println(e.getMessage());
                 }
 
             }
         }
 
     }
-    //TODO: custar energia
+
     protected void useHability(Hability hability, Player player) throws Exception {
         if (hability == null || player == null) {
             throw new Exception("Nenhuma habilidade ou player foi passado para função");
         }
 
         System.out.println("O Rei Demônio usa sua habilidade: " + hability.getName());
+        energy -= hability.getEnergyCost();
         System.out.println("Dano recebido: " + hability.getBaseDamage());
         player.takeDamage(hability.getBaseDamage());
 
     }
 
-	public String getSprite() {
-		// TODO fazer sprite rei demonio
+    public String getSprite() {
+        // TODO fazer sprite rei demonio
         return "";
-	}
+    }
 
-
-
-    
-    
 }
