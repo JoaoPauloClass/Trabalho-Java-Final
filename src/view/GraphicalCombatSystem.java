@@ -224,7 +224,7 @@ public class GraphicalCombatSystem {
                 Color.getResetColor() + "|");
         System.out.println("    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯       ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
 
-        return 10 + Console.readInt("\n\nSelecione 1 poção: ");
+        return Console.readInt("\n\nSelecione 1 poção: ");
     }
 
     public static int readAction(int action, Player player) {
