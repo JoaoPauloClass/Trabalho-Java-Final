@@ -1,6 +1,9 @@
 package view;
 
+import java.io.IOException;
+
 import controller.FloorController;
+import controller.PlayerDataController;
 import model.player.Player;
 
 public abstract class GameSystem {
@@ -8,18 +11,35 @@ public abstract class GameSystem {
     public static void execute() {
 
         initialize();
-        Player player = introduction();
+        Player player = new Player();
+        try {
+            player = PlayerDataController.loadPlayerData();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        if (player.getName() == null) {
+            player = introduction();
+        }
 
         player.showStatus();
         player.showHabilities();
+
+        try {
+            PlayerDataController.savePlayerData(player);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private static Player introduction() {
 
-        Console.printSlowly("Você acorda em um calabouço úmido e escuro, sem memória de como chegou ali.\n", 50);
-        Console.printSlowly("As paredes de pedra fria ecoam com os sons de criaturas rastejantes e correntes arrastando. Com cada movimento cauteloso, você percebe que está preso neste labirinto de terror. Você deve confiar em sua astúcia e força para sobreviver aos horrores que se escondem nas sombras e encontrar uma maneira de escapar da dungeon que agora é sua prisão.\n", 50);
+        Console.printSlowly("Você acorda em um calabouço úmido e escuro, sem memória de como chegou ali.\n");
+        Console.printSlowly(
+                "As paredes de pedra fria ecoam com os sons de criaturas rastejantes e correntes arrastando. Com cada movimento cauteloso, você percebe que está preso neste labirinto de terror. Você deve confiar em sua astúcia e força para sobreviver aos horrores que se escondem nas sombras e encontrar uma maneira de escapar da dungeon que agora é sua prisão.\n");
 
-        Console.printSlowly("\n\n\nQual seu nome, bravo guerreiro?\n", 50);
+        Console.printSlowly("\n\n\nQual seu nome, bravo guerreiro?\n");
         String name = Console.readString(">> ");
 
         int op = 0;
@@ -27,14 +47,14 @@ public abstract class GameSystem {
         System.out.printf("Qual sua classe %s ?%n", name);
 
         do {
-            Console.printSlowly("1) Guerreiro\n2) Assassino\n3) Mago\n", 50);
+            Console.printSlowly("1) Guerreiro\n2) Assassino\n3) Mago\n");
             op = Console.readInt(">> ");
 
             if (op > 0 && op < 4) {
                 break;
             }
 
-            Console.printSlowly("Opção inválida, tente novamente", 50);
+            Console.printSlowly("Opção inválida, tente novamente");
         } while (true);
 
         String playerClass = "";
@@ -53,16 +73,16 @@ public abstract class GameSystem {
         }
 
         return new Player(name, playerClass);
-        
+
     }
 
     private static void initialize() {
-      
+
         try {
             FloorController.initializeFloor();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
 }

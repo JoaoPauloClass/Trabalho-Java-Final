@@ -31,11 +31,11 @@ public class Console {
         
     }
 
-    public static void printSlowly(String text, int milliSecPerChar) {
+    public static void printSlowly(String text) {
         for (char c : text.toCharArray()) {
             System.out.print(c);
             try {
-                Thread.sleep(milliSecPerChar);
+                Thread.sleep(0);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 System.err.println("Thread was interrupted, failed to complete operation");
