@@ -7,7 +7,7 @@ import model.player.Player;
 
 public class Cerberus extends Monster {
     public Cerberus() {
-        super("Cerbero", 8, 8, 15, 6);
+        super("Cerbero", 8, 8, 15, 6,15);
     }
 
 

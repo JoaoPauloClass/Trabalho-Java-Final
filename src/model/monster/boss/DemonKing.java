@@ -10,7 +10,7 @@ import model.player.Player;
 public class DemonKing extends Boss {
 
     public DemonKing() {
-        super("Rei Demônio", 25, 20, 30, 10, 20);
+        super("Rei Demônio", 25, 20, 30, 10, 30,20);
         setHabilities();
     }
 

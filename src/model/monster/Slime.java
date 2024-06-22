@@ -1,13 +1,14 @@
 package model.monster;
-import java.util.Random;
 
+import view.*;
+import java.util.Random;
 import model.Attackable;
 import model.player.Player;
 
 public class Slime extends Monster {
     
     public Slime(){
-        super("Slime", 5, 3, 3, 4);
+        super("Slime", 15, 3, 10, 4,11);
     }
 
     @Override
@@ -26,29 +27,40 @@ public class Slime extends Monster {
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
+
         if (d10 <= 5) {
             // ! Caso eu va colocar em metodo o dodge, os parametros são => dodgeGoal,
             // damage, multiplicator, player
             // TODO ver sobre isso ^^^^^^^^
-            System.out.println("O Slime dipara um Golpe Ácido.");
+            Console.printSlowly("O Slime dipara um Golpe Ácido.");
+            Console.readString("");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("\nVocê é acertado.");
+                Console.readString("");
                 dano = attack - 2;
-                System.out.println("Dano recebido: " + dano);
+                dano -= player.getDefense();
+                Console.printSlowly("\nDano recebido: " + dano);
+                Console.readString("");
                 target.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("\nVocê consegue esquivar!");
             }
-
+            
         } else {
-            System.out.println("O Slime pula em você.");
+            Console.printSlowly("\nO Slime pula em você.");
+
+            Console.readString("");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("\nVocê é acertado.");
+                Console.readString("");
                 dano = attack;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("\nDano recebido: " + dano);
+                Console.readString("");
+                dano -= player.getDefense();
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("\nVocê consegue esquivar!");
+                Console.readString("");
             }
         }
     }

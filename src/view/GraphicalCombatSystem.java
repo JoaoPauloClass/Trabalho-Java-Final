@@ -8,7 +8,7 @@ public class GraphicalCombatSystem {
     public static int mana = 10;
     public static int damage = 10;
     public static int life = 10;
-    public static void MonsterBattle(Monster p) {
+    public static void MonsterBattle(Monster monster) {
 
         int lifeBar = 10;
         // Clear console
@@ -20,7 +20,7 @@ public class GraphicalCombatSystem {
             System.out.print("-");
 
         System.out.print("\n\t\t\t\t|  ");
-        String monsterName = p.getName();
+        String monsterName = monster.getName();
 
         // Line 2
         for (int i = 0; i < 23; i++) {
@@ -60,7 +60,7 @@ public class GraphicalCombatSystem {
         System.out.println(" ");
     }
 
-    public static void lifeBarPlayer(Player p) {
+    public static void lifeBarPlayer(Player player) {
 
         int lifeBar = 10;
 
@@ -71,7 +71,7 @@ public class GraphicalCombatSystem {
             System.out.print("-");
 
         System.out.print("\n\t\t\t\t|  ");
-        String monsterName = p.getName();
+        String monsterName = player.getName();
 
         // Line 2
         for (int i = 0; i < 26; i++) {
@@ -110,8 +110,8 @@ public class GraphicalCombatSystem {
         //Manualmente
         for (int j = 0; j < 5; j++) {
             if (cont == 0) {
-                String gethealth = String.valueOf(p.getHealth());
-                String maxhealth = String.valueOf(p.getMaxHealth());
+                String gethealth = String.valueOf(player.getHealth());
+                String maxhealth = String.valueOf(player.getMaxHealth());
                 for (char c : gethealth.toCharArray()) {
                     System.out.print(c);
                     j++;
@@ -130,10 +130,10 @@ public class GraphicalCombatSystem {
         System.out.println("|");
     }
 
-    public static void manaBarPlayer(Player p) {
+    public static void manaBarPlayer(Player player) {
         int manaBar = 10;
-        if (p.getPlayerClass() == "MAGO") {
-            wizardMana(p);
+        if (player.getPlayerClass() == "MAGO") {
+            wizardMana(player);
         }
 
         // Energy
@@ -162,8 +162,8 @@ public class GraphicalCombatSystem {
         int cont = 0;
         for (int j = 0; j < 5; j++) {
             if (cont == 0) {
-                String getmana = String.valueOf(p.getMana());
-                String maxmana = String.valueOf(p.getMaxMana());
+                String getmana = String.valueOf(player.getMana());
+                String maxmana = String.valueOf(player.getMaxMana());
                 for (char c : getmana.toCharArray()) {
                     System.out.print(c);
                     j++;
@@ -190,7 +190,7 @@ public class GraphicalCombatSystem {
 
     }
 
-    public static void wizardMana(Player p) {
+    public static void wizardMana(Player player) {
         // Mana
 
         System.out.print(" \t\t\t\t|");
@@ -218,8 +218,8 @@ public class GraphicalCombatSystem {
         int cont = 0;
         for (int j = 0; j < 5; j++) {
             if (cont == 0) {
-                String getmana = String.valueOf(p.getMana());
-                String maxmana = String.valueOf(p.getMaxMana());
+                String getmana = String.valueOf(player.getMana());
+                String maxmana = String.valueOf(player.getMaxMana());
                 for (char c : getmana.toCharArray()) {
                     System.out.print(c);
                     j++;
@@ -243,10 +243,10 @@ public class GraphicalCombatSystem {
 
     }
 
-    public static void playerTable(Player p, int life) {
+    public static void playerTable(Player player) {
 
-        lifeBarPlayer(p);
-        manaBarPlayer(p);
+        lifeBarPlayer(player);
+        manaBarPlayer(player);
 
     }
 
@@ -308,7 +308,7 @@ public class GraphicalCombatSystem {
 
 
             int temp = Console.readInt("\n\nSelecione uma habilidade: ");
-            if (temp <3 || temp > 1) {
+            if (temp < 0 || temp > 3) {
                 throw new Exception("Valor invalido selecione um valor válido");
             }
             return temp;
@@ -324,7 +324,7 @@ public class GraphicalCombatSystem {
         System.out.println("    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯       ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
 
         int temp = Console.readInt("\n\nSelecione 1 poção: ");
-        if (temp > 3 || temp < 1) {
+        if (temp < 0 || temp > 3) {
             throw new Exception("Valor invalido selecione um valor válido");
         }
 
@@ -362,7 +362,7 @@ public class GraphicalCombatSystem {
                 playerGiveUp();
                 return 0;
             default:
-                System.out.println("Essa opção nao existe!");
+                Console.printSlowly("Essa opção nao existe!");
                 return 0;
         }
 

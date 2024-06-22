@@ -1,11 +1,15 @@
 package model.player;
 
 import java.util.ArrayList;
+
+import controller.ArmorController;
 import controller.HabilityController;
+import controller.PlayerController;
 import controller.PotionBag;
 import model.Armor;
 import model.Attackable;
 import model.Hability;
+import model.monster.Monster;
 import view.Color;
 import view.Console;
 import view.GraphicalCombatSystem;
@@ -81,6 +85,7 @@ public class Player implements Cloneable, Attackable {
                 System.out.println(e.getMessage());
             }
 
+            
         } else if (playerClass.equals("ASSASSINO")) {
 
             attack = 11;
@@ -397,7 +402,7 @@ public class Player implements Cloneable, Attackable {
         GraphicalCombatSystem.mana = temp;
     }
 
-    public void damageBattle(int action) throws Exception {
+    public void damageBattle(int action,Monster monster) throws Exception {
 
         Hability hability = habilities.get(action - 1);
 
@@ -405,8 +410,15 @@ public class Player implements Cloneable, Attackable {
             System.out.println("\033c");
             throw new Exception("Mana insuficiente!!!");
         }
-        int damage = GraphicalCombatSystem.getDamage() - hability.getBaseDamage();
-        GraphicalCombatSystem.setDamage(damage);
+
+        //Slime damage
+      
+        int lostLife = monster.getHealth() - hability.getBaseDamage();
+        monster.setHealth(lostLife);
+        
+        lostLife = (lostLife * 10) / monster.getMaxHealth();
+        GraphicalCombatSystem.setDamage(lostLife);
+        
 
     }
 
@@ -418,11 +430,26 @@ public class Player implements Cloneable, Attackable {
     @Override
     public void takeDamage(int damage) {
         // TODO: implementar morte
-        this.health -= damage;
+        System.out.println(damage + " dano antes");
+        System.out.println("vida antes" + health);
+        if (damage < 0) {
+            damage = 0;
+        }
+        health -= damage;
+        System.out.println("dano depois: " + damage);
+        System.out.println("vida depois: " + health);
         if (this.health < 0) {
             this.health = 0;
+            GraphicalCombatSystem.setLife(0);
+            return;
         }
+
+        int temp = ((health * 10) / maxHealth);
+        System.out.println("bar vida: " + temp);
+        GraphicalCombatSystem.setLife(temp);
+
     }
+
 
     @Override
     public void attack(Attackable target) throws Exception {
