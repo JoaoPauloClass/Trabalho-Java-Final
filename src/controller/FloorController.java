@@ -9,9 +9,10 @@ public abstract class FloorController {
 
     private static final File FLOOR = new File("src/database/floor.txt");
 
-    public static ArrayList<Floor> initializeFloor() throws Exception{
-        
-        ArrayList<Floor> floors = new ArrayList<Floor>();
+    public static ArrayList<Floor> floors = new ArrayList<Floor>();
+    
+    public static void initializeFloor() throws Exception{
+
         String line;
 
         try (FileReader fr = new FileReader(FLOOR); BufferedReader reader = new BufferedReader(fr)) {
@@ -29,7 +30,17 @@ public abstract class FloorController {
 
         }
 
-        return floors;
+    }
+
+    public static Floor getFloor(int level) throws Exception {
+
+        for (Floor floor : floors) {
+            if(floor.getLevel() == level) {
+                return floor;
+            }
+        }
+
+        throw new Exception("Número de fase inválido");
     }
 
 }
