@@ -1,16 +1,14 @@
 package view;
 
-
 import model.player.Player;
 
 public class GraphicalCombatSystem {
 
-    public static int vida = 10;
-    public static int lifeBar = 10;
     public static int manaBar = 10;
 
-    public static void MonsterBattle(Player p) {
+    public static void MonsterBattle(Player p, int damage) {
 
+        int lifeBar = 10;
         // Clear console
         System.out.println("\033c");
         // Line 1
@@ -38,41 +36,43 @@ public class GraphicalCombatSystem {
         System.out.print(" \t\t\t\t|");
         System.out.print("\thp:(" + Color.getGreen());
 
-        for (int i = 0; i < 10; i++)
-            System.out.print("|");
+        if (lifeBar != damage) {
+            for (int i = 0; i < damage; i++)
+                System.out.print("|");
+            System.out.print(Color.getBlack());
+            lifeBar -= damage;
+            for (int i = 0; i < lifeBar; i++)
+                System.out.print("|");
+        } else {
+            for (int i = 0; i < damage; i++)
+                System.out.print("|");
+        }
 
         System.out.print(Color.getResetColor());
-        /*
-         * if (lifeBar_slime != vida) {
-         * lifeBar_slime -= vida;
-         * for (int i = 0; i < lifeBar_slime; i++) {
-         * System.out.print("|");
-         * 
-         * }
-         */
         System.out.println(")   |");
         System.out.print("\t\t\t\t");
-        
+
         // Line 4
         for (int i = 0; i < 27; i++)
             System.out.print("-");
         System.out.println(" ");
     }
 
-    public static void lifeBarPlayer(Player p, int damage) {
+    public static void lifeBarPlayer(Player p, int vida) {
 
-        // vida -= damage;
+        int lifeBar = 10;
+
         // Line 1
         System.out.print("\t\t\t\t");
 
-        for (int i = 0; i < 27; i++)
+        for (int i = 0; i < 30; i++)
             System.out.print("-");
 
         System.out.print("\n\t\t\t\t|  ");
         String monsterName = p.getName();
 
         // Line 2
-        for (int i = 0; i < 23; i++) {
+        for (int i = 0; i < 26; i++) {
             System.out.print(" ");
 
             if (i == 0) {
@@ -89,45 +89,101 @@ public class GraphicalCombatSystem {
         System.out.print("\thp:(" + Color.getGreen());
 
         if (lifeBar != vida) {
+            for (int i = 0; i < vida; i++)
+                System.out.print("|");
             System.out.print(Color.getBlack());
             lifeBar -= vida;
             for (int i = 0; i < lifeBar; i++)
                 System.out.print("|");
         } else {
-            for (int i = 0; i < lifeBar; i++)
+            for (int i = 0; i < vida; i++)
                 System.out.print("|");
         }
-        System.out.println(Color.getResetColor() + ")   |");
 
+        System.out.print(Color.getResetColor() + ")");
+        int cont = 0;
+
+        for (int j = 0; j < 5; j++) {
+            if (cont == 0) {
+                String gethealth = String.valueOf(p.getHealth());
+                String maxhealth = String.valueOf(p.getMaxHealth());
+                for (char c : gethealth.toCharArray()) {
+                    System.out.print(c);
+                    j++;
+                }
+
+                System.out.print("/");
+                for (char c : maxhealth.toCharArray()) {
+                    System.out.print(c);
+                    j++;
+                }
+                cont++;
+            }
+            System.out.print(" ");
+        }
+        
+        System.out.println("|");
     }
-    public static void manaBarPlayer(Player p,int mana) {
-        
+
+    public static void manaBarPlayer(Player p, int mana) {
+
         // Energy
-        
         System.out.print(" \t\t\t\t|");
         System.out.print("\tsp:(" + Color.getYellow());
 
         manaBar = 10;
-        
+
         if (manaBar != mana) {
-            for (int i = 0; i < mana; i++)
+            for (int i = 0; i < mana; i++) {
                 System.out.print("|");
+
+            }
             System.out.print(Color.getBlack());
             manaBar -= mana;
-            for (int i = 0; i < manaBar; i++)
+            for (int i = 0; i < manaBar; i++) {
                 System.out.print("|");
+
+            }
+            System.out.print(Color.getResetColor() + ")");
         } else {
-            for (int i = 0; i < mana; i++)
+            for (int i = 0; i < mana; i++) {
                 System.out.print("|");
+
+            }
+            System.out.print(Color.getResetColor() + ")");
+        }
+        int cont = 0;
+        for (int j = 0; j < 5; j++) {
+            if (cont == 0) {
+                String getmana = String.valueOf(p.getMana());
+                String maxmana = String.valueOf(p.getMaxMana());
+                for (char c : getmana.toCharArray()) {
+                    System.out.print(c);
+                    j++;
+                }
+
+                System.out.print("/");
+                for (char c : maxmana.toCharArray()) {
+                    System.out.print(c);
+                    j++;
+                }
+                cont++;
+
+            }
+            System.out.print(" ");
         }
 
-        System.out.println(Color.getResetColor() + ")   |");
+        System.out.println("|");
         System.out.print("\t\t\t\t");
+
         // Line 5
-        for (int i = 0; i < 27; i++)
+
+        for (int i = 0; i < 30; i++)
             System.out.print("-");
 
     }
+    // System.out.println(Color.getResetColor() + ")"+ p.getMana() +"/"+
+    // p.getMaxMana()+" |");
 
     /*
      * 
@@ -159,9 +215,9 @@ public class GraphicalCombatSystem {
      * return;
      * }
      */
-    public static void playerTable(Player p, int damage,int mana) {
+    public static void playerTable(Player p, int life, int mana) {
 
-        lifeBarPlayer(p, damage);
+        lifeBarPlayer(p, life);
         manaBarPlayer(p, mana);
 
     }
@@ -176,7 +232,7 @@ public class GraphicalCombatSystem {
     }
 
     public static int playerHabilities(Player player) {
-        
+
         System.out.println("\033c");
         player.showHabilities();
         return Console.readInt("\n\nSelecione uma habilidade ou selecione 0 para sair: ");

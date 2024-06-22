@@ -2,7 +2,9 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import controller.Battle;
+import controller.PotionBag;
 import model.Hability;
+import model.Potion;
 import model.player.Player;
 import view.GraphicalCombatSystem;
 
@@ -13,7 +15,9 @@ public class Main {
                 Player p = new Player("gustavo", "GUERREIRO");
                 Player m = new Player("Skeleton", "MAGO");
                 p.habilities();
+                PotionBag.initialize();
                 Battle.startBattle(p, m);
+                
 
                 //SystemGame.introduction();
                /* try{

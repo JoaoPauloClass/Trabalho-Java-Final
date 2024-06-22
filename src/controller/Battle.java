@@ -1,9 +1,5 @@
 package controller;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-import model.Hability;
 import model.player.Player;
 import view.Console;
 import view.GraphicalCombatSystem;
@@ -11,75 +7,66 @@ import view.GraphicalCombatSystem;
 public class Battle {
 
     public static void startBattle(Player p, Player m) {
-        int damage = 10, energy = 0;
-        int option =0;
-        int mana = 10;
+        int lifeMonster = 10, energy = 0;
+        int lifePlayer = 10, lifeAgain = 10;
+        int manaBar = 10;
         do {
-            //Garantia que não vai zerar a mana apertando zero para voltar nas escolhas de habilidades
-            if (mana == -1) {
-                mana = energy;
+            // Garantia que não vai zerar a mana apertando zero para voltar nas escolhas de
+            // habilidades
+            if (manaBar == -1) {
+                manaBar = energy;
             }
-            energy = mana;
+            energy = manaBar;
+            lifeAgain = lifeMonster;
+            // Start
 
-            //Start
-
-            GraphicalCombatSystem.MonsterBattle(m);
-            GraphicalCombatSystem.playerTable(p, damage, mana);
+            GraphicalCombatSystem.MonsterBattle(m, lifeMonster);
+            GraphicalCombatSystem.playerTable(p, lifePlayer, manaBar);
             
-            option = GraphicalCombatSystem.playerOption();
-            
+            int option = GraphicalCombatSystem.playerOption();
             int action = GraphicalCombatSystem.readAction(option, p);
             if (option == 2) {
 
                 while (true) {
                     try {
-                      //  damageHability(p.getHabilities(), action);
-                        
-                        mana = energyCostBattle(p.getHabilities(), action,mana, p);
+                        lifeMonster = p.damageHability(action, lifeMonster);
+                        manaBar = p.energyCostBattle(action);
+                
                         break;
                     } catch (Exception e) {
 
-                    System.out.println(e.getMessage());
-                    Console.readString("Pressione qualquer botao para prosseguir: ");
-                    action = GraphicalCombatSystem.playerHabilities(p);
+                        System.out.println(e.getMessage());
+                        Console.readString("Pressione enter para prosseguir: ");
+                        action = GraphicalCombatSystem.playerHabilities(p);
                     }
                 }
             }
-        } while (true);
+            if (lifeMonster == -1) {
+                lifeMonster = lifeAgain;
+            } else if (option == 3) {
+                if (action == 1) {
+                    try {
+                        lifePlayer += p.useHealingPotion();
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                try {
+                    manaBar = p.useManaPotion();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    Console.readString("Pressione enter para prosseguir: ");
+                }
+            }
 
+        } while (lifeMonster > 0 && lifePlayer > 0);
+
+        System.out.println("Derrotou");
     }
 
-
-
-    public static int energyCostBattle(ArrayList<Hability> a, int t, int mana, Player p) throws Exception {
-    
-        if(t == 0){
-            return -1;
-        }else if(t > 3){
-            System.out.println("\033c");
-            throw new Exception("Numero invalido, tente com um dos numeros abaixo");
-        }
-
-        Hability b = a.get(t - 1);
+    public static int manaPotionCalculator(Player p){
         
-        if ((p.getMana() - b.getEnergyCost()) <= -1) {
-            System.out.println("\033c");
-            throw new Exception("Mana insuficiente!!!");
-        }
-       
-      int g = p.getMana() - b.getEnergyCost();
-         p.setMana(g);
-        return ((p.getMana()* 10) / 8);
-    }
-    public static int damageHability(ArrayList<Hability> a, int t) {
-
-        if (t == 1) {
-
-            Hability b = a.get(0);
-            return b.getBaseDamage();
-
-        }
+        
         return 0;
     }
-
 }
