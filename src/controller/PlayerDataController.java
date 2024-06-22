@@ -1,28 +1,28 @@
 package controller;
 
-import java.io.BufferedReader;
-
-import java.io.FileReader;
-import java.io.IOException;
-
 import model.player.Player;
 
 import java.io.*;
 
 public class PlayerDataController {
-    public static void savePlayerData(String filename, Player player) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+   
+    private static final File PLAYER_SAVE_FILE = new File("src/database/save/player.txt");
+
+    public static void savePlayerData(Player player) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(PLAYER_SAVE_FILE))) {
             writer.write("Name: " + player.getName() + "\n");
             writer.write("Attack: " + player.getAttack() + "\n");
             writer.write("Defense: " + player.getDefense() + "\n");
             writer.write("Health: " + player.getHealth() + "\n");
             writer.write("Mana: " + player.getMana() + "\n");
             writer.write("Agility: " + player.getAgility() + "\n");
+            writer.write("Floor: " + player.getFloor() + "\n");
         }
     }
 
-    public static Player loadPlayerData(String filename) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+    
+    public static Player loadPlayerData() throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(PLAYER_SAVE_FILE))) {
             Player player = new Player();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -45,6 +45,10 @@ public class PlayerDataController {
                         break;
                     case "Agility":
                         player.setAgility(Integer.parseInt(parts[1].trim()));
+
+                    case "Floor":
+                        player.setFloor(Integer.parseInt(parts[1].trim()));
+
                         break;
                 }
             }

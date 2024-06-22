@@ -77,7 +77,7 @@ public class Player implements Cloneable {
             }
             
 
-        } else {
+        } else if (playerClass == "ASSASSINO") {
 
             attack = 11;
             defense = 8;

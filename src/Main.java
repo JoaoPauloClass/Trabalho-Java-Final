@@ -1,3 +1,4 @@
+import view.GameSystem;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -12,24 +13,9 @@ import view.GraphicalCombatSystem;
 public class Main {
     
     public static void main(String[] args) {
-       
-                Player p = new Player("gustavo", "GUERREIRO");
-                Player m = new Player("Skeleton", "MAGO");
-                p.habilities();
-                PotionBag.initialize();
-                Battle.startBattle(p, m);
-                
+      
+      GameSystem.execute();
 
-                //SystemGame.introduction();
-               /* try{
-                    p.addPoints();
-                }catch(Exception e){
-                    System.out.println(e.getMessage());
-                }
-                */
-              
-                
-                //GraphicalCombatSystem.playerTable(p,10);
     }
 }
     

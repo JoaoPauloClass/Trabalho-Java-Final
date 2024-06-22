@@ -30,4 +30,16 @@ public class Console {
         return scanner.nextLine();
         
     }
+
+    public static void printSlowly(String text, int milliSecPerChar) {
+        for (char c : text.toCharArray()) {
+            System.out.print(c);
+            try {
+                Thread.sleep(milliSecPerChar);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.err.println("Thread was interrupted, failed to complete operation");
+            }
+        }
+    }
 }

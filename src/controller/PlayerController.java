@@ -4,7 +4,6 @@ import model.Armor;
 import model.player.Player;
 
 public abstract class PlayerController {
-    
 
     public static Player calculateAtributes(Player player) {
 
@@ -24,7 +23,7 @@ public abstract class PlayerController {
             tempPlayer.setAttack(player.getAttack() + equipedArmor.getStatUpgrade());
         } else if (equipedArmor.getTypeUpgrade().equals("DEFENSE")) {
             tempPlayer.setDefense(player.getDefense() + equipedArmor.getStatUpgrade());
-        }else if (equipedArmor.getTypeUpgrade().equals("HEALTH")) {
+        } else if (equipedArmor.getTypeUpgrade().equals("HEALTH")) {
             tempPlayer.setHealth(player.getHealth() + equipedArmor.getStatUpgrade());
         } else if (equipedArmor.getTypeUpgrade().equals("AGILITY")) {
             tempPlayer.setAgility(player.getAgility() + equipedArmor.getStatUpgrade());
