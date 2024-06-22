@@ -1,3 +1,2 @@
-A Floresta de Slimes, Uma floresta densa e úmida, onde Slimes atacam viajantes desavisados., 1, SLIME
-A Cripta do Esqueleto, Uma cripta sombria e cheia de teias de aranha, habitada por um Esqueleto., 2, SKELETON
-
+A Floresta de Slime; Uma floresta densa e úmida, onde Slimes atacam viajantes desavisados.; 1; SLIME
+A Cripta do Esqueleto; Uma cripta sombria e cheia de teias de aranha, habitada por um Esqueleto.; 2; SKELETON
