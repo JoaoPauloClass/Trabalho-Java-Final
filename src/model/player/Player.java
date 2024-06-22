@@ -7,6 +7,7 @@ import model.Armor;
 import model.Hability;
 import view.Color;
 import view.Console;
+import view.GraphicalCombatSystem;
 
 public class Player implements Cloneable {
 
@@ -58,7 +59,6 @@ public class Player implements Cloneable {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
 
         } else if (playerClass == "GUERREIRO") {
             attack = 12;
@@ -75,7 +75,6 @@ public class Player implements Cloneable {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
 
         } else if (playerClass == "ASSASSINO") {
 
@@ -92,11 +91,10 @@ public class Player implements Cloneable {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
+
         }
     }
 
-    
     public int getMaxHealth() {
         return maxHealth;
     }
@@ -315,8 +313,7 @@ public class Player implements Cloneable {
 
     }
 
-    
-    public void showHabilities(){
+    public void showHabilities() {
 
         int mostrar = 1;
         for (Hability a : habilities) {
@@ -356,38 +353,31 @@ public class Player implements Cloneable {
         }
     }
 
-
-    public int useHealingPotion() throws Exception {
+    public void useHealingPotion() throws Exception {
 
         if (health == maxHealth) {
             throw new Exception("Sua vida está cheia, não há necessidade de usar");
         } else {
             PotionBag.usePotion("LIFE");
-          
+
             health += 2;
-          return (2 * 10) / maxHealth;
+            int temp = ((health * 10) / maxHealth);
+            GraphicalCombatSystem.setLife(temp);
         }
     }
 
-    public int useManaPotion() throws Exception {
+    public void useManaPotion() throws Exception {
         if (mana == maxMana) {
             throw new Exception("Sua energia está cheia, não há necessidade de usar");
         } else {
             PotionBag.usePotion("MANA");
             mana += 2;
-            return (2 * 10) / maxMana;
+            int temp = ((mana * 10) / maxMana);
+            GraphicalCombatSystem.setMana(temp);
         }
     }
 
-    public int energyCostBattle(int action) throws Exception {
-
-        if (action == 0) {
-            return -1;
-        } else if (action > 3) {
-            System.out.println("\033c");
-            throw new Exception("Numero invalido, tente com um dos numeros abaixo");
-
-        }
+    public void energyCostBattle(int action) throws Exception {
 
         Hability hability = habilities.get(action - 1);
 
@@ -397,28 +387,20 @@ public class Player implements Cloneable {
         }
 
         mana = mana - hability.getEnergyCost();
-
-        return ((mana * 10) / maxMana);
+        int temp = ((mana * 10) / maxMana);
+        GraphicalCombatSystem.mana = temp;
     }
 
-    public int damageHability(int action, int life) throws Exception {
-
-        if (action == 0) {
-            return -1;
-        } else if (action > 3) {
-            System.out.println("\033c");
-            throw new Exception("Numero invalido, tente com um dos numeros abaixo");
-        }
+    public void damageBattle(int action) throws Exception {
 
         Hability hability = habilities.get(action - 1);
 
         if ((mana - hability.getEnergyCost()) <= -1) {
             System.out.println("\033c");
             throw new Exception("Mana insuficiente!!!");
-            
         }
-
-        return life - hability.getBaseDamage();
+        int damage = GraphicalCombatSystem.getDamage() - hability.getBaseDamage();
+        GraphicalCombatSystem.setDamage(damage);
 
     }
 
@@ -427,12 +409,12 @@ public class Player implements Cloneable {
         return super.clone();
     }
 
-    public void takeDamage(int damage){
+    public void takeDamage(int damage) {
         // TODO: implementar morte
         this.health -= damage;
         if (this.health < 0) {
             this.health = 0;
         }
     }
-    
+
 }

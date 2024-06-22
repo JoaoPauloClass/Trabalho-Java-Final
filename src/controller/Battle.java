@@ -1,76 +1,88 @@
 package controller;
 
-import java.util.ArrayList;
-
-import model.Hability;
-
+import model.monster.Monster;
 import model.player.Player;
 import view.Console;
 import view.GraphicalCombatSystem;
 
 public class Battle {
 
-    public static void startBattle(Player p, Player m) {
-        int lifeMonster = 10, energy = 0;
-        int lifePlayer = 10, lifeAgain = 10;
-        int manaBar = 10;
+    public static int action = 0;
+    public static void startBattle(Player p, Monster m) {
+        int lifePlayer = 10;
+        int cont = 0;
         do {
-            // Garantia que não vai zerar a mana apertando zero para voltar nas escolhas de
-            // habilidades
-            if (manaBar == -1) {
-                manaBar = energy;
-            }
-            energy = manaBar;
-            lifeAgain = lifeMonster;
-            // Start
 
-            GraphicalCombatSystem.MonsterBattle(m, lifeMonster);
-            GraphicalCombatSystem.playerTable(p, lifePlayer, manaBar);
-            
+            GraphicalCombatSystem.MonsterBattle(m);
+            GraphicalCombatSystem.playerTable(p, lifePlayer);
+
             int option = GraphicalCombatSystem.playerOption();
-            int action = GraphicalCombatSystem.readAction(option, p);
-            if (option == 2) {
+            action = GraphicalCombatSystem.readAction(option, p);
 
-                while (true) {
-                    try {
-                        lifeMonster = p.damageHability(action, lifeMonster);
-                        manaBar = p.energyCostBattle(action);
-                
-                        break;
-                    } catch (Exception e) {
+            if (action == 0)
+                continue;
 
-                        System.out.println(e.getMessage());
-                        Console.readString("Pressione enter para prosseguir: ");
-                        action = GraphicalCombatSystem.playerHabilities(p);
-                    }
-                }
+            if (m.getAgility() < p.getAgility()) {
+
+                // todo: Monster Attack
+                if (option == 2 && lifePlayer > 0)
+                    habilityBattle(p);
+                else if (option == 3 && lifePlayer > 0) 
+                    potioBattle(p);
+                if (action == 0)
+                    continue;
+            } else {
+                if (option == 2 && lifePlayer > 0)
+                    habilityBattle(p);
+                else if (option == 3 && p.getHealth() > 0) 
+                    potioBattle(p);
             }
-            if (lifeMonster == -1) {
-                lifeMonster = lifeAgain;
-            } else if (option == 3) {
-                if (action == 1) {
-                    try {
-                        lifePlayer += p.useHealingPotion();
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                }
-                try {
-                    manaBar = p.useManaPotion();
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    Console.readString("Pressione enter para prosseguir: ");
-                }
+            
+            if (cont == 0) {
+                p.setHealth(5);
+                GraphicalCombatSystem.setLife(5);
+                cont++;
             }
+           
 
-        } while (lifeMonster > 0 && lifePlayer > 0);
+        } while (m.getHealth() > 0 && lifePlayer > 0);
 
+        p.setHealth(p.getMaxHealth());
+        p.setMana(p.getMaxMana());
         System.out.println("Derrotou");
     }
 
-    public static int manaPotionCalculator(Player p){
+    public static void habilityBattle(Player p) {
+
+            try {
+                p.damageBattle(action);
+                p.energyCostBattle(action);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                Console.readString("Pressione enter para prosseguir: ");
+                action = 0;
+            }
         
-        
-        return 0;
+    }
+
+    public static void potioBattle(Player p) {
+
+        if (action == 1) {
+            try {
+                p.useHealingPotion();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                Console.readString("Pressione enter para prosseguir: ");
+                action =0;
+            }
+        } else {
+            try {
+                p.useManaPotion();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                Console.readString("Pressione enter para prosseguir: ");
+                action =0;
+            }
+        }
     }
 }

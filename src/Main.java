@@ -1,20 +1,29 @@
-import view.GameSystem;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 import controller.Battle;
+import controller.FloorController;
 import controller.PotionBag;
-import model.Hability;
-import model.Potion;
+
+import model.monster.Monster;
 import model.player.Player;
-import view.GraphicalCombatSystem;
+
 
 public class Main {
     
     public static void main(String[] args) {
-      
-      GameSystem.execute();
+        
+
+        try{
+            PotionBag.initialize();
+            Player p = new Player("Gustavo", "GUERREIRO");
+            FloorController.initializeFloor();
+            Monster m =  FloorController.getFloor(1).getMonster();
+            Battle.startBattle(p, m);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+     // GameSystem.execute();
 
     }
 }
