@@ -8,7 +8,7 @@ import model.player.Player;
 public class Vampire extends Monster {
 
     public Vampire() {
-        super("Vampiro", 8, 2, 8, 10);
+        super("Vampiro", 8, 2, 8, 10,8);
     }
 
     public String getSprite() {

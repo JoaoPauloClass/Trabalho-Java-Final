@@ -8,7 +8,7 @@ import model.player.Player;
 public class Lich  extends Monster{
 
     public Lich(){
-        super("Lich", 10, 2, 10, 4);
+        super("Lich", 10, 2, 10, 4,10);
     }
 
     public String getSprite(){

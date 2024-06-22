@@ -8,7 +8,7 @@ import model.player.Player;
 public class Wolf extends Monster {
 
     public Wolf() {
-        super("Lobo", 6, 2, 4, 6);
+        super("Lobo", 6, 2, 4, 6,4);
     }
 
     public void attack(Player player) throws Exception {

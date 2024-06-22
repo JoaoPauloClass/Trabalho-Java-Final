@@ -8,7 +8,7 @@ import model.player.Player;
 public class Orc extends Monster {
 
     public Orc() {
-        super("Orc", 8, 4, 10, 2);
+        super("Orc", 8, 4, 10, 2,10);
     }
 
 

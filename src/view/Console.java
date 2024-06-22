@@ -35,7 +35,7 @@ public class Console {
         for (char c : text.toCharArray()) {
             System.out.print(c);
             try {
-                Thread.sleep(0);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 System.err.println("Thread was interrupted, failed to complete operation");
