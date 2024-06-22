@@ -19,6 +19,28 @@ public abstract class GameSystem {
         }
     }
 
+    private static void game() throws Exception {
+        initialize();
+        Player player = mainMenu();
+
+        for (int i = 0; i < FloorController.getNumberOfFloors(); i++) {
+            i = player.getFloorNumber() - 1;
+            Floor actualFloor;
+            actualFloor = FloorController.getFloor(player.getFloorNumber());
+
+            System.out.println("\033c");
+            Console.printSlowly(actualFloor.getName() + "\n");
+            Console.printSlowly(actualFloor.getDescription() + "\n");
+
+            player.floorUp();
+
+            if (!saveMenu(player)) {
+                return;
+            }
+        }
+
+    }
+
     private static Player mainMenu() {
 
         Player tempPlayer;
@@ -133,28 +155,6 @@ public abstract class GameSystem {
         return player;
     }
 
-    private static void game() throws Exception {
-        initialize();
-        Player player = mainMenu();
-
-        for (int i = 0; i < FloorController.getNumberOfFloors(); i++) {
-            i = player.getFloorNumber() - 1;
-            Floor actualFloor;
-            actualFloor = FloorController.getFloor(player.getFloorNumber());
-
-            System.out.println("\033c");
-            Console.printSlowly(actualFloor.getName() + "\n");
-            Console.printSlowly(actualFloor.getDescription() + "\n");
-
-            player.floorUp();
-
-            if (!saveMenu(player)) {
-                return;
-            }
-        }
-
-    }
-
     private static boolean saveMenu(Player player) throws IOException {
         boolean continuar = true;
         int op;
@@ -191,4 +191,5 @@ public abstract class GameSystem {
         return continuar;
 
     }
+
 }
