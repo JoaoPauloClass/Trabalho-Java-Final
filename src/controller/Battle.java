@@ -1,6 +1,8 @@
 package controller;
 
+
 import model.monster.Monster;
+
 import model.player.Player;
 import view.Console;
 import view.GraphicalCombatSystem;

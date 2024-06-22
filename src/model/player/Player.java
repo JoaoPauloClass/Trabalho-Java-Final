@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import controller.HabilityController;
 import controller.PotionBag;
 import model.Armor;
+import model.Attackable;
 import model.Hability;
 import view.Color;
 import view.Console;
 import view.GraphicalCombatSystem;
 
-public class Player implements Cloneable {
+public class Player implements Cloneable, Attackable {
 
     private int attack;
     private int defense;
@@ -409,6 +410,7 @@ public class Player implements Cloneable {
         return super.clone();
     }
 
+    @Override
     public void takeDamage(int damage) {
         // TODO: implementar morte
         this.health -= damage;
@@ -416,5 +418,12 @@ public class Player implements Cloneable {
             this.health = 0;
         }
     }
+
+    @Override
+    public void attack(Attackable target) throws Exception {
+        // TODO implementar ataque do player
+        throw new UnsupportedOperationException("Unimplemented method 'attack'");
+    }
+    
 
 }
