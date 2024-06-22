@@ -44,7 +44,11 @@ public class Player implements Cloneable, Attackable {
         this.name = name;
         this.playerClass = playerClass;
 
-        if (playerClass == "MAGO") {
+        initializeHabilities(playerClass);
+    }
+
+    private void initializeHabilities(String playerClass) {
+        if (playerClass.equals("MAGO")) {
             attack = 11;
             defense = 7;
             health = 10;
@@ -61,7 +65,7 @@ public class Player implements Cloneable, Attackable {
                 System.out.println(e.getMessage());
             }
 
-        } else if (playerClass == "GUERREIRO") {
+        } else if (playerClass.equals("GUERREIRO")) {
             attack = 12;
             defense = 12;
             health = 11;
@@ -77,7 +81,7 @@ public class Player implements Cloneable, Attackable {
                 System.out.println(e.getMessage());
             }
 
-        } else if (playerClass == "ASSASSINO") {
+        } else if (playerClass.equals("ASSASSINO")) {
 
             attack = 11;
             defense = 8;
@@ -118,6 +122,7 @@ public class Player implements Cloneable, Attackable {
 
     public void setPlayerClass(String playerClass) {
         this.playerClass = playerClass;
+        initializeHabilities(playerClass);
     }
 
     public String getName() {
