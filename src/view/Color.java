@@ -73,8 +73,4 @@ public class Color {
         return BRIGHT_WHITE;
     }
 
-
-    
-
-    
 }
