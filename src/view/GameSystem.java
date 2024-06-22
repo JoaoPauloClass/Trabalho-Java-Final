@@ -6,6 +6,7 @@ import controller.FloorController;
 import controller.PlayerDataController;
 import controller.PotionBag;
 import model.Floor;
+import model.monster.Monster;
 import model.player.Player;
 
 public abstract class GameSystem {
@@ -27,11 +28,25 @@ public abstract class GameSystem {
             i = player.getFloorNumber() - 1;
             Floor actualFloor;
             actualFloor = FloorController.getFloor(player.getFloorNumber());
+            Monster actualMonster = actualFloor.getMonster();
 
             System.out.println("\033c");
             Console.printSlowly(actualFloor.getName() + "\n");
             Console.printSlowly(actualFloor.getDescription() + "\n");
+            Console.readString("Pressione enter para continuar");
 
+            System.out.println("\033c");
+            Console.printSlowly("Inimigo: " + actualMonster.getName() + "\n\n\n");
+            System.out.println(actualMonster.getSprite());
+            Console.readString("Pressione enter para continuar");
+
+            // TODO batalha
+
+            if (player.getHealth() == 0) {
+                return;
+            }
+
+            player.addPoints(1);
             player.floorUp();
 
             if (!saveMenu(player)) {
@@ -39,6 +54,17 @@ public abstract class GameSystem {
             }
         }
 
+        winMessage();
+    }
+
+    private static void winMessage() {
+        System.out.println("\033c");
+        Console.printSlowly("Parabéns, Aventureiro!\n\n");
+        Console.printSlowly("Você atravessou os domínios mais sombrios e enfrentou criaturas das profundezas que poucos ousaram desafiar. Cada andar do labirinto trouxe novos desafios que testaram sua coragem, habilidade e determinação. Desde os pântanos enevoados habitados pelo Slime até as profundezas ardentes onde o Demon King esperava, você provou ser um verdadeiro herói.\n");
+        Console.printSlowly("Através de catacumbas repletas de esqueletos, florestas sombrias vigiadas por lobos ferozes, e castelos góticos dominados por vampiros ancestrais,\n sua jornada foi nada menos que épica. Sua habilidade em superar o Lich em sua cripta gélida e o desafiante Cerberus em sua lair infernal destaca seu destemor e destreza.\n");
+        Console.printSlowly("Ao derrotar o Demon King, você não só salvou inúmeras almas das garras de um destino terrível, mas também garantiu seu lugar entre as lendas.\n O mundo fora deste labirinto infernal lhe agradece e celebra seu retorno triunfante.\n");
+        Console.printSlowly("Descanse agora, herói, pois você mereceu. As histórias de suas façanhas ecoarão através dos tempos, inspirando corações valentes que ousam seguir seus passos. \n\nLembre-se sempre: sua coragem e espírito indomável foram a chave para sua vitória.\n");
+        Console.printSlowly("Você superou todos os Floors e sobreviveu a todos os desafios. Parabéns pela sua coragem e destreza!\n");
     }
 
     private static Player mainMenu() {
