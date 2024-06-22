@@ -37,11 +37,13 @@ public class Player implements Cloneable, Attackable {
         this.health = health;
         this.mana = mana;
         this.agility = agility;
+        this.floor = 1;
     }
 
     public Player(String name, String playerClass) {
         this.name = name;
         this.playerClass = playerClass;
+        this.floor = 1;
 
         initializeHabilities(playerClass);
     }
@@ -183,12 +185,16 @@ public class Player implements Cloneable, Attackable {
         this.tooling = toling;
     }
 
-    public int getFloor() {
+    public int getFloorNumber() {
         return floor;
     }
 
     public void setFloor(int floor) {
         this.floor = floor;
+    }
+
+    public void floorUp() {
+        floor += 1;
     }
 
     public int getPoints() {
