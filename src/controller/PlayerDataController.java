@@ -16,7 +16,7 @@ public class PlayerDataController {
             writer.write("Health: " + player.getHealth() + "\n");
             writer.write("Mana: " + player.getMana() + "\n");
             writer.write("Agility: " + player.getAgility() + "\n");
-            writer.write("Floor: " + player.getFloor() + "\n");
+            writer.write("Floor: " + player.getFloorNumber() + "\n");
         }
     }
 

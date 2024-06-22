@@ -38,16 +38,18 @@ public class Player implements Cloneable, Attackable {
         this.health = health;
         this.mana = mana;
         this.agility = agility;
+        this.floor = 1;
     }
 
     public Player(String name, String playerClass) {
         this.name = name;
         this.playerClass = playerClass;
+        this.floor = 1;
 
-        initializeHabilities(playerClass);
+        initializePlayer(playerClass);
     }
 
-    private void initializeHabilities(String playerClass) {
+    private void initializePlayer(String playerClass) {
         if (playerClass.equals("MAGO")) {
             attack = 11;
             defense = 7;
@@ -57,8 +59,6 @@ public class Player implements Cloneable, Attackable {
             maxMana = 13;
             agility = 9;
             tooling = "Cajado do iniciante";
-            floor = 5;
-            points = 0;
             try {
                 habilities = HabilityController.initializeWizardHability();
             } catch (Exception e) {
@@ -74,7 +74,6 @@ public class Player implements Cloneable, Attackable {
             maxMana = 8;
             agility = 7;
             tooling = "Espada do iniciante";
-            points = 0;
             try {
                 habilities = HabilityController.initializeWarriorHability();
             } catch (Exception e) {
@@ -90,7 +89,6 @@ public class Player implements Cloneable, Attackable {
             mana = 11;
             agility = 12;
             tooling = "Adagas de iniciante";
-            points = 0;
             try {
                 habilities = HabilityController.initializeAssassinHability();
             } catch (Exception e) {
@@ -122,7 +120,7 @@ public class Player implements Cloneable, Attackable {
 
     public void setPlayerClass(String playerClass) {
         this.playerClass = playerClass;
-        initializeHabilities(playerClass);
+        initializePlayer(playerClass);
     }
 
     public String getName() {
@@ -181,12 +179,16 @@ public class Player implements Cloneable, Attackable {
         this.tooling = toling;
     }
 
-    public int getFloor() {
+    public int getFloorNumber() {
         return floor;
     }
 
     public void setFloor(int floor) {
         this.floor = floor;
+    }
+
+    public void floorUp() {
+        floor += 1;
     }
 
     public int getPoints() {
@@ -242,50 +244,52 @@ public class Player implements Cloneable, Attackable {
 
     }
 
-    public void addPoints() throws Exception {
+    public void addPoints(int points) {
         // Clear console
         System.out.println("\033c");
+        System.out.println("Pontos disponiveis: " + points);
 
         while (points != 0) {
 
-            System.out.print("\n\nAtaque:    " +
-                    Color.getBrightRed() + attack +
-                    Color.getBrightYellow() + " +" + points +
-                    Color.getResetColor());
 
-            System.out.print("\t\tDefesa: " +
-                    Color.getBrightBlack() + defense +
-                    Color.getBrightYellow() + " +" + points +
-                    Color.getResetColor() + "\n");
-            System.out.print("Vida:      " +
-                    Color.getBrightGreen() + health +
-                    Color.getBrightYellow() + " +" + points +
-                    Color.getResetColor());
+                System.out.print("\n\n1) Ataque:    " +
+                        Color.getBrightRed() + attack +
+                        Color.getBrightYellow() + " + 1" +
+                        Color.getResetColor());
 
-            if (playerClass == "MAGO") {
-                System.out.print("\t\tmana: " +
-                        Color.getBlue() + mana +
-                        Color.getBrightYellow() + " +" + points +
+                System.out.print("\t\t2) Defesa: " +
+                        Color.getBrightBlack() + defense +
+                        Color.getBrightYellow() + " + 1" +
                         Color.getResetColor() + "\n");
-            } else {
-                System.out.print("\t\tenergia: " + mana +
-                        Color.getBrightYellow() + " +" + points +
-                        Color.getResetColor() + "\n");
+                System.out.print("3) Vida:      " +
+                        Color.getBrightGreen() + health +
+                        Color.getBrightYellow() + " + 1" +
+                        Color.getResetColor());
 
-            }
+                if (playerClass == "MAGO") {
+                    System.out.print("\t\t4) mana: " +
+                            Color.getBlue() + mana +
+                            Color.getBrightYellow() + " + 1" +
+                            Color.getResetColor() + "\n");
+                } else {
+                    System.out.print("\t\t4) energia: " + mana +
+                            Color.getBrightYellow() + " + 1" +
+                            Color.getResetColor() + "\n");
 
-            System.out.print("Agilidade: " +
-                    Color.getCyan() + agility +
-                    Color.getBrightYellow() + " +" + points +
-                    Color.getResetColor());
+                }
 
-            int choice = Console.readInt("\n\nEscolha onde será colocado seus pontos: ");
+                System.out.print("5) Agilidade: " +
+                        Color.getCyan() + agility +
+                        Color.getBrightYellow() + " + 1" +
+                        Color.getResetColor());
 
-            readPoints(choice);
-            points--;
+                int choice = Console.readInt("\n\nEscolha onde será colocado seus pontos: ");
+
+                readPoints(choice);
+                points--;
+
 
         }
-        throw new Exception("Não há pontos disponiveis");
 
     }
 
@@ -366,7 +370,6 @@ public class Player implements Cloneable, Attackable {
         } else {
             PotionBag.usePotion("LIFE");
 
-            health += 2;
             int temp = ((health * 10) / maxHealth);
             GraphicalCombatSystem.setLife(temp);
         }
@@ -429,6 +432,5 @@ public class Player implements Cloneable, Attackable {
         // TODO implementar ataque do player
         throw new UnsupportedOperationException("Unimplemented method 'attack'");
     }
-    
 
 }
