@@ -24,7 +24,7 @@ public abstract class FloorController {
             }
 
             if(floors.isEmpty()) {
-                throw new Exception("Np floor added.");
+                throw new Exception("No floor added.");
             } 
 
         }

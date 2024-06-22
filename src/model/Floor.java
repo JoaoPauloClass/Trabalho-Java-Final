@@ -52,7 +52,13 @@ public class Floor {
 
         String[] parts = line.split(", ");
 
-        Monster monster = Monster.fromString(parts[3]);
+        Monster monster;
+        try {
+            monster = Monster.monsterType(parts[3]);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
 
         Floor tempFloor = new Floor(parts[0], parts[1], Integer.parseInt(parts[2]), monster);
 
