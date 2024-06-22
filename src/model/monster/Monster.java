@@ -1,37 +1,39 @@
 package model.monster;
+
 import model.player.Player;
 
-public abstract class Monster{
+public abstract class Monster {
 
-    //TODO: implementar interface atacar.
-    //TODO: implementar metodo para dodge
+    // TODO: implementar interface atacar.
+    // TODO: implementar metodo para dodge
 
     protected String name;
     protected int attack;
     protected int defense;
-    protected int heathy;
+    protected int health;
     protected int agility;
 
     public abstract void attack(Player player) throws Exception;
 
-    public void showStatus(){
+    public void showStatus() {
 
         System.out.println("\n\nMonstro: " + name);
         System.out.print("\nAtaque: " + attack);
         System.out.println("\tDefesa: " + defense);
-        System.out.print("Vida: " + heathy);
+        System.out.print("Vida: " + health);
         System.out.print("\tAgilidade: " + agility);
     }
 
     public abstract String getSprite();
 
-    public Monster(){}
+    public Monster() {
+    }
 
     public Monster(String name, int attack, int defense, int heathy, int agility) {
         this.name = name;
         this.attack = attack;
         this.defense = defense;
-        this.heathy = heathy;
+        this.health = heathy;
         this.agility = agility;
     }
 
@@ -59,12 +61,12 @@ public abstract class Monster{
         this.defense = defense;
     }
 
-    public int getHeathy() {
-        return heathy;
+    public int getHealth() {
+        return health;
     }
 
-    public void setHeathy(int heathy) {
-        this.heathy = heathy;
+    public void setHealth(int heathy) {
+        this.health = heathy;
     }
 
     public int getAgility() {
@@ -75,6 +77,21 @@ public abstract class Monster{
         this.agility = agility;
     }
 
+    public static Monster monsterType(String line) throws Exception {
 
-    
+        Monster tempMonster;
+
+        switch (line) {
+            case "SLIME":
+                    tempMonster = new Slime();
+                break;
+
+            default:
+                throw new Exception("Erro no txt, não foi informado o tipo do monstro");
+
+        }
+
+        return tempMonster;
+    }
+
 }

@@ -26,7 +26,7 @@ public class Vampire extends Monster {
                 System.out.println("Dano recebido: " + dano);
                 player.takeDamage(dano);
                 int restoredHealth = 4;
-                this.heathy += restoredHealth;
+                this.health += restoredHealth;
                 System.out.println("Após drenar seu sangue, ele se sente mais forte...");
                 System.out.println("Vida restaurada: " + restoredHealth);
             } else {

@@ -42,13 +42,13 @@ public class Lich  extends Monster{
         }
 
 
-        if (this.heathy == 1) {
+        if (this.health == 1) {
             System.out.println("O Lich está enfraquecido e começa a conjurar uma mágia estranha...");
             d10 = rand.nextInt(10);
             if (d10 >= 5) {
                 System.out.println("Sua magia é um sucesso e ele se regenera");
                 int restoredHealth = 6;
-                this.heathy += restoredHealth;
+                this.health += restoredHealth;
                 System.out.println("Vida restaurada: " + restoredHealth);
             }else{
                 System.out.println("Sua magia fracassou, nada acontece...");
