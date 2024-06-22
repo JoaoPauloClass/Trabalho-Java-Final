@@ -50,7 +50,7 @@ public class Floor {
 
     public static Floor fromString(String line) {
 
-        String[] parts = line.split(", ");
+        String[] parts = line.split("; ");
 
         Monster monster;
         try {
