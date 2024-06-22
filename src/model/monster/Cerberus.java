@@ -2,6 +2,7 @@ package model.monster;
 
 import java.util.Random;
 
+import model.Attackable;
 import model.player.Player;
 
 public class Cerberus extends Monster {
@@ -9,10 +10,35 @@ public class Cerberus extends Monster {
         super("Cerbero", 8, 8, 15, 6);
     }
 
-    public void attack(Player player) throws Exception {
-        if (player == null) {
-            throw new Exception("Nenhum player foi passado para a função de ataque.");
+
+    public String getSprite() {
+        
+        return "                            /\\_/\\____,\r\n" + //
+                "                  ,___/\\_/\\ \\  ~     /\r\n" + //
+                "                  \\     ~  \\ )   XXX\r\n" + //
+                "                    XXX     /    /\\_/\\___,\r\n" + //
+                "                       \\o-o/-o-o/   ~    /\r\n" + //
+                "                        ) /     \\    XXX\r\n" + //
+                "                       _|    / \\ \\_/\r\n" + //
+                "                    ,-/   _  \\_/   \\\r\n" + //
+                "                   / (   /____,__|  )\r\n" + //
+                "                  (  |_ (    )  \\) _|\r\n" + //
+                "                 _/ _)   \\   \\__/   (_\r\n" + //
+                "                (,-(,(,(,/      \\,),),)";
+    }
+
+    @Override
+    public void attack(Attackable target) throws Exception {
+        Player player;
+
+        if (target == null) {
+            throw new Exception("Nenhum alvo foi passado para a função de ataque.");
+        } else if (target instanceof Player) {
+            player = (Player) target;
+        } else {
+            throw new Exception("ERRO, classe tipo player nao encontrada");
         }
+
         Random rand = new Random();
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
         int d5;
@@ -45,19 +71,11 @@ public class Cerberus extends Monster {
         }
     }
 
-    public String getSprite() {
-        
-        return "                            /\\_/\\____,\r\n" + //
-                "                  ,___/\\_/\\ \\  ~     /\r\n" + //
-                "                  \\     ~  \\ )   XXX\r\n" + //
-                "                    XXX     /    /\\_/\\___,\r\n" + //
-                "                       \\o-o/-o-o/   ~    /\r\n" + //
-                "                        ) /     \\    XXX\r\n" + //
-                "                       _|    / \\ \\_/\r\n" + //
-                "                    ,-/   _  \\_/   \\\r\n" + //
-                "                   / (   /____,__|  )\r\n" + //
-                "                  (  |_ (    )  \\) _|\r\n" + //
-                "                 _/ _)   \\   \\__/   (_\r\n" + //
-                "                (,-(,(,(,/      \\,),),)";
+    @Override
+    public void takeDamage(int damage) {
+        this.health -= damage;
+        if (this.health < 0) {
+            this.health = 0;
+        }
     }
 }

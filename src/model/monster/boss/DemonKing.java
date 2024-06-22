@@ -3,6 +3,7 @@ package model.monster.boss;
 import java.util.Random;
 
 import controller.HabilityController;
+import model.Attackable;
 import model.Hability;
 import model.player.Player;
 
@@ -24,37 +25,6 @@ public class DemonKing extends Boss {
         }
     }
 
-    public void attack(Player player) throws Exception {
-
-        if (player == null) {
-            throw new Exception("Nenhum player foi passado para a função de ataque.");
-        }
-        Random rand = new Random();
-        int d20 = rand.nextInt(20) + 1; // Gera um número entre 1 e 20
-        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
-        int dano = attack;
-        if (d20 >= 6) {
-            System.out.println("O rei demônio lança uma bola de magia negra em sua direção.");
-            if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
-                dano = attack - 2;
-                System.out.println("Dano recebido: " + dano);
-                player.takeDamage(dano);
-            } else {
-                System.out.println("Você consegue esquivar!");
-            }
-        } else {
-            System.out.println("O rei demônio invoca uma espada flutuante que voa em sua direção.");
-            if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
-                dano = attack - 2;
-                System.out.println("Dano recebido: " + dano);
-                player.takeDamage(dano);
-            } else {
-                System.out.println("Você consegue esquivar!");
-            }
-        }
-    }
 
     public void checkHability(Player player) {
         /*
@@ -122,6 +92,54 @@ public class DemonKing extends Boss {
                 "     {}   \\  \\_____/  /\r\n" + //
                 "     ()   /\\   )=(   /\\\r\n" + //
                 "     {}  /  \\_/\\=/\\_/  \\";
+    }
+
+    @Override
+    public void takeDamage(int damage) {
+        this.health -= damage;
+        if (this.health < 0) {
+            this.health = 0;
+        }
+    }
+
+    @Override
+    public void attack(Attackable target) throws Exception {
+
+        Player player;
+
+        if (target == null) {
+            throw new Exception("Nenhum alvo foi passado para a função de ataque.");
+        } else if (target instanceof Player) {
+            player = (Player) target;
+        } else {
+            throw new Exception("ERRO, classe tipo player nao encontrada");
+        }
+
+        Random rand = new Random();
+        int d20 = rand.nextInt(20) + 1; // Gera um número entre 1 e 20
+        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int dano = attack;
+        if (d20 >= 6) {
+            System.out.println("O rei demônio lança uma bola de magia negra em sua direção.");
+            if (d10Dodge < 8) {
+                System.out.println("Você é acertado.");
+                dano = attack - 2;
+                System.out.println("Dano recebido: " + dano);
+                player.takeDamage(dano);
+            } else {
+                System.out.println("Você consegue esquivar!");
+            }
+        } else {
+            System.out.println("O rei demônio invoca uma espada flutuante que voa em sua direção.");
+            if (d10Dodge < 8) {
+                System.out.println("Você é acertado.");
+                dano = attack - 2;
+                System.out.println("Dano recebido: " + dano);
+                player.takeDamage(dano);
+            } else {
+                System.out.println("Você consegue esquivar!");
+            }
+        }
     }
 
 }

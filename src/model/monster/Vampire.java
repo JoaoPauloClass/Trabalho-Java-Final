@@ -2,6 +2,7 @@ package model.monster;
 
 import java.util.Random;
 
+import model.Attackable;
 import model.player.Player;
 
 public class Vampire extends Monster {
@@ -10,10 +11,39 @@ public class Vampire extends Monster {
         super("Vampiro", 8, 2, 8, 10);
     }
 
-    public void attack(Player player) throws Exception {
-        if (player == null) {
-            throw new Exception("Nenhum player foi passado para a função de ataque.");
+    public String getSprite() {
+        
+        return "            __.......__\r\n" + //
+                "            .-:::::::::::::-.\r\n" + //
+                "          .:::''':::::::''':::.\r\n" + //
+                "        .:::'     `:::'     `:::. \r\n" + //
+                "   .'\\  ::'   ^^^  `:'  ^^^   '::  /`.\r\n" + //
+                "  :   \\ ::   _.__       __._   :: /   ;\r\n" + //
+                " :     \\`: .' ___\\     /___ `. :'/     ; \r\n" + //
+                ":       /\\   (_|_)\\   /(_|_)   /\\       ;\r\n" + //
+                ":      / .\\   __.' ) ( `.__   /. \\      ;\r\n" + //
+                ":      \\ (        {   }        ) /      ; \r\n" + //
+                " :      `-(     .  ^\"^  .     )-'      ;\r\n" + //
+                "  `.       \\  .'<`-._.-'>'.  /       .'\r\n" + //
+                "    `.      \\    \\;`.';/    /      .'\r\n" + //
+                "      `._    `-._       _.-'    _.'\r\n" + //
+                "       .'`-.__ .'`-._.-'`. __.-'`.\r\n" + //
+                "     .'       `.         .'       `.\r\n" + //
+                "   .'           `-.   .-'           `.";
+    }
+
+    @Override
+    public void attack(Attackable target) throws Exception {
+        Player player;
+
+        if (target == null) {
+            throw new Exception("Nenhum alvo foi passado para a função de ataque.");
+        } else if (target instanceof Player) {
+            player = (Player) target;
+        } else {
+            throw new Exception("ERRO, classe tipo player nao encontrada");
         }
+
         Random rand = new Random();
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
@@ -45,25 +75,12 @@ public class Vampire extends Monster {
         }
     }
 
-    public String getSprite() {
-        
-        return "            __.......__\r\n" + //
-                "            .-:::::::::::::-.\r\n" + //
-                "          .:::''':::::::''':::.\r\n" + //
-                "        .:::'     `:::'     `:::. \r\n" + //
-                "   .'\\  ::'   ^^^  `:'  ^^^   '::  /`.\r\n" + //
-                "  :   \\ ::   _.__       __._   :: /   ;\r\n" + //
-                " :     \\`: .' ___\\     /___ `. :'/     ; \r\n" + //
-                ":       /\\   (_|_)\\   /(_|_)   /\\       ;\r\n" + //
-                ":      / .\\   __.' ) ( `.__   /. \\      ;\r\n" + //
-                ":      \\ (        {   }        ) /      ; \r\n" + //
-                " :      `-(     .  ^\"^  .     )-'      ;\r\n" + //
-                "  `.       \\  .'<`-._.-'>'.  /       .'\r\n" + //
-                "    `.      \\    \\;`.';/    /      .'\r\n" + //
-                "      `._    `-._       _.-'    _.'\r\n" + //
-                "       .'`-.__ .'`-._.-'`. __.-'`.\r\n" + //
-                "     .'       `.         .'       `.\r\n" + //
-                "   .'           `-.   .-'           `.";
+    @Override
+    public void takeDamage(int damage) {
+        this.health -= damage;
+        if (this.health < 0) {
+            this.health = 0;
+        }
     }
 
 }

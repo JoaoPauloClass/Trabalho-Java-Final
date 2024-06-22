@@ -1,22 +1,19 @@
 package model.monster;
 
-import model.Attack;
+import model.Attackable;
 import model.monster.boss.DemonKing;
 import model.monster.boss.Minotaur;
-import model.player.Player;
 
-public abstract class Monster implements Attack {
+public abstract class Monster implements Attackable {
 
-    // TODO: implementar interface atacar.
-    // TODO: implementar metodo para dodge
+    // TODO: implementar metodo para dodge 
+    // * ^^^^^^ talvez não seja possivel, ja tentei várias vezes :( ~ class
 
     protected String name;
     protected int attack;
     protected int defense;
     protected int health;
     protected int agility;
-
-    public abstract void attack(Player player) throws Exception;
 
     public void showStatus() {
 
