@@ -1,7 +1,6 @@
 package view;
 
 public class Color {
-    
 
     public static final String RESET_COLOR = "\u001B[0m";
     public static final String RED = "\u001B[31m";
@@ -24,51 +23,67 @@ public class Color {
     public static String getResetColor() {
         return RESET_COLOR;
     }
+
     public static String getRed() {
         return RED;
     }
+
     public static String getGreen() {
         return GREEN;
     }
+
     public static String getBlue() {
         return BLUE;
     }
+
     public static String getYellow() {
         return YELLOW;
     }
+
     public static String getBlack() {
         return BLACK;
     }
+
     public static String getPurple() {
         return PURPLE;
     }
+
     public static String getCyan() {
         return CYAN;
     }
+
     public static String getWhite() {
         return WHITE;
     }
+
     public static String getBrightBlack() {
         return BRIGHT_BLACK;
     }
+
     public static String getBrightRed() {
         return BRIGHT_RED;
     }
+
     public static String getBrightGreen() {
         return BRIGHT_GREEN;
     }
+
     public static String getBrightYellow() {
         return BRIGHT_YELLOW;
     }
+
     public static String getBrightBlue() {
         return BRIGHT_BLUE;
     }
+
     public static String getBrightPurple() {
         return BRIGHT_PURPLE;
     }
+
     public static String getBrightCyan() {
         return BRIGHT_CYAN;
     }
+
     public static String getBrightWhite() {
         return BRIGHT_WHITE;
     }
