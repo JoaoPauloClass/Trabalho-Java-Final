@@ -1,1 +1,1 @@
-Armadura do iniciante, Guerreiro, 2, ATTACK, 3 
+Armadura do iniciante, Guerreiro, 2, ATTACK, 3
