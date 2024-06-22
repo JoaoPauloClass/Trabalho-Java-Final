@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import model.Armor;
 
-public class ArmorController {
+public abstract class ArmorController {
 
     private static final File WARRIOR = new File("src/database/armor/warrior.txt");
     private static final File WIZARD = new File("src/database/armor/wizard.txt");
@@ -13,7 +13,7 @@ public class ArmorController {
 
     public static ArrayList<Armor> list = new ArrayList<>();
 
-    public static ArrayList<Armor> initializaWarriorArmor() throws Exception {
+    public static void initializaWarriorArmor() throws Exception {
 
         String line;
         try (FileReader fr = new FileReader(WARRIOR); BufferedReader reader = new BufferedReader(fr)) {
@@ -34,11 +34,9 @@ public class ArmorController {
             throw new Exception("Erro, lista de armaduras vazia");
         }
 
-        return list;
-
     }
 
-    public static ArrayList<Armor> initializaAssassinArmor() throws Exception {
+    public static void initializaAssassinArmor() throws Exception {
 
         String line;
         try (FileReader fr = new FileReader(ASSASSIN); BufferedReader reader = new BufferedReader(fr)) {
@@ -59,11 +57,9 @@ public class ArmorController {
             throw new Exception("Erro, lista de armaduras vazia");
         }
 
-        return list;
-
     }
 
-    public static ArrayList<Armor> initializaWizardArmor() throws Exception {
+    public static void initializaWizardArmor() throws Exception {
 
         String line;
         try (FileReader fr = new FileReader(WIZARD); BufferedReader reader = new BufferedReader(fr)) {
@@ -83,8 +79,6 @@ public class ArmorController {
         if (list.isEmpty()) {
             throw new Exception("Erro, lista de armaduras vazia");
         }
-
-        return list;
 
     }
 }
