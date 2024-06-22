@@ -1,12 +1,14 @@
 package view;
 
+import model.monster.Monster;
 import model.player.Player;
 
 public class GraphicalCombatSystem {
 
-    public static int manaBar = 10;
-
-    public static void MonsterBattle(Player p, int damage) {
+    public static int mana = 10;
+    public static int damage = 10;
+    public static int life = 10;
+    public static void MonsterBattle(Monster p) {
 
         int lifeBar = 10;
         // Clear console
@@ -58,7 +60,7 @@ public class GraphicalCombatSystem {
         System.out.println(" ");
     }
 
-    public static void lifeBarPlayer(Player p, int vida) {
+    public static void lifeBarPlayer(Player p) {
 
         int lifeBar = 10;
 
@@ -88,21 +90,24 @@ public class GraphicalCombatSystem {
         System.out.print(" \t\t\t\t|");
         System.out.print("\thp:(" + Color.getGreen());
 
-        if (lifeBar != vida) {
-            for (int i = 0; i < vida; i++)
+        if (lifeBar != life) {
+            for (int i = 0; i < life; i++)
                 System.out.print("|");
             System.out.print(Color.getBlack());
-            lifeBar -= vida;
+            lifeBar -= life;
             for (int i = 0; i < lifeBar; i++)
                 System.out.print("|");
         } else {
-            for (int i = 0; i < vida; i++)
+            for (int i = 0; i < life; i++)
                 System.out.print("|");
         }
 
         System.out.print(Color.getResetColor() + ")");
         int cont = 0;
 
+
+        //Pega o tamanho os caracteres do inteiro tranforma em String para printar na tela de forma automatica sem precisar ficar mudando o tamanho
+        //Manualmente
         for (int j = 0; j < 5; j++) {
             if (cont == 0) {
                 String gethealth = String.valueOf(p.getHealth());
@@ -121,17 +126,19 @@ public class GraphicalCombatSystem {
             }
             System.out.print(" ");
         }
-        
+
         System.out.println("|");
     }
 
-    public static void manaBarPlayer(Player p, int mana) {
+    public static void manaBarPlayer(Player p) {
+        int manaBar = 10;
+        if (p.getPlayerClass() == "MAGO") {
+            wizardMana(p);
+        }
 
         // Energy
         System.out.print(" \t\t\t\t|");
         System.out.print("\tsp:(" + Color.getYellow());
-
-        manaBar = 10;
 
         if (manaBar != mana) {
             for (int i = 0; i < mana; i++) {
@@ -182,43 +189,64 @@ public class GraphicalCombatSystem {
             System.out.print("-");
 
     }
-    // System.out.println(Color.getResetColor() + ")"+ p.getMana() +"/"+
-    // p.getMaxMana()+" |");
 
-    /*
-     * 
-     * //Mana
-     * if (p.getPlayerClass() == "MAGO") {
-     * System.out.print(" \t\t\t\t|");
-     * System.out.print("\tsp:(" + Color.getBlue());
-     * 
-     * for (int i = 0; i < mana; i++)
-     * System.out.print("|");
-     * 
-     * if (manaBar != mana) {
-     * System.out.print(Color.getBlack());
-     * manaBar -= mana;
-     * for (int i = 0; i < manaBar; i++)
-     * System.out.print("|");
-     * }
-     * else{
-     * for (int i = 0; i < manaBar; i++)
-     * System.out.print("|");
-     * }
-     * 
-     * System.out.println(Color.getResetColor()+")   |");
-     * System.out.print("\t\t\t\t");
-     * 
-     * //Line 5
-     * for(int i = 0; i < 27; i++)
-     * System.out.print("-");
-     * return;
-     * }
-     */
-    public static void playerTable(Player p, int life, int mana) {
+    public static void wizardMana(Player p) {
+        // Mana
 
-        lifeBarPlayer(p, life);
-        manaBarPlayer(p, mana);
+        System.out.print(" \t\t\t\t|");
+        System.out.print("\tsp:(" + Color.getBlue());
+
+        int manaBar = 10;
+
+        if (manaBar != mana) {
+            for (int i = 0; i < mana; i++)
+                System.out.print("|");
+
+            System.out.print(Color.getBlack());
+            manaBar -= mana;
+            for (int i = 0; i < manaBar; i++)
+                System.out.print("|");
+
+            System.out.print(Color.getResetColor() + ")");
+        } else {
+            for (int i = 0; i < mana; i++) {
+                System.out.print("|");
+
+            }
+            System.out.print(Color.getResetColor() + ")");
+        }
+        int cont = 0;
+        for (int j = 0; j < 5; j++) {
+            if (cont == 0) {
+                String getmana = String.valueOf(p.getMana());
+                String maxmana = String.valueOf(p.getMaxMana());
+                for (char c : getmana.toCharArray()) {
+                    System.out.print(c);
+                    j++;
+                }
+                System.out.print("/");
+                for (char c : maxmana.toCharArray()) {
+                    System.out.print(c);
+                    j++;
+                }
+                cont++;
+            }
+            System.out.print(" ");
+        }
+
+        System.out.println("|");
+        System.out.print("\t\t\t\t");
+
+        // Line 5
+        for (int i = 0; i < 30; i++)
+            System.out.print("-");
+
+    }
+
+    public static void playerTable(Player p, int life) {
+
+        lifeBarPlayer(p);
+        manaBarPlayer(p);
 
     }
 
@@ -231,12 +259,21 @@ public class GraphicalCombatSystem {
 
     }
 
-    public static int playerHabilities(Player player) {
+    public static int playerHabilities(Player player) throws Exception {
+
 
         System.out.println("\033c");
         player.showHabilities();
-        return Console.readInt("\n\nSelecione uma habilidade ou selecione 0 para sair: ");
 
+        int select = Console.readInt("\n\nSelecione uma habilidade ou selecione 0 para voltar: ");
+        //Volta ou lança uma excessão para selecionar a habilidade novamente
+
+        if (select == 0) {
+            return 0;
+        } else if (select > 3) {
+            throw new Exception("Digite um valor valido");
+        }
+        return select;
     }
 
     public static void playerGiveUp() {
@@ -252,7 +289,7 @@ public class GraphicalCombatSystem {
         }
     }
 
-    public static int playerInvetory(Player player) {
+    public static int playerInvetory(Player player) throws Exception {
         // Clean console
         System.out.println("\033c");
 
@@ -268,7 +305,13 @@ public class GraphicalCombatSystem {
                     Color.getBrightBlue() + " Poção de mana " +
                     Color.getResetColor() + "|");
             System.out.println("    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯       ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
-            return Console.readInt("\n\nSelecione uma habilidade: ");
+
+
+            int temp = Console.readInt("\n\nSelecione uma habilidade: ");
+            if (temp <3 || temp > 1) {
+                throw new Exception("Valor invalido selecione um valor válido");
+            }
+            return temp;
 
         }
 
@@ -280,7 +323,12 @@ public class GraphicalCombatSystem {
                 Color.getResetColor() + "|");
         System.out.println("    ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯       ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
 
-        return Console.readInt("\n\nSelecione 1 poção: ");
+        int temp = Console.readInt("\n\nSelecione 1 poção: ");
+        if (temp > 3 || temp < 1) {
+            throw new Exception("Valor invalido selecione um valor válido");
+        }
+
+        return temp;
     }
 
     public static int readAction(int action, Player player) {
@@ -290,11 +338,26 @@ public class GraphicalCombatSystem {
                 return 0;
 
             case 2:
-                return playerHabilities(player);
-
+                while (true) {
+                    try {
+                        return playerHabilities(player);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        Console.readString("Pressione enter para prosseguir: ");
+                    }
+                }
             case 3:
+            while (true) {
+                
+            
+                try{
                 return playerInvetory(player);
 
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                    Console.readString("Pressione enter para prosseguir: ");
+                }
+            }
             case 4:
                 playerGiveUp();
                 return 0;
@@ -302,5 +365,32 @@ public class GraphicalCombatSystem {
                 System.out.println("Essa opção nao existe!");
                 return 0;
         }
+
+    }
+
+    
+
+    public static int getDamage() {
+        return damage;
+    }
+
+    public static void setDamage(int damage) {
+        GraphicalCombatSystem.damage = damage;
+    }
+
+    public static int getMana() {
+        return mana;
+    }
+
+    public static void setMana(int mana) {
+        GraphicalCombatSystem.mana = mana;
+    }
+
+    public static int getLife() {
+        return life;
+    }
+
+    public static void setLife(int life) {
+        GraphicalCombatSystem.life = life;
     }
 }
