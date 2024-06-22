@@ -49,7 +49,7 @@ public class PlayerDataController {
                         break;
                     case "Agility":
                         player.setAgility(Integer.parseInt(parts[1].trim()));
-
+                         break;
                     case "Floor":
                         player.setFloor(Integer.parseInt(parts[1].trim()));
 
