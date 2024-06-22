@@ -1,5 +1,7 @@
 package model.monster;
 
+import model.monster.boss.DemonKing;
+import model.monster.boss.Minotaur;
 import model.player.Player;
 
 public abstract class Monster {
@@ -77,15 +79,41 @@ public abstract class Monster {
         this.agility = agility;
     }
 
-    public static Monster monsterType(String line) throws Exception {
+    public static Monster createMonster(String line) throws Exception {
 
         Monster tempMonster;
 
         switch (line) {
-            case "SLIME":
-                    tempMonster = new Slime();
+            case "GARGOYLE":
+                tempMonster = new Gargoyle();
                 break;
-
+            case "CERBERUS":
+                tempMonster = new Cerberus();
+                break;
+            case "LICH":
+                tempMonster = new Lich();
+                break;
+            case "ORC":
+                tempMonster = new Orc();
+                break;
+            case "SKELETON":
+                tempMonster = new Skeleton();
+                break;
+            case "SLIME":
+                tempMonster = new Slime();
+                break;
+            case "VAMPIRE":
+                tempMonster = new Vampire();
+                break;
+            case "WOLF":
+                tempMonster = new Wolf();
+                break;
+            case "DEMONKING":
+                tempMonster = new DemonKing();
+                break;
+            case "MINOTAUR":
+                tempMonster = new Minotaur();
+                break;
             default:
                 throw new Exception("Erro no txt, não foi informado o tipo do monstro");
 

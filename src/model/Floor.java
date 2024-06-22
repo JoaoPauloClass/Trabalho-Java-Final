@@ -54,7 +54,7 @@ public class Floor {
 
         Monster monster;
         try {
-            monster = Monster.monsterType(parts[3]);
+            monster = Monster.createMonster(parts[3]);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
