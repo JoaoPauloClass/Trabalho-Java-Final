@@ -2,7 +2,7 @@ package model.monster;
 
 import java.util.Random;
 
-
+import model.Attackable;
 import model.player.Player;
 
 public class Lich  extends Monster{
@@ -11,10 +11,23 @@ public class Lich  extends Monster{
         super("Lich", 10, 2, 10, 4);
     }
 
-    public void attack(Player player)throws Exception{
-        if (player == null) {
-            throw new Exception("Nenhum player foi passado para a função de ataque.");
+    public String getSprite(){
+        //TODO: arte lich
+        return "";    
+    }
+
+    @Override
+    public void attack(Attackable target) throws Exception {
+        Player player;
+
+        if (target == null) {
+            throw new Exception("Nenhum alvo foi passado para a função de ataque.");
+        } else if (target instanceof Player) {
+            player = (Player) target;
+        } else {
+            throw new Exception("ERRO, classe tipo player nao encontrada");
         }
+
         Random rand = new Random();
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
@@ -41,7 +54,6 @@ public class Lich  extends Monster{
             }
         }
 
-
         if (this.health == 1) {
             System.out.println("O Lich está enfraquecido e começa a conjurar uma mágia estranha...");
             d10 = rand.nextInt(10);
@@ -50,15 +62,18 @@ public class Lich  extends Monster{
                 int restoredHealth = 6;
                 this.health += restoredHealth;
                 System.out.println("Vida restaurada: " + restoredHealth);
-            }else{
+            } else {
                 System.out.println("Sua magia fracassou, nada acontece...");
             }
         }
-        }
+    }
 
-    public String getSprite(){
-        //TODO: arte lich
-        return "";    
+    @Override
+    public void takeDamage(int damage) {
+        this.health -= damage;
+        if (this.health < 0) {
+            this.health = 0;
+        }
     }
     
 }

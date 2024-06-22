@@ -1,6 +1,8 @@
 package model.monster;
 
 import java.util.Random;
+
+import model.Attackable;
 import model.player.Player;
 
 public class Orc extends Monster {
@@ -9,10 +11,25 @@ public class Orc extends Monster {
         super("Orc", 8, 4, 10, 2);
     }
 
-    public void attack(Player player) throws Exception {
-        if (player == null) {
-            throw new Exception("Nenhum player foi passado para a função de ataque.");
+
+    public String getSprite() {
+        // TODO: arte orc
+        return "";
+    }
+
+    @Override
+    public void attack(Attackable target) throws Exception {
+
+        Player player;
+
+        if (target == null) {
+            throw new Exception("Nenhum alvo foi passado para a função de ataque.");
+        } else if (target instanceof Player) {
+            player = (Player) target;
+        } else {
+            throw new Exception("ERRO, classe tipo player nao encontrada");
         }
+
         Random rand = new Random();
         int d10Attack = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
@@ -40,8 +57,11 @@ public class Orc extends Monster {
         }
     }
 
-    public String getSprite() {
-        // TODO: arte orc
-        return "";
+    @Override
+    public void takeDamage(int damage) {
+        this.health -= damage;
+        if (this.health < 0) {
+            this.health = 0;
+        }
     }
 }

@@ -18,8 +18,6 @@ public abstract class Boss extends Monster{
 
     protected abstract void setHabilities();
 
-    public abstract void attack(Player player)throws Exception;
-
     public abstract void checkHability(Player player)throws Exception;
 
     protected abstract void useHability(Hability hability, Player player) throws Exception;
