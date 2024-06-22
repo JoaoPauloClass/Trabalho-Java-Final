@@ -1,9 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-
-import model.Hability;
-
 import model.player.Player;
 import view.Console;
 import view.GraphicalCombatSystem;
