@@ -75,7 +75,7 @@ public class Player implements Cloneable {
                 System.out.println(e.getMessage());
             };
 
-        } else {
+        } else if (playerClass == "ASSASSINO") {
 
             attack = 11;
             defense = 8;
