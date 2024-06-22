@@ -1,3 +1,4 @@
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -29,12 +30,6 @@ public class Main {
               
                 
                 //GraphicalCombatSystem.playerTable(p,10);
-                
-                
-                
-        
-            }
-        }
-
-
-
+    }
+}
+    
