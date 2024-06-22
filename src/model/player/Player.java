@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import controller.HabilityController;
 import controller.PotionBag;
 import model.Armor;
+import model.Attack;
 import model.Hability;
 import view.Color;
 import view.Console;
 
-public class Player implements Cloneable {
+public class Player implements Cloneable, Attack {
 
     private int attack;
     private int defense;

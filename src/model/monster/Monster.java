@@ -1,10 +1,11 @@
 package model.monster;
 
+import model.Attack;
 import model.monster.boss.DemonKing;
 import model.monster.boss.Minotaur;
 import model.player.Player;
 
-public abstract class Monster {
+public abstract class Monster implements Attack {
 
     // TODO: implementar interface atacar.
     // TODO: implementar metodo para dodge
@@ -79,7 +80,7 @@ public abstract class Monster {
         this.agility = agility;
     }
 
-    public static Monster createMonster(String line) throws Exception {
+    public static Monster createMonster(String line) throws Exception{
 
         Monster tempMonster;
 
