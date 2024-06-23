@@ -31,11 +31,11 @@ public abstract class Monster implements Attackable {
     public Monster() {
     }
 
-    public Monster(String name, int attack, int defense, int heathy, int agility, int maxHealth) {
+    public Monster(String name, int attack, int defense, int health, int agility, int maxHealth) {
         this.name = name;
         this.attack = attack;
         this.defense = defense;
-        this.health = heathy;
+        this.health = health;
         this.agility = agility;
         this.maxHealth = maxHealth;
     }

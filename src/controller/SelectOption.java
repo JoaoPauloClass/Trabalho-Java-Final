@@ -91,7 +91,6 @@ public class SelectOption {
 
         switch (action) {
             case 1:
-                
                 return -1;
 
             case 2:
