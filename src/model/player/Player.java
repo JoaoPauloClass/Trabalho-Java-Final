@@ -101,6 +101,31 @@ public class Player implements Cloneable, Attackable {
         }
     }
 
+    private void initializeHabilities(String playerClass) {
+        if (playerClass.equals("MAGO")) {
+            try {
+                habilities = HabilityController.initializeWizardHability();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        } else if (playerClass.equals("GUERREIRO")) {
+
+            try {
+                habilities = HabilityController.initializeWarriorHability();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+ 
+        } else if (playerClass.equals("ASSASSINO")) {
+            try {
+                habilities = HabilityController.initializeAssassinHability();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+    }
     public int getMaxHealth() {
         return maxHealth;
     }
@@ -123,7 +148,7 @@ public class Player implements Cloneable, Attackable {
 
     public void setPlayerClass(String playerClass) {
         this.playerClass = playerClass;
-        initializePlayer(playerClass);
+        initializeHabilities(playerClass);
     }
 
     public String getName() {
