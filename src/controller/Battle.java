@@ -26,7 +26,7 @@ public class Battle {
             if (action == 0)
                 continue;
 //Action player
-            int used = 2;
+            int used = 0;
             if (option == 2 && lifePlayer > 0){
                 habilityBattle(player, monster);
                 used = 1;
