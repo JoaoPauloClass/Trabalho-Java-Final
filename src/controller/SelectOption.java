@@ -91,12 +91,8 @@ public class SelectOption {
 
         switch (action) {
             case 1:
-                try {
-                    player.attack(monster);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                return 0;
+                
+                return -1;
 
             case 2:
                 while (true) {

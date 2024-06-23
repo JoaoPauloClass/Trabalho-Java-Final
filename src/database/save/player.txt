@@ -1,8 +1,10 @@
 Name: 1
-Class: MAGO
-Attack: 11
-Defense: 7
-Health: 11
-Mana: 13
-Agility: 9
+Class: GUERREIRO
+Attack: 12
+Defense: 12
+Health: 12
+Mana: 8
+Agility: 7
 Floor: 2
+MaxHealth: 12
+MaxMana: 8
