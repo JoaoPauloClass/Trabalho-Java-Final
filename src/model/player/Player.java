@@ -190,8 +190,8 @@ public class Player implements Cloneable, Attackable {
         return health;
     }
 
-    public void setHealth(int heathy) {
-        this.health = heathy;
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public int getAgility() {
