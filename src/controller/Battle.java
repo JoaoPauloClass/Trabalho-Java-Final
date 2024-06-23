@@ -1,72 +1,170 @@
 package controller;
 
+import model.monster.Monster;
+
 import model.player.Player;
 import view.Console;
 import view.GraphicalCombatSystem;
 
 public class Battle {
 
-    public static void startBattle(Player p, Player m) {
-        int lifeMonster = 10, energy = 0;
-        int lifePlayer = 10, lifeAgain = 10;
-        int manaBar = 10;
+    public static int action = 0;
+
+    public static void startBattle(Player player, Monster monster) {
+        int lifePlayer = 10;
+        GraphicalCombatSystem.setDamage(10);
+        GraphicalCombatSystem.setLife(10);
+        GraphicalCombatSystem.setMana(10);
         do {
-            // Garantia que não vai zerar a mana apertando zero para voltar nas escolhas de
-            // habilidades
-            if (manaBar == -1) {
-                manaBar = energy;
+
+            GraphicalCombatSystem.MonsterBattle(monster);
+            GraphicalCombatSystem.playerTable(player);
+
+            int option = SelectOption.playerOption();
+            action = SelectOption.readAction(option, player, monster);
+
+            if (action == 0)
+                continue;
+
+            // Action player
+            int used = 0;
+            if (option == 2 && lifePlayer > 0){
+
+                habilityBattle(player, monster);
+                used = 1;
             }
-            energy = manaBar;
-            lifeAgain = lifeMonster;
-            // Start
 
-            GraphicalCombatSystem.MonsterBattle(m, lifeMonster);
-            GraphicalCombatSystem.playerTable(p, lifePlayer, manaBar);
-            
-            int option = GraphicalCombatSystem.playerOption();
-            int action = GraphicalCombatSystem.readAction(option, p);
-            if (option == 2) {
+            else if (option == 3 && lifePlayer > 0) {
+                potioBattle(player);
+                used = 2;
 
-                while (true) {
-                    try {
-                        lifeMonster = p.damageHability(action, lifeMonster);
-                        manaBar = p.energyCostBattle(action);
+            }
+            if (action == 0)
+                continue;
+            // Verifica quem ataca primeiro
+            if (monster.getAgility() > player.getAgility())
+                attackMonsterFirst(monster, player, used);
                 
-                        break;
-                    } catch (Exception e) {
-
-                        System.out.println(e.getMessage());
-                        Console.readString("Pressione enter para prosseguir: ");
-                        action = GraphicalCombatSystem.playerHabilities(p);
-                    }
-                }
-            }
-            if (lifeMonster == -1) {
-                lifeMonster = lifeAgain;
-            } else if (option == 3) {
-                if (action == 1) {
+             else {
+                if (action == -1) {
                     try {
-                        lifePlayer += p.useHealingPotion();
+                        player.attack(monster);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                 }
-                try {
-                    manaBar = p.useManaPotion();
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    Console.readString("Pressione enter para prosseguir: ");
+                playerAttackFirst(monster, player, used);
+                
+                
+                if (monster.getHealth() <= 0) {
+                    break;
+                }
+
+                if (player.getHealth() <= 0) {
+                    gameOver(player);
                 }
             }
 
-        } while (lifeMonster > 0 && lifePlayer > 0);
+            System.out.println(monster.getHealth() + "slime life");
+            Console.readString("");
 
+        } while (monster.getHealth() > 0);
+
+        player.setHealth(player.getMaxHealth());
+        player.setMana(player.getMaxMana());
         System.out.println("Derrotou");
+
     }
 
-    public static int manaPotionCalculator(Player p){
-        
-        
-        return 0;
+    public static void habilityBattle(Player player, Monster monster) {
+
+        try {
+            player.damageBattle(action, monster);
+            player.energyCostBattle(action);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Console.readString("Pressione enter para prosseguir: ");
+            action = 0;
+        }
+
     }
+
+    public static void potioBattle(Player player) {
+
+        if (action == 1) {
+            try {
+                player.useHealingPotion();
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                Console.readString("Pressione enter para prosseguir: ");
+                action = 0;
+            }
+        } else {
+            try {
+                player.useManaPotion();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                Console.readString("Pressione enter para prosseguir: ");
+                action = 0;
+            }
+        }
+    }
+
+    public static void attackMonsterFirst(Monster monster, Player player, int used) {
+
+        
+        // Monstro ataque
+        Console.printSlowly(monster.getName() + " Atacou voce primeiro!!");
+
+        Console.readString("");
+        try {
+            monster.attack(player);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Console.readString("");
+        }
+        if (player.getHealth() <= 0) {
+            gameOver(player);
+        }
+        if (used == 2) {
+            Console.printSlowly(" Voce usou uma pocao!!");
+        } else if (used == 1) {
+            Console.printSlowly(" Voce usou uma habilidade!!");
+        }else {
+            try {
+                player.attack(monster);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static void gameOver(Player player) {
+        System.out.println("\033c");
+        System.out.println("\nGame Over");
+        System.out.println("Tabela de pontos");
+
+        player.showHabilities();
+        System.out.println(" ");
+        System.exit(0);
+
+    }
+
+    public static void playerAttackFirst(Monster monster, Player player, int used) {
+        if (used == 1) {
+            Console.printSlowly("Voce usou uma habilidade!!");
+        } else if (used == 2) {
+            Console.printSlowly(" Voce usou uma pocao!!");
+        }
+        Console.readString("");
+
+        try {
+            monster.attack(player);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Console.readString("");
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package model.monster;
 
+
 import model.Attackable;
 import model.monster.boss.DemonKing;
 import model.monster.boss.Minotaur;
@@ -14,6 +15,7 @@ public abstract class Monster implements Attackable {
     protected int defense;
     protected int health;
     protected int agility;
+    protected int maxHealth;
 
     public void showStatus() {
 
@@ -25,16 +27,17 @@ public abstract class Monster implements Attackable {
     }
 
     public abstract String getSprite();
-
+    
     public Monster() {
     }
 
-    public Monster(String name, int attack, int defense, int heathy, int agility) {
+    public Monster(String name, int attack, int defense, int health, int agility, int maxHealth) {
         this.name = name;
         this.attack = attack;
         this.defense = defense;
-        this.health = heathy;
+        this.health = health;
         this.agility = agility;
+        this.maxHealth = maxHealth;
     }
 
     public String getName() {
@@ -75,6 +78,13 @@ public abstract class Monster implements Attackable {
 
     public void setAgility(int agility) {
         this.agility = agility;
+    }
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
     }
 
     public static Monster createMonster(String line) throws Exception{
@@ -119,5 +129,7 @@ public abstract class Monster implements Attackable {
 
         return tempMonster;
     }
+
+    
 
 }

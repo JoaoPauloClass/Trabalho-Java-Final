@@ -6,11 +6,13 @@ import controller.HabilityController;
 import model.Attackable;
 import model.Hability;
 import model.player.Player;
+import view.GraphicalCombatSystem;
 
 public class Minotaur extends Boss {
 
     public Minotaur() {
-        super("Minotauro", 15, 10, 20, 10, 20);
+        
+        super("Minotauro", 25, 20, 30, 10, 30,20);
         setHabilities();
     }
 
@@ -145,13 +147,21 @@ public class Minotaur extends Boss {
 
     }
 
-    @Override
+     @Override
     public void takeDamage(int damage) {
-        this.health -= damage;
-        if (this.health < 0) {
-            this.health = 0;
+        if (damage < 0) {
+            damage = 0;
         }
 
+        health -= damage;
+        if (this.health < 0) {
+            this.health = 0;
+            GraphicalCombatSystem.setDamage(0);
+            return;
+        }
+        int temp = ((health * 10) / maxHealth);
+        GraphicalCombatSystem.setDamage(temp);
+    
     }
 
 }

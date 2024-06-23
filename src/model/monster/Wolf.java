@@ -4,11 +4,12 @@ import java.util.Random;
 
 import model.Attackable;
 import model.player.Player;
+import view.GraphicalCombatSystem;
 
 public class Wolf extends Monster {
 
     public Wolf() {
-        super("Lobo", 6, 2, 4, 6);
+        super("Lobo", 6, 2, 4, 6,4);
     }
 
     public void attack(Player player) throws Exception {
@@ -84,12 +85,20 @@ public class Wolf extends Monster {
         }
     }
 
-    @Override
     public void takeDamage(int damage) {
-        this.health -= damage;
+        if (damage < 0) {
+            damage = 0;
+        }
+
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
+            GraphicalCombatSystem.setDamage(0);
+            return;
         }
+        int temp = ((health * 10) / maxHealth);
+        GraphicalCombatSystem.setDamage(temp);
+    
     }
 
 }

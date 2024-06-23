@@ -1,11 +1,10 @@
 import view.GameSystem;
 
 public class Main {
-    
-    public static void main(String[] args) {
-      
-      GameSystem.execute();
 
-    }
+  public static void main(String[] args) {
+
+    GameSystem.execute();
+
+  }
 }
-    

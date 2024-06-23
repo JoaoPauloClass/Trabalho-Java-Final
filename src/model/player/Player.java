@@ -6,8 +6,10 @@ import controller.PotionBag;
 import model.Armor;
 import model.Attackable;
 import model.Hability;
+import model.monster.Monster;
 import view.Color;
 import view.Console;
+import view.GraphicalCombatSystem;
 
 public class Player implements Cloneable, Attackable {
 
@@ -37,13 +39,19 @@ public class Player implements Cloneable, Attackable {
         this.health = health;
         this.mana = mana;
         this.agility = agility;
+        this.floor = 1;
     }
 
     public Player(String name, String playerClass) {
         this.name = name;
         this.playerClass = playerClass;
+        this.floor = 1;
 
-        if (playerClass == "MAGO") {
+        initializePlayer(playerClass);
+    }
+
+    private void initializePlayer(String playerClass) {
+        if (playerClass.equals("MAGO")) {
             attack = 11;
             defense = 7;
             health = 10;
@@ -52,16 +60,13 @@ public class Player implements Cloneable, Attackable {
             maxMana = 13;
             agility = 9;
             tooling = "Cajado do iniciante";
-            floor = 5;
-            points = 0;
             try {
                 habilities = HabilityController.initializeWizardHability();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
 
-        } else if (playerClass == "GUERREIRO") {
+        } else if (playerClass.equals("GUERREIRO")) {
             attack = 12;
             defense = 12;
             health = 11;
@@ -70,15 +75,13 @@ public class Player implements Cloneable, Attackable {
             maxMana = 8;
             agility = 7;
             tooling = "Espada do iniciante";
-            points = 0;
             try {
                 habilities = HabilityController.initializeWarriorHability();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
 
-        } else if (playerClass == "ASSASSINO") {
+        } else if (playerClass.equals("ASSASSINO")) {
 
             attack = 11;
             defense = 8;
@@ -87,17 +90,53 @@ public class Player implements Cloneable, Attackable {
             mana = 11;
             agility = 12;
             tooling = "Adagas de iniciante";
-            points = 0;
             try {
                 habilities = HabilityController.initializeAssassinHability();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
+
         }
     }
 
-    
+    private void initializeHabilities(String playerClass) {
+        if (playerClass.equals("MAGO")) {
+            try {
+                habilities = HabilityController.initializeWizardHability();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        } else if (playerClass.equals("GUERREIRO")) {
+
+            try {
+                habilities = HabilityController.initializeWarriorHability();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        } else if (playerClass.equals("ASSASSINO")) {
+            try {
+                habilities = HabilityController.initializeAssassinHability();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public void setMaxMana(int maxMana) {
+        this.maxMana = maxMana;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
     public int getMaxHealth() {
         return maxHealth;
     }
@@ -120,6 +159,7 @@ public class Player implements Cloneable, Attackable {
 
     public void setPlayerClass(String playerClass) {
         this.playerClass = playerClass;
+        initializeHabilities(playerClass);
     }
 
     public String getName() {
@@ -150,8 +190,8 @@ public class Player implements Cloneable, Attackable {
         return health;
     }
 
-    public void setHealth(int heathy) {
-        this.health = heathy;
+    public void setHealth(int health) {
+        this.health = health;
     }
 
     public int getAgility() {
@@ -178,12 +218,16 @@ public class Player implements Cloneable, Attackable {
         this.tooling = toling;
     }
 
-    public int getFloor() {
+    public int getFloorNumber() {
         return floor;
     }
 
     public void setFloor(int floor) {
         this.floor = floor;
+    }
+
+    public void floorUp() {
+        floor += 1;
     }
 
     public int getPoints() {
@@ -239,41 +283,42 @@ public class Player implements Cloneable, Attackable {
 
     }
 
-    public void addPoints() throws Exception {
+    public void addPoints(int points) {
         // Clear console
         System.out.println("\033c");
+        System.out.println("Pontos disponiveis: " + points);
 
         while (points != 0) {
 
-            System.out.print("\n\nAtaque:    " +
+            System.out.print("\n\n1) Ataque:    " +
                     Color.getBrightRed() + attack +
-                    Color.getBrightYellow() + " +" + points +
+                    Color.getBrightYellow() + " + 1" +
                     Color.getResetColor());
 
-            System.out.print("\t\tDefesa: " +
+            System.out.print("\t\t2) Defesa: " +
                     Color.getBrightBlack() + defense +
-                    Color.getBrightYellow() + " +" + points +
+                    Color.getBrightYellow() + " + 1" +
                     Color.getResetColor() + "\n");
-            System.out.print("Vida:      " +
+            System.out.print("3) Vida:      " +
                     Color.getBrightGreen() + health +
-                    Color.getBrightYellow() + " +" + points +
+                    Color.getBrightYellow() + " + 1" +
                     Color.getResetColor());
 
             if (playerClass == "MAGO") {
-                System.out.print("\t\tmana: " +
+                System.out.print("\t\t4) mana: " +
                         Color.getBlue() + mana +
-                        Color.getBrightYellow() + " +" + points +
+                        Color.getBrightYellow() + " + 1" +
                         Color.getResetColor() + "\n");
             } else {
-                System.out.print("\t\tenergia: " + mana +
-                        Color.getBrightYellow() + " +" + points +
+                System.out.print("\t\t4) energia: " + mana +
+                        Color.getBrightYellow() + " + 1" +
                         Color.getResetColor() + "\n");
 
             }
 
-            System.out.print("Agilidade: " +
+            System.out.print("5) Agilidade: " +
                     Color.getCyan() + agility +
-                    Color.getBrightYellow() + " +" + points +
+                    Color.getBrightYellow() + " + 1" +
                     Color.getResetColor());
 
             int choice = Console.readInt("\n\nEscolha onde será colocado seus pontos: ");
@@ -282,7 +327,6 @@ public class Player implements Cloneable, Attackable {
             points--;
 
         }
-        throw new Exception("Não há pontos disponiveis");
 
     }
 
@@ -316,8 +360,7 @@ public class Player implements Cloneable, Attackable {
 
     }
 
-    
-    public void showHabilities(){
+    public void showHabilities() {
 
         int mostrar = 1;
         for (Hability a : habilities) {
@@ -341,10 +384,12 @@ public class Player implements Cloneable, Attackable {
             case 3:
 
                 health++;
+                maxHealth++;
 
                 break;
             case 4:
                 mana++;
+                maxMana++;
 
                 break;
             case 5:
@@ -357,38 +402,30 @@ public class Player implements Cloneable, Attackable {
         }
     }
 
-
-    public int useHealingPotion() throws Exception {
+    public void useHealingPotion() throws Exception {
 
         if (health == maxHealth) {
             throw new Exception("Sua vida está cheia, não há necessidade de usar");
         } else {
             PotionBag.usePotion("LIFE");
-          
-            health += 2;
-          return (2 * 10) / maxHealth;
+
+            int temp = ((health * 10) / maxHealth);
+            GraphicalCombatSystem.setLife(temp);
         }
     }
 
-    public int useManaPotion() throws Exception {
+    public void useManaPotion() throws Exception {
         if (mana == maxMana) {
             throw new Exception("Sua energia está cheia, não há necessidade de usar");
         } else {
             PotionBag.usePotion("MANA");
             mana += 2;
-            return (2 * 10) / maxMana;
+            int temp = ((mana * 10) / maxMana);
+            GraphicalCombatSystem.setMana(temp);
         }
     }
 
-    public int energyCostBattle(int action) throws Exception {
-
-        if (action == 0) {
-            return -1;
-        } else if (action > 3) {
-            System.out.println("\033c");
-            throw new Exception("Numero invalido, tente com um dos numeros abaixo");
-
-        }
+    public void energyCostBattle(int action) throws Exception {
 
         Hability hability = habilities.get(action - 1);
 
@@ -398,28 +435,26 @@ public class Player implements Cloneable, Attackable {
         }
 
         mana = mana - hability.getEnergyCost();
-
-        return ((mana * 10) / maxMana);
+        int temp = ((mana * 10) / maxMana);
+        GraphicalCombatSystem.mana = temp;
     }
 
-    public int damageHability(int action, int life) throws Exception {
-
-        if (action == 0) {
-            return -1;
-        } else if (action > 3) {
-            System.out.println("\033c");
-            throw new Exception("Numero invalido, tente com um dos numeros abaixo");
-        }
+    public void damageBattle(int action, Monster monster) throws Exception {
 
         Hability hability = habilities.get(action - 1);
 
         if ((mana - hability.getEnergyCost()) <= -1) {
             System.out.println("\033c");
             throw new Exception("Mana insuficiente!!!");
-            
         }
 
-        return life - hability.getBaseDamage();
+        // Slime damage
+
+        int lostLife = monster.getHealth() - hability.getBaseDamage();
+        monster.setHealth(lostLife);
+
+        lostLife = (lostLife * 10) / monster.getMaxHealth();
+        GraphicalCombatSystem.setDamage(lostLife);
 
     }
 
@@ -430,17 +465,44 @@ public class Player implements Cloneable, Attackable {
 
     @Override
     public void takeDamage(int damage) {
-        // TODO: implementar morte
-        this.health -= damage;
+        if (damage < 0) {
+            damage = 0;
+        }
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
+            GraphicalCombatSystem.setLife(0);
+            return;
         }
+
+        int temp = ((health * 10) / maxHealth);
+        System.out.println("bar vida: " + temp);
+        GraphicalCombatSystem.setLife(temp);
+
     }
 
     @Override
     public void attack(Attackable target) throws Exception {
-        // TODO implementar ataque do player
-        throw new UnsupportedOperationException("Unimplemented method 'attack'");
+
+        Monster monster;
+
+        if (target == null) {
+            throw new Exception("Nenhum alvo foi passado para a função de ataque.");
+        } else if (target instanceof Monster) {
+            monster = (Monster) target;
+        } else {
+            throw new Exception("ERRO, classe tipo monster nao encontrada");
+        }
+
+        int dano = attack;
+        
+        Console.printSlowly("Você ataca com sua arma.\n");
+        Console.printSlowly("Você acerta o inimigo.\n");
+       
+        monster.takeDamage(dano);
+        
+        Console.readString("");
+
     }
-    
+
 }

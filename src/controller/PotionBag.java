@@ -10,8 +10,8 @@ public abstract class PotionBag {
 
     public static void initialize() {
 
-        Potion lifePotion = new Potion("LIFE", 2);
-        Potion manaPotion = new Potion("MANA", 2);
+        Potion lifePotion = new Potion("LIFE", 1);
+        Potion manaPotion = new Potion("MANA", 1);
 
         potionBag.add(lifePotion);
         potionBag.add(manaPotion);
@@ -35,7 +35,12 @@ public abstract class PotionBag {
             }
 
         } else if (type.equals("MANA")) {
-            potionBag.get(1).removeQuantity();
+            if (potionBag.get(1).getQuantity() > 0) {
+                potionBag.get(1).removeQuantity();
+            }else {
+                throw new Exception("Você não possui poção deste tipo.");
+            }
+            
         } else {
             throw new Exception("Você não possui poção deste tipo.");
         }
