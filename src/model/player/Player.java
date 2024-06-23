@@ -2,9 +2,7 @@ package model.player;
 
 import java.util.ArrayList;
 
-import controller.ArmorController;
 import controller.HabilityController;
-import controller.PlayerController;
 import controller.PotionBag;
 import model.Armor;
 import model.Attackable;

@@ -1,14 +1,4 @@
-
-
-
-import controller.Battle;
-import controller.FloorController;
-import controller.PotionBag;
-
-import model.monster.Monster;
-import model.player.Player;
-
-
+import view.GameSystem;
 
 public class Main {
 

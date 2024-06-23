@@ -2,6 +2,7 @@ package view;
 
 import java.io.IOException;
 
+import controller.Battle;
 import controller.FloorController;
 import controller.PlayerDataController;
 import controller.PotionBag;
@@ -40,7 +41,7 @@ public abstract class GameSystem {
             System.out.println(actualMonster.getSprite());
             Console.readString("Pressione enter para continuar");
 
-            // TODO batalha
+            Battle.startBattle(player, actualMonster);
 
             if (player.getHealth() == 0) {
                 return;
@@ -70,7 +71,7 @@ public abstract class GameSystem {
     private static Player mainMenu() {
 
         Player tempPlayer;
-        Console.printSlowly("\033c\t\t\t\t\tGame name");
+        Console.printSlowly("\033c\t\t\t\t\tRPG Orion");
 
         do {
             Console.printSlowly("\n\n\n1) Novo jogo\n");
