@@ -43,4 +43,8 @@ public abstract class FloorController {
         throw new Exception("Número de fase inválido");
     }
 
+    public static int getNumberOfFloors() {
+        return floors.size();
+    }
+
 }

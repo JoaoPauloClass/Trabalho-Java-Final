@@ -1,3 +1,3 @@
 Esfera de energia, 3, 4
-Espiral de fogo  , 6, 5
-Esfera negra     , 10 7
+Espiral de fogo, 6, 5
+Esfera negra, 10, 7
