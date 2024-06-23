@@ -134,6 +134,7 @@ public class GraphicalCombatSystem {
         int manaBar = 10;
         if (player.getPlayerClass() == "MAGO") {
             wizardMana(player);
+            return;
         }
 
         // Energy
