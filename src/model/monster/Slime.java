@@ -29,9 +29,6 @@ public class Slime extends Monster {
         int dano = attack;
 
         if (d10 <= 5) {
-            // ! Caso eu va colocar em metodo o dodge, os parametros são => dodgeGoal,
-            // damage, multiplicator, player
-            // TODO ver sobre isso ^^^^^^^^
             Console.printSlowly("O Slime dipara um Golpe Ácido.");
             Console.readString("");
             if (d10Dodge < 8) {
@@ -73,7 +70,7 @@ public class Slime extends Monster {
             damage = 0;
         }
     
-        health -= damage;
+        health -= damage - defense / 2;
 
       
         if (this.health < 0) {

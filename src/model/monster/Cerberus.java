@@ -78,7 +78,7 @@ public class Cerberus extends Monster {
             damage = 0;
         }
 
-        health -= damage;
+        health -= damage - defense / 2;
         if (this.health < 0) {
             this.health = 0;
             GraphicalCombatSystem.setDamage(0);
