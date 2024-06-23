@@ -54,10 +54,14 @@ public class Slime extends Monster {
                 Console.printSlowly("\nVocê é acertado.");
                 Console.readString("");
                 dano = attack;
+                dano -= player.getDefense();
                 Console.printSlowly("\nDano recebido: " + dano);
                 Console.readString("");
-                dano -= player.getDefense();
-                player.takeDamage(dano);
+
+                if (dano > 0) {
+                    player.takeDamage(dano);
+                }
+
             } else {
                 Console.printSlowly("\nVocê consegue esquivar!");
                 Console.readString("");
