@@ -7,7 +7,7 @@ import model.player.Player;
 
 public class Gargoyle extends Monster {
     public Gargoyle() {
-        super("Gárgula", 8, 4, 7, 6);
+        super("Gárgula", 8, 4, 7, 6,7);
     }
 
     public String getSprite() {

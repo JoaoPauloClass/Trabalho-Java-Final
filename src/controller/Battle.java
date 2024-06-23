@@ -1,6 +1,5 @@
 package controller;
 
-
 import model.monster.Monster;
 
 import model.player.Player;
@@ -10,81 +9,123 @@ import view.GraphicalCombatSystem;
 public class Battle {
 
     public static int action = 0;
-    public static void startBattle(Player p, Monster m) {
+
+    public static void startBattle(Player player, Monster monster) {
         int lifePlayer = 10;
-        int cont = 0;
+
         do {
 
-            GraphicalCombatSystem.MonsterBattle(m);
-            GraphicalCombatSystem.playerTable(p, lifePlayer);
+            GraphicalCombatSystem.MonsterBattle(monster);
+            GraphicalCombatSystem.playerTable(player);
 
             int option = GraphicalCombatSystem.playerOption();
-            action = GraphicalCombatSystem.readAction(option, p);
+            action = GraphicalCombatSystem.readAction(option, player);
 
             if (action == 0)
                 continue;
+//Action player
+            if (option == 2 && lifePlayer > 0)
+                habilityBattle(player, monster);
+            else if (option == 3 && lifePlayer > 0)
+                potioBattle(player);
+            if (action == 0)
+                continue;
+//Verifica quem ataca primeiro
+            if (monster.getAgility() > player.getAgility()) 
+                attackMonsterFirst(monster,player);       
+            else {
+                playerAttackFirst(monster, player);      
+                if (monster.getHealth() <= 0) {
+                    break;
+                }
 
-            if (m.getAgility() < p.getAgility()) {
-
-                // todo: Monster Attack
-                if (option == 2 && lifePlayer > 0)
-                    habilityBattle(p);
-                else if (option == 3 && lifePlayer > 0) 
-                    potioBattle(p);
-                if (action == 0)
-                    continue;
-            } else {
-                if (option == 2 && lifePlayer > 0)
-                    habilityBattle(p);
-                else if (option == 3 && p.getHealth() > 0) 
-                    potioBattle(p);
+                if (player.getHealth() <= 0) {
+                    gameOver(player);
+                }
             }
-            
-            if (cont == 0) {
-                p.setHealth(5);
-                GraphicalCombatSystem.setLife(5);
-                cont++;
-            }
-           
 
-        } while (m.getHealth() > 0 && lifePlayer > 0);
+            System.out.println(monster.getHealth() + "slime life");
+            Console.readString("");
 
-        p.setHealth(p.getMaxHealth());
-        p.setMana(p.getMaxMana());
+        } while (monster.getHealth() > 0);
+
+        player.setHealth(player.getMaxHealth());
+        player.setMana(player.getMaxMana());
         System.out.println("Derrotou");
     }
 
-    public static void habilityBattle(Player p) {
+    public static void habilityBattle(Player player, Monster monster) {
 
+        try {
+            player.damageBattle(action, monster);
+            player.energyCostBattle(action);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Console.readString("Pressione enter para prosseguir: ");
+            action = 0;
+        }
+
+    }
+
+    public static void potioBattle(Player player) {
+
+        if (action == 1) {
             try {
-                p.damageBattle(action);
-                p.energyCostBattle(action);
+                player.useHealingPotion();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 Console.readString("Pressione enter para prosseguir: ");
                 action = 0;
             }
-        
-    }
-
-    public static void potioBattle(Player p) {
-
-        if (action == 1) {
-            try {
-                p.useHealingPotion();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                Console.readString("Pressione enter para prosseguir: ");
-                action =0;
-            }
         } else {
             try {
-                p.useManaPotion();
+                player.useManaPotion();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 Console.readString("Pressione enter para prosseguir: ");
-                action =0;
+                action = 0;
             }
         }
     }
+
+    public static void attackMonsterFirst(Monster monster, Player player){
+        Console.printSlowly(monster.getName() + " Atacou voce primeiro!!");
+                Console.readString("");
+                //Monstro ataque
+                try {
+                    monster.attack(player);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    Console.readString("");
+                }
+
+                if (player.getHealth() <= 0) {
+                    gameOver(player);
+                }
+    }
+
+    public static void gameOver(Player player) {
+        System.out.println("\033c");
+        System.out.println("\nGame Over");
+        System.out.println("Tabela de pontos");
+
+        player.showHabilities();
+        System.out.println(" ");
+        System.exit(0);
+
+    }
+
+    public static void playerAttackFirst(Monster monster,Player player){
+        Console.printSlowly("Voce atacou primeiro!!");
+        Console.readString("");
+
+        
+        try {
+            monster.attack(player);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Console.readString("");
+        }
+    }
+
 }

@@ -1,14 +1,14 @@
 package model.monster;
 
 import java.util.Random;
-
+import view.Console;
 import model.Attackable;
 import model.player.Player;
 
 public class Skeleton extends Monster {
 
     public Skeleton() {
-        super("Esqueleto", 7, 2, 6, 4);
+        super("Esqueleto", 7, 2, 6, 4,6);
     }
 
     public String getSprite() {
@@ -69,24 +69,24 @@ public class Skeleton extends Monster {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 6) {
-            System.out.println("O Esqueleto atira uma flecha em você.");
+            Console.printSlowly("O Esqueleto atira uma flecha em você.");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack - 2;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         } else {
-            System.out.println("O Esqueleto avança e te corta com uma espada.");
+            Console.printSlowly("O Esqueleto avança e te corta com uma espada.");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack - 2;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         }
     }

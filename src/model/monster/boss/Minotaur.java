@@ -10,7 +10,8 @@ import model.player.Player;
 public class Minotaur extends Boss {
 
     public Minotaur() {
-        super("Minotauro", 15, 10, 20, 10, 20);
+        
+        super("Rei Demônio", 25, 20, 30, 10, 30,20);
         setHabilities();
     }
 
