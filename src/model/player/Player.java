@@ -125,6 +125,18 @@ public class Player implements Cloneable, Attackable {
         }
     }
 
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public void setMaxMana(int maxMana) {
+        this.maxMana = maxMana;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
     public int getMaxHealth() {
         return maxHealth;
     }
