@@ -495,14 +495,14 @@ public class Player implements Cloneable, Attackable {
         }
 
         int dano = attack;
-
+        
         Console.printSlowly("Você ataca com sua arma.\n");
-
         Console.printSlowly("Você acerta o inimigo.\n");
-        dano = attack;
-        Console.printSlowly("Dano causado: " + dano + "\n");
+       
         monster.takeDamage(dano);
+        
         Console.readString("");
+
     }
 
 }

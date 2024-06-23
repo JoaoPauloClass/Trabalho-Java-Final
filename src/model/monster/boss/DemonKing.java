@@ -6,6 +6,7 @@ import controller.HabilityController;
 import model.Attackable;
 import model.Hability;
 import model.player.Player;
+import view.GraphicalCombatSystem;
 
 public class DemonKing extends Boss {
 
@@ -94,12 +95,21 @@ public class DemonKing extends Boss {
                 "     {}  /  \\_/\\=/\\_/  \\";
     }
 
-    @Override
+     @Override
     public void takeDamage(int damage) {
-        this.health -= damage;
+        if (damage < 0) {
+            damage = 0;
+        }
+
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
+            GraphicalCombatSystem.setDamage(0);
+            return;
         }
+        int temp = ((health * 10) / maxHealth);
+        GraphicalCombatSystem.setDamage(temp);
+    
     }
 
     @Override

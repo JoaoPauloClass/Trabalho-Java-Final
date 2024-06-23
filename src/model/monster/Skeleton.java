@@ -2,6 +2,7 @@ package model.monster;
 
 import java.util.Random;
 import view.Console;
+import view.GraphicalCombatSystem;
 import model.Attackable;
 import model.player.Player;
 
@@ -91,11 +92,20 @@ public class Skeleton extends Monster {
         }
     }
 
-    @Override
+     @Override
     public void takeDamage(int damage) {
-        this.health -= damage;
+        if (damage < 0) {
+            damage = 0;
+        }
+
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
+            GraphicalCombatSystem.setDamage(0);
+            return;
         }
+        int temp = ((health * 10) / maxHealth);
+        GraphicalCombatSystem.setDamage(temp);
+    
     }
 }

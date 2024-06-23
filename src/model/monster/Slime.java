@@ -8,7 +8,7 @@ import model.player.Player;
 public class Slime extends Monster {
     
     public Slime(){
-        super("Slime", 15, 3, 10, 4,11);
+        super("Slime", 15, 3, 30, 4,30);
     }
 
     @Override
@@ -67,10 +67,24 @@ public class Slime extends Monster {
 
     @Override
     public void takeDamage(int damage) {
-        this.health -= damage;
+      
+
+        if (damage < 0) {
+            damage = 0;
+        }
+    
+        health -= damage;
+
+      
         if (this.health < 0) {
             this.health = 0;
+            GraphicalCombatSystem.setDamage(0);
+            return;
         }
+    
+        int temp = ((health * 10) / maxHealth);
+        GraphicalCombatSystem.setDamage(temp);
+    
     }
 
     public String getSprite(){

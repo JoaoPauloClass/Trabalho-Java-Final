@@ -25,25 +25,37 @@ public class Battle {
 
             if (action == 0)
                 continue;
-//Action player
+
+            // Action player
             int used = 0;
             if (option == 2 && lifePlayer > 0){
+
                 habilityBattle(player, monster);
                 used = 1;
             }
-                
-            else if (option == 3 && lifePlayer > 0){
+
+            else if (option == 3 && lifePlayer > 0) {
                 potioBattle(player);
                 used = 2;
-                
+
             }
             if (action == 0)
                 continue;
-//Verifica quem ataca primeiro
-            if (monster.getAgility() > player.getAgility()) 
-                attackMonsterFirst(monster,player,used);       
-            else {
-                playerAttackFirst(monster, player,used);      
+            // Verifica quem ataca primeiro
+            if (monster.getAgility() > player.getAgility())
+                attackMonsterFirst(monster, player, used);
+                
+             else {
+                if (action == -1) {
+                    try {
+                        player.attack(monster);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                playerAttackFirst(monster, player, used);
+                
+                
                 if (monster.getHealth() <= 0) {
                     break;
                 }
@@ -61,7 +73,7 @@ public class Battle {
         player.setHealth(player.getMaxHealth());
         player.setMana(player.getMaxMana());
         System.out.println("Derrotou");
-        
+
     }
 
     public static void habilityBattle(Player player, Monster monster) {
@@ -82,7 +94,7 @@ public class Battle {
         if (action == 1) {
             try {
                 player.useHealingPotion();
-                
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 Console.readString("Pressione enter para prosseguir: ");
@@ -99,28 +111,33 @@ public class Battle {
         }
     }
 
-    public static void attackMonsterFirst(Monster monster, Player player,int used){
-    
-        
-        Console.printSlowly(monster.getName() + " Atacou voce primeiro!!");
-        
-                Console.readString("");
-                //Monstro ataque
-                try {
-                    monster.attack(player);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    Console.readString("");
-                }
+    public static void attackMonsterFirst(Monster monster, Player player, int used) {
 
-                if (player.getHealth() <= 0) {
-                    gameOver(player);
-                }
-                if (used == 2) {
-                    Console.printSlowly(" Voce usou uma pocao!!");
-                }else{
-                    Console.printSlowly(" Voce usou uma habilidade!!");
-                }
+        
+        // Monstro ataque
+        Console.printSlowly(monster.getName() + " Atacou voce primeiro!!");
+
+        Console.readString("");
+        try {
+            monster.attack(player);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Console.readString("");
+        }
+        if (player.getHealth() <= 0) {
+            gameOver(player);
+        }
+        if (used == 2) {
+            Console.printSlowly(" Voce usou uma pocao!!");
+        } else if (used == 1) {
+            Console.printSlowly(" Voce usou uma habilidade!!");
+        }else {
+            try {
+                player.attack(monster);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static void gameOver(Player player) {
@@ -134,17 +151,14 @@ public class Battle {
 
     }
 
-    public static void playerAttackFirst(Monster monster,Player player, int used){
+    public static void playerAttackFirst(Monster monster, Player player, int used) {
         if (used == 1) {
             Console.printSlowly("Voce usou uma habilidade!!");
-        }else if(used == 2){
+        } else if (used == 2) {
             Console.printSlowly(" Voce usou uma pocao!!");
-        }else{
-        Console.printSlowly("Voce atacou primeiro!!");
         }
         Console.readString("");
 
-        
         try {
             monster.attack(player);
         } catch (Exception e) {
