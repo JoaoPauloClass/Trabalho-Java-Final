@@ -19,7 +19,7 @@ public class Battle {
             GraphicalCombatSystem.playerTable(player);
 
             int option = GraphicalCombatSystem.playerOption();
-            action = GraphicalCombatSystem.readAction(option, player);
+            action = GraphicalCombatSystem.readAction(option, player, monster);
 
             if (action == 0)
                 continue;

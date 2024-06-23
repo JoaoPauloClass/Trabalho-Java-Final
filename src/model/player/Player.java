@@ -1,7 +1,6 @@
 package model.player;
 
 import java.util.ArrayList;
-
 import controller.HabilityController;
 import controller.PotionBag;
 import model.Armor;
@@ -82,7 +81,6 @@ public class Player implements Cloneable, Attackable {
                 System.out.println(e.getMessage());
             }
 
-            
         } else if (playerClass.equals("ASSASSINO")) {
 
             attack = 11;
@@ -116,7 +114,7 @@ public class Player implements Cloneable, Attackable {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
- 
+
         } else if (playerClass.equals("ASSASSINO")) {
             try {
                 habilities = HabilityController.initializeAssassinHability();
@@ -126,6 +124,7 @@ public class Player implements Cloneable, Attackable {
 
         }
     }
+
     public int getMaxHealth() {
         return maxHealth;
     }
@@ -279,43 +278,41 @@ public class Player implements Cloneable, Attackable {
 
         while (points != 0) {
 
+            System.out.print("\n\n1) Ataque:    " +
+                    Color.getBrightRed() + attack +
+                    Color.getBrightYellow() + " + 1" +
+                    Color.getResetColor());
 
-                System.out.print("\n\n1) Ataque:    " +
-                        Color.getBrightRed() + attack +
-                        Color.getBrightYellow() + " + 1" +
-                        Color.getResetColor());
+            System.out.print("\t\t2) Defesa: " +
+                    Color.getBrightBlack() + defense +
+                    Color.getBrightYellow() + " + 1" +
+                    Color.getResetColor() + "\n");
+            System.out.print("3) Vida:      " +
+                    Color.getBrightGreen() + health +
+                    Color.getBrightYellow() + " + 1" +
+                    Color.getResetColor());
 
-                System.out.print("\t\t2) Defesa: " +
-                        Color.getBrightBlack() + defense +
+            if (playerClass == "MAGO") {
+                System.out.print("\t\t4) mana: " +
+                        Color.getBlue() + mana +
                         Color.getBrightYellow() + " + 1" +
                         Color.getResetColor() + "\n");
-                System.out.print("3) Vida:      " +
-                        Color.getBrightGreen() + health +
+            } else {
+                System.out.print("\t\t4) energia: " + mana +
                         Color.getBrightYellow() + " + 1" +
-                        Color.getResetColor());
+                        Color.getResetColor() + "\n");
 
-                if (playerClass == "MAGO") {
-                    System.out.print("\t\t4) mana: " +
-                            Color.getBlue() + mana +
-                            Color.getBrightYellow() + " + 1" +
-                            Color.getResetColor() + "\n");
-                } else {
-                    System.out.print("\t\t4) energia: " + mana +
-                            Color.getBrightYellow() + " + 1" +
-                            Color.getResetColor() + "\n");
+            }
 
-                }
+            System.out.print("5) Agilidade: " +
+                    Color.getCyan() + agility +
+                    Color.getBrightYellow() + " + 1" +
+                    Color.getResetColor());
 
-                System.out.print("5) Agilidade: " +
-                        Color.getCyan() + agility +
-                        Color.getBrightYellow() + " + 1" +
-                        Color.getResetColor());
+            int choice = Console.readInt("\n\nEscolha onde será colocado seus pontos: ");
 
-                int choice = Console.readInt("\n\nEscolha onde será colocado seus pontos: ");
-
-                readPoints(choice);
-                points--;
-
+            readPoints(choice);
+            points--;
 
         }
 
@@ -375,10 +372,12 @@ public class Player implements Cloneable, Attackable {
             case 3:
 
                 health++;
+                maxHealth++;
 
                 break;
             case 4:
                 mana++;
+                maxMana++;
 
                 break;
             case 5:
@@ -428,7 +427,7 @@ public class Player implements Cloneable, Attackable {
         GraphicalCombatSystem.mana = temp;
     }
 
-    public void damageBattle(int action,Monster monster) throws Exception {
+    public void damageBattle(int action, Monster monster) throws Exception {
 
         Hability hability = habilities.get(action - 1);
 
@@ -437,14 +436,13 @@ public class Player implements Cloneable, Attackable {
             throw new Exception("Mana insuficiente!!!");
         }
 
-        //Slime damage
-      
+        // Slime damage
+
         int lostLife = monster.getHealth() - hability.getBaseDamage();
         monster.setHealth(lostLife);
-        
+
         lostLife = (lostLife * 10) / monster.getMaxHealth();
         GraphicalCombatSystem.setDamage(lostLife);
-        
 
     }
 
@@ -455,15 +453,10 @@ public class Player implements Cloneable, Attackable {
 
     @Override
     public void takeDamage(int damage) {
-        // TODO: implementar morte
-        System.out.println(damage + " dano antes");
-        System.out.println("vida antes" + health);
         if (damage < 0) {
             damage = 0;
         }
         health -= damage;
-        System.out.println("dano depois: " + damage);
-        System.out.println("vida depois: " + health);
         if (this.health < 0) {
             this.health = 0;
             GraphicalCombatSystem.setLife(0);
@@ -476,11 +469,28 @@ public class Player implements Cloneable, Attackable {
 
     }
 
-
     @Override
     public void attack(Attackable target) throws Exception {
-        // TODO implementar ataque do player
-        throw new UnsupportedOperationException("Unimplemented method 'attack'");
+
+        Monster monster;
+
+        if (target == null) {
+            throw new Exception("Nenhum alvo foi passado para a função de ataque.");
+        } else if (target instanceof Monster) {
+            monster = (Monster) target;
+        } else {
+            throw new Exception("ERRO, classe tipo monster nao encontrada");
+        }
+
+        int dano = attack;
+
+        Console.printSlowly("Você ataca com sua arma.\n");
+
+        Console.printSlowly("Você acerta o inimigo.\n");
+        dano = attack;
+        Console.printSlowly("Dano causado: " + dano + "\n");
+        monster.takeDamage(dano);
+        Console.readString("");
     }
 
 }
