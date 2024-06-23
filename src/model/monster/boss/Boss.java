@@ -11,8 +11,8 @@ public abstract class Boss extends Monster{
     protected int energy;
     protected List<Hability> habilities;
 
-    public Boss(String name, int attack, int defense, int heathy, int agility,int maxHealth, int energy){
-        super(name, attack, defense, heathy, agility,maxHealth);
+    public Boss(String name, int attack, int defense, int health, int agility,int maxHealth, int energy){
+        super(name, attack, defense, health, agility,maxHealth);
         this.energy = energy;
     }
 
