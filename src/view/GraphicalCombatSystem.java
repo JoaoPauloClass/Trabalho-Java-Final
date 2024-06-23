@@ -71,14 +71,14 @@ public class GraphicalCombatSystem {
             System.out.print("-");
 
         System.out.print("\n\t\t\t\t|  ");
-        String monsterName = player.getName();
+        String playerName = player.getName();
 
         // Line 2
         for (int i = 0; i < 26; i++) {
             System.out.print(" ");
 
             if (i == 0) {
-                for (char c : monsterName.toCharArray()) {
+                for (char c : playerName.toCharArray()) {
                     System.out.print(c);
                     i++;
                 }
@@ -331,10 +331,15 @@ public class GraphicalCombatSystem {
         return temp;
     }
 
-    public static int readAction(int action, Player player) {
+    public static int readAction(int action, Player player, Monster monster) {
 
         switch (action) {
             case 1:
+                try {
+                    player.attack(monster);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
                 return 0;
 
             case 2:
