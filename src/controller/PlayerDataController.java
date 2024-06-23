@@ -6,7 +6,7 @@ import java.io.*;
 
 public class PlayerDataController {
    
-    private static final File PLAYER_SAVE_FILE = new File("src/database/Player/player.txt");
+    private static final File PLAYER_SAVE_FILE = new File("src/database/save/player.txt");
 
     public static void savePlayerData(Player player) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PLAYER_SAVE_FILE))) {
