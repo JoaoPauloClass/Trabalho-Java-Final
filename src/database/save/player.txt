@@ -1,0 +1,8 @@
+Name: 1
+Class: MAGO
+Attack: 11
+Defense: 7
+Health: 11
+Mana: 13
+Agility: 9
+Floor: 2
