@@ -20,8 +20,8 @@ public class Battle {
             GraphicalCombatSystem.MonsterBattle(monster);
             GraphicalCombatSystem.playerTable(player);
 
-            int option = GraphicalCombatSystem.playerOption();
-            action = GraphicalCombatSystem.readAction(option, player, monster);
+            int option = SelectOption.playerOption();
+            action = SelectOption.readAction(option, player, monster);
 
             if (action == 0)
                 continue;
