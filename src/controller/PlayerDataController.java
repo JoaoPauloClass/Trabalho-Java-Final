@@ -18,6 +18,8 @@ public class PlayerDataController {
             writer.write("Mana: " + player.getMana() + "\n");
             writer.write("Agility: " + player.getAgility() + "\n");
             writer.write("Floor: " + player.getFloorNumber() + "\n");
+            writer.write("MaxHealth: " + player.getMaxHealth() + "\n");
+            writer.write("MaxMana: " + player.getMaxMana() + "\n");
         }
     }
 
@@ -51,6 +53,12 @@ public class PlayerDataController {
                         break;
                     case "Floor":
                         player.setFloor(Integer.parseInt(parts[1].trim()));
+                        break;
+                    case "MaxHealth":
+                        player.setMaxHealth(Integer.parseInt(parts[1].trim()));
+                        break;
+                    case "MaxMana":
+                        player.setMaxMana(Integer.parseInt(parts[1].trim()));
                         break;
                 }
             }
