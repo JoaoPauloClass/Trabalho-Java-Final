@@ -321,6 +321,9 @@ public class Player implements Cloneable, Attackable {
 
         System.out.print("Agilidade: " + agility);
         System.out.println("\tArma: " + tooling);
+        System.out.println("\n\n");
+
+        Console.printSlowly(armor.toString());
 
         Console.readString("\nDigite enter para continuar.");
 
@@ -519,7 +522,6 @@ public class Player implements Cloneable, Attackable {
         }
 
         int temp = ((health * 10) / maxHealth);
-        System.out.println("bar vida: " + temp);
         GraphicalCombatSystem.setLife(temp);
 
     }

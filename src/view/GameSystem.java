@@ -35,7 +35,7 @@ public abstract class GameSystem {
             Monster actualMonster = actualFloor.getMonster();
 
             System.out.println("\033c");
-            Console.printSlowly(actualFloor.getName() + "\n");
+            Console.printSlowly(actualFloor.getName() + "\n\n");
             Console.printSlowly(actualFloor.getDescription() + "\n");
             Console.readString("Pressione enter para continuar");
 
@@ -60,6 +60,7 @@ public abstract class GameSystem {
             }
 
             PotionBag.randomPotionDrop();
+
             player.addPoints(1);
             player.floorUp();
 
@@ -75,7 +76,6 @@ public abstract class GameSystem {
 
         System.out.println("\033c");
         player.showStatus();
-        System.out.println(player.getArmor().toString());
     }
 
     private static void equipNewArmor(int armorNumber, Player player) {
@@ -219,7 +219,7 @@ public abstract class GameSystem {
         do {
             System.out.println("\033c");
             Console.printSlowly(
-                    "Deseja salvar seu jogo ?\n1) Salvar e continuar\n2) Salvar e sair\n3) Continuar sem salvar\n");
+                    "Deseja salvar seu jogo ?\n1) Salvar e continuar\n2) Salvar e sair\n3) Continuar sem salvar\n4) Mostrar atributos\n");
             op = Console.readInt(">> ");
 
             switch (op) {
@@ -236,6 +236,9 @@ public abstract class GameSystem {
                     break;
                 case 3:
                     break;
+                case 4:
+                    player.showStatus();
+                    Console.readString("");
                 default:
                     Console.printSlowly("Opção inválida.");
                     break;
