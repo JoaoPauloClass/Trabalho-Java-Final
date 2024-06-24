@@ -8,7 +8,9 @@ import model.player.Player;
 public class Slime extends Monster {
 
     public Slime() {
-        super("Slime", 7, 6, 10, 15, 10);
+
+
+        super("Slime", 7, 6, 11, 15, 11);
     }
 
     @Override
