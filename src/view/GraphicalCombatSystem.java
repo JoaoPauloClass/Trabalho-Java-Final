@@ -10,6 +10,7 @@ public class GraphicalCombatSystem {
     public static int life = 10;
     public static void MonsterBattle(Monster monster) {
 
+
         int lifeBar = 10;
         // Clear console
         System.out.println("\033c");
@@ -37,6 +38,11 @@ public class GraphicalCombatSystem {
         // Line 3
         System.out.print(" \t\t\t\t|");
         System.out.print("\thp:(" + Color.getGreen());
+
+
+        if (damage <= 0) {
+            damage = 1;
+        }
 
         if (lifeBar != damage) {
             for (int i = 0; i < damage; i++)
@@ -89,6 +95,10 @@ public class GraphicalCombatSystem {
         // Line 3
         System.out.print(" \t\t\t\t|");
         System.out.print("\thp:(" + Color.getGreen());
+
+        if (life <= 0) {
+            life = 1;
+        }
 
         if (lifeBar != life) {
             for (int i = 0; i < life; i++)

@@ -529,6 +529,7 @@ public class Player implements Cloneable, Attackable {
         }
 
         int temp = ((health * 10) / maxHealth);
+
         GraphicalCombatSystem.setLife(temp);
 
     }
