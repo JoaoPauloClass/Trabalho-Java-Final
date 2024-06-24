@@ -8,7 +8,7 @@ import view.GraphicalCombatSystem;
 
 public class Gargoyle extends Monster {
     public Gargoyle() {
-        super("Gárgula", 8, 4, 7, 6,7);
+        super("Gárgula", 20, 22, 20, 8,720);
     }
 
     public String getSprite() {

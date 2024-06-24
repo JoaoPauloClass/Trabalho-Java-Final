@@ -11,7 +11,7 @@ import view.GraphicalCombatSystem;
 public class DemonKing extends Boss {
 
     public DemonKing() {
-        super("Rei Demônio", 25, 20, 30, 10, 30,20);
+        super("Rei Demônio", 30, 20, 30, 10, 30,20);
         setHabilities();
     }
 
