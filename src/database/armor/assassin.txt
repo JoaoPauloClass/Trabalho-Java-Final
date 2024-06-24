@@ -1,0 +1,3 @@
+Armadura das Sombras Profundas, Assassino, 2, AGILITY, 1
+Capa do Espectro Etéreo, Assassino, 4, HEALTH, 3
+Armadura do Fantasma Assassino, Assassino, 6, DEFENSE, 5

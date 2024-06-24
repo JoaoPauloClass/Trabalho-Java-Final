@@ -1,0 +1,3 @@
+Vestes da Lua Arcana, Mago, 2, MANA, 1
+Manto do Arquimago, Mago, 4, ATTACK, 3
+Vestes do Sábio Elemental, Mago, 6, ATTACK, 5
