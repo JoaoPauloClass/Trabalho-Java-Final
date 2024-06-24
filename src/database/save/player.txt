@@ -1,10 +1,10 @@
 Name: 1
 Class: GUERREIRO
-Attack: 12
+Attack: 13
 Defense: 12
 Health: 12
 Mana: 8
 Agility: 7
-Floor: 2
+Floor: 3
 MaxHealth: 12
 MaxMana: 8
