@@ -1,2 +1,3 @@
-Armadura do iniciante, Guerreiro, 2, ATTACK, 3
-Armadura de aco, Guerreiro, 4, HEALTH, 5
+Armadura do iniciante, Guerreiro, 2, ATTACK, 1
+Armadura de aco, Guerreiro, 4, HEALTH, 3
+Armadura de escamas de dragao, Guerreiro, 6, ATTACK, 5
