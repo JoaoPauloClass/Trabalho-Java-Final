@@ -495,7 +495,7 @@ public class Player implements Cloneable, Attackable {
             throw new Exception("ERRO, classe tipo monster nao encontrada");
         }
 
-        int dano = attack;
+        int dano = attack - (target.getDefense() / 3);
         
         Console.printSlowly("Você ataca com sua arma.\n");
         Console.printSlowly("Você acerta o inimigo.\n");
