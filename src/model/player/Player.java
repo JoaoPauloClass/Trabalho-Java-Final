@@ -61,7 +61,7 @@ public class Player implements Cloneable, Attackable {
             mana = 13;
             maxMana = 13;
             agility = 9;
-            tooling = "Cajado do iniciante";
+            tooling = "Cajado";
             try {
                 initializeHabilities();
                 initializeArmor();
@@ -77,7 +77,7 @@ public class Player implements Cloneable, Attackable {
             mana = 8;
             maxMana = 8;
             agility = 7;
-            tooling = "Espada do iniciante";
+            tooling = "Espada";
             try {
                 initializeHabilities();
                 initializeArmor();
@@ -94,7 +94,7 @@ public class Player implements Cloneable, Attackable {
             mana = 11;
             maxMana = 11;
             agility = 12;
-            tooling = "Adagas de iniciante";
+            tooling = "Adagas";
             try {
                 initializeHabilities();
                 initializeArmor();
@@ -121,6 +121,7 @@ public class Player implements Cloneable, Attackable {
             try {
                 ArmorController.initializaWizardArmor();
                 armor = ArmorController.getList().get(armorNumber);
+                tooling = "Cajado";
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -130,6 +131,7 @@ public class Player implements Cloneable, Attackable {
             try {
                 ArmorController.initializaWarriorArmor();
                 armor = ArmorController.getList().get(armorNumber);
+                tooling = "Espada";
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -138,6 +140,7 @@ public class Player implements Cloneable, Attackable {
             try {
                 ArmorController.initializaAssassinArmor();
                 armor = ArmorController.getList().get(armorNumber);
+                tooling = "Adagas";
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -485,7 +488,7 @@ public class Player implements Cloneable, Attackable {
         GraphicalCombatSystem.mana = temp;
     }
 
-    public void damageBattle(int action, Monster monster) throws Exception {
+    public void damageBattle(int action, Monster monster, Player player) throws Exception {
 
         Hability hability = habilities.get(action - 1);
 
@@ -495,8 +498,12 @@ public class Player implements Cloneable, Attackable {
         }
 
         // Slime damage
+        int MHealth = monster.getHealth();
+        int PAttack = (int)(player.getAttack() *0.75);
+        int HDamage = hability.getBaseDamage();
+        int sum = MHealth - (PAttack + HDamage);
 
-        int lostLife = monster.getHealth() - hability.getBaseDamage();
+        int lostLife = sum;
         monster.setHealth(lostLife);
 
         lostLife = (lostLife * 10) / monster.getMaxHealth();
@@ -514,7 +521,7 @@ public class Player implements Cloneable, Attackable {
         if (damage < 0) {
             damage = 0;
         }
-        health -= damage;
+        health -= damage - (defense / 2);
         if (this.health < 0) {
             this.health = 0;
             GraphicalCombatSystem.setLife(0);

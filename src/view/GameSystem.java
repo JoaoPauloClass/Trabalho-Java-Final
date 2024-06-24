@@ -61,7 +61,7 @@ public abstract class GameSystem {
 
             PotionBag.randomPotionDrop();
 
-            player.addPoints(1);
+            player.addPoints(3);
             player.floorUp();
 
             if (!saveMenu(player)) {
