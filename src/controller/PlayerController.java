@@ -22,6 +22,7 @@ public abstract class PlayerController {
             tempPlayer.setDefense(player.getDefense() + equipedArmor.getClassUpgrade());
         } else if (playerClass.equals("WIZARD")) {
             tempPlayer.setMana(player.getMana() + equipedArmor.getClassUpgrade());
+            tempPlayer.setMaxMana(player.getMana() + equipedArmor.getClassUpgrade());
         } else if (playerClass.equals("ASSASSIN")) {
             tempPlayer.setAttack(player.getAttack() + equipedArmor.getClassUpgrade());
         }
@@ -32,10 +33,12 @@ public abstract class PlayerController {
             tempPlayer.setDefense(player.getDefense() + equipedArmor.getStatUpgrade());
         } else if (equipedArmor.getTypeUpgrade().equals("HEALTH")) {
             tempPlayer.setHealth(player.getHealth() + equipedArmor.getStatUpgrade());
+            tempPlayer.setMaxHealth(player.getHealth() + equipedArmor.getStatUpgrade());
         } else if (equipedArmor.getTypeUpgrade().equals("AGILITY")) {
             tempPlayer.setAgility(player.getAgility() + equipedArmor.getStatUpgrade());
         } else if (equipedArmor.getTypeUpgrade().equals("MANA")) {
             tempPlayer.setMana(player.getMana() + equipedArmor.getStatUpgrade());
+            tempPlayer.setMaxMana(player.getMana() + equipedArmor.getStatUpgrade());
         }
 
         return tempPlayer;

@@ -1,8 +1,10 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import model.Potion;
+import view.Console;
 
 public abstract class PotionBag {
 
@@ -37,12 +39,51 @@ public abstract class PotionBag {
         } else if (type.equals("MANA")) {
             if (potionBag.get(1).getQuantity() > 0) {
                 potionBag.get(1).removeQuantity();
-            }else {
+            } else {
                 throw new Exception("Você não possui poção deste tipo.");
             }
-            
+
         } else {
             throw new Exception("Você não possui poção deste tipo.");
         }
+    }
+
+    public static void randomPotionDrop() {
+
+        Random random = new Random();
+
+        int randomNumber = random.nextInt(6) + 1;
+
+        switch (randomNumber) {
+            case 1:
+                Console.printSlowly("Voce encontrou uma pocao de vida no chao apos derrotar o monstro.");
+                addPotion("LIFE");
+                
+                break;
+            case 2:
+                Console.printSlowly("Voce encontrou duas pocoes de vida no chão após derrotar o monstro");
+                addPotion("LIFE");
+                addPotion("LIFE");
+                break;
+            case 3:
+                Console.printSlowly("Voce encontrou uma pocao de mana no chao apos derrotar o monstro");
+                addPotion("MANA");
+                break;
+            case 4:
+                Console.printSlowly("Voce encontrou uma pocao de mana no chao apos derrotar o monstro");
+                addPotion("MANA");
+                addPotion("MANA");
+                break;
+            case 5:
+                Console.printSlowly("Voce nao encontrou nada apos derrotar o monstro");
+                break;
+            case 6:
+                Console.printSlowly("Voce nao encontrou nada apos derrotar o monstro");
+                break;
+
+            default:
+                break;
+        }
+        Console.readString("");
     }
 }
