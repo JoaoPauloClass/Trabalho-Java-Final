@@ -1,6 +1,8 @@
 package model.player;
 
 import java.util.ArrayList;
+
+import controller.ArmorController;
 import controller.HabilityController;
 import controller.PotionBag;
 import model.Armor;
@@ -61,7 +63,8 @@ public class Player implements Cloneable, Attackable {
             agility = 9;
             tooling = "Cajado do iniciante";
             try {
-                habilities = HabilityController.initializeWizardHability();
+                initializeHabilities(playerClass);
+                ArmorController.initializaWizardArmor();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -76,7 +79,8 @@ public class Player implements Cloneable, Attackable {
             agility = 7;
             tooling = "Espada do iniciante";
             try {
-                habilities = HabilityController.initializeWarriorHability();
+                initializeHabilities(playerClass);
+                ArmorController.initializaWarriorArmor();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -92,7 +96,8 @@ public class Player implements Cloneable, Attackable {
             agility = 12;
             tooling = "Adagas de iniciante";
             try {
-                habilities = HabilityController.initializeAssassinHability();
+                initializeHabilities(playerClass);
+                ArmorController.initializaAssassinArmor();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -499,9 +504,9 @@ public class Player implements Cloneable, Attackable {
         
         Console.printSlowly("Você ataca com sua arma.\n");
         Console.printSlowly("Você acerta o inimigo.\n");
-       
+
         monster.takeDamage(dano);
-        
+
         Console.readString("");
 
     }
