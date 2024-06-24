@@ -54,12 +54,12 @@ public class Player implements Cloneable, Attackable {
 
     private void initializePlayer(String playerClass) {
         if (playerClass.equals("MAGO")) {
-            attack = 11;
-            defense = 7;
+            attack = 10;
+            defense = 8;
             health = 10;
             maxHealth = 10;
-            mana = 13;
-            maxMana = 13;
+            mana = 15;
+            maxMana = 15;
             agility = 9;
             tooling = "Cajado";
             try {
@@ -70,8 +70,8 @@ public class Player implements Cloneable, Attackable {
             }
 
         } else if (playerClass.equals("GUERREIRO")) {
-            attack = 12;
-            defense = 12;
+            attack = 10;
+            defense = 14;
             health = 11;
             maxHealth = 11;
             mana = 8;
@@ -546,8 +546,8 @@ public class Player implements Cloneable, Attackable {
         } else {
             throw new Exception("ERRO, classe tipo monster nao encontrada");
         }
-
-        int dano = attack - (target.getDefense() / 3);
+        int dano = attack; 
+        
 
         Console.printSlowly("Você ataca com sua arma.\n");
         Console.printSlowly("Você acerta o inimigo.\n");
