@@ -35,7 +35,7 @@ public abstract class GameSystem {
             Monster actualMonster = actualFloor.getMonster();
 
             System.out.println("\033c");
-            Console.printSlowly(actualFloor.getName() + "\n");
+            Console.printSlowly(actualFloor.getName() + "\n\n");
             Console.printSlowly(actualFloor.getDescription() + "\n");
             Console.readString("Pressione enter para continuar");
 
@@ -60,6 +60,7 @@ public abstract class GameSystem {
             }
 
             PotionBag.randomPotionDrop();
+
             player.addPoints(1);
             player.floorUp();
 
@@ -75,7 +76,6 @@ public abstract class GameSystem {
 
         System.out.println("\033c");
         player.showStatus();
-        System.out.println(player.getArmor().toString());
     }
 
     private static void equipNewArmor(int armorNumber, Player player) {
