@@ -53,12 +53,10 @@ public abstract class GameSystem {
                 //TODO: criar interface quando armadura é equipada;
                 //TODO: criar armaduras
 
-                equipNewArmor(4, player);
-
-                player.setArmor(ArmorController.getList().get(1));
+                equipNewArmor(1, player);
             } else if(player.getFloorNumber() == 8) {
 
-                player.setArmor(ArmorController.getList().get(1));
+                equipNewArmor(2, player);
             }
 
             player.addPoints(1);
@@ -72,13 +70,13 @@ public abstract class GameSystem {
         winMessage();
     }
 
-    private static void equipNewArmor(int floor, Player player) {
+    private static void equipNewArmor(int armorNumber, Player player) {
         System.out.println("\033c");
         Console.printSlowly("Após derrotar o monstro, você encontra uma nova armadura e a coloca.\n");
 
-        Console.printSlowly(ArmorController.getList().get(1).toString());
+        Console.printSlowly(ArmorController.getList().get(armorNumber).toString());
     
-        player.setArmor(ArmorController.getList().get(1));
+        player.setArmor(ArmorController.getList().get(armorNumber));
         Console.readString("");
 
     }
