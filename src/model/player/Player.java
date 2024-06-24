@@ -63,8 +63,8 @@ public class Player implements Cloneable, Attackable {
             agility = 9;
             tooling = "Cajado do iniciante";
             try {
-                initializeHabilities(playerClass);
-                ArmorController.initializaWizardArmor();
+                initializeHabilities();
+                initializeArmor();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -79,8 +79,8 @@ public class Player implements Cloneable, Attackable {
             agility = 7;
             tooling = "Espada do iniciante";
             try {
-                initializeHabilities(playerClass);
-                ArmorController.initializaWarriorArmor();
+                initializeHabilities();
+                initializeArmor();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -96,8 +96,8 @@ public class Player implements Cloneable, Attackable {
             agility = 12;
             tooling = "Adagas de iniciante";
             try {
-                initializeHabilities(playerClass);
-                ArmorController.initializaAssassinArmor();
+                initializeHabilities();
+                initializeArmor();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -105,7 +105,37 @@ public class Player implements Cloneable, Attackable {
         }
     }
 
-    private void initializeHabilities(String playerClass) {
+    private void initializeArmor() {
+
+        if (playerClass.equals("MAGO")) {
+            try {
+                ArmorController.initializaWizardArmor();
+                armor = ArmorController.getList().get(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        } else if (playerClass.equals("GUERREIRO")) {
+
+            try {
+                ArmorController.initializaWarriorArmor();
+                armor = ArmorController.getList().get(0);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        } else if (playerClass.equals("ASSASSINO")) {
+            try {
+                ArmorController.initializaAssassinArmor();
+                armor = ArmorController.getList().get(0);;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+    }
+
+    private void initializeHabilities() {
         if (playerClass.equals("MAGO")) {
             try {
                 habilities = HabilityController.initializeWizardHability();
@@ -139,10 +169,6 @@ public class Player implements Cloneable, Attackable {
         this.maxMana = maxMana;
     }
 
-    public int getFloor() {
-        return floor;
-    }
-
     public int getMaxHealth() {
         return maxHealth;
     }
@@ -165,7 +191,7 @@ public class Player implements Cloneable, Attackable {
 
     public void setPlayerClass(String playerClass) {
         this.playerClass = playerClass;
-        initializeHabilities(playerClass);
+        initializeHabilities();
     }
 
     public String getName() {
@@ -501,7 +527,7 @@ public class Player implements Cloneable, Attackable {
         }
 
         int dano = attack - (target.getDefense() / 3);
-        
+
         Console.printSlowly("Você ataca com sua arma.\n");
         Console.printSlowly("Você acerta o inimigo.\n");
 

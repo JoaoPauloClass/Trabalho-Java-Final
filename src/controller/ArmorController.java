@@ -11,7 +11,7 @@ public abstract class ArmorController {
     private static final File WIZARD = new File("src/database/armor/wizard.txt");
     private static final File ASSASSIN = new File("src/database/armor/assassin.txt");
 
-    public static ArrayList<Armor> list = new ArrayList<>();
+    private static ArrayList<Armor> list = new ArrayList<>();
 
     public static void initializaWarriorArmor() throws Exception {
 
@@ -80,5 +80,9 @@ public abstract class ArmorController {
             throw new Exception("Erro, lista de armaduras vazia");
         }
 
+    }
+
+    public static ArrayList<Armor> getList() {
+        return list;
     }
 }

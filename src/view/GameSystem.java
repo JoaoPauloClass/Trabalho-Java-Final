@@ -2,6 +2,7 @@ package view;
 
 import java.io.IOException;
 
+import controller.ArmorController;
 import controller.Battle;
 import controller.FloorController;
 import controller.PlayerDataController;
@@ -47,6 +48,19 @@ public abstract class GameSystem {
                 return;
             }
 
+            if(player.getFloorNumber() == 4) {
+                // ao finalizar andar 4 e 8 uma nova armadura será automaticamente equipada
+                //TODO: criar interface quando armadura é equipada;
+                //TODO: criar armaduras
+
+                equipNewArmor(4, player);
+
+                player.setArmor(ArmorController.getList().get(1));
+            } else if(player.getFloorNumber() == 8) {
+
+                player.setArmor(ArmorController.getList().get(1));
+            }
+
             player.addPoints(1);
             player.floorUp();
 
@@ -56,6 +70,17 @@ public abstract class GameSystem {
         }
 
         winMessage();
+    }
+
+    private static void equipNewArmor(int floor, Player player) {
+        System.out.println("\033c");
+        Console.printSlowly("Após derrotar o monstro, você encontra uma nova armadura e a coloca.\n");
+
+        Console.printSlowly(ArmorController.getList().get(1).toString());
+    
+        player.setArmor(ArmorController.getList().get(1));
+        Console.readString("");
+
     }
 
     private static void winMessage() {
