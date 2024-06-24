@@ -88,6 +88,7 @@ public class Player implements Cloneable, Attackable {
             health = 8;
             maxHealth = 8;
             mana = 11;
+            maxMana = 11;
             agility = 12;
             tooling = "Adagas de iniciante";
             try {

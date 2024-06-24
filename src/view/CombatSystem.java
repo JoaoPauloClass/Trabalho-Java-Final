@@ -39,13 +39,7 @@ public class CombatSystem {
             System.out.print("|");
 
         System.out.print(RESET_COLOR);
-       /* if (lifeBar_slime != vida) {
-            lifeBar_slime -= vida;
-            for (int i = 0; i < lifeBar_slime; i++) {
-                System.out.print("|");
 
-            }
-*/
         System.out.println(")   |");
         System.out.print("\t\t\t\t");
         //Line 4
@@ -84,13 +78,6 @@ public class CombatSystem {
 
         System.out.print(RESET_COLOR);
 
-       /* if (lifeBar_slime != vida) {
-            lifeBar_slime -= vida;
-            for (int i = 0; i < lifeBar_slime; i++) {
-                System.out.print("|");
-
-            }
-*/
         System.out.println(")   |");
         
         //Line 4
@@ -102,13 +89,6 @@ public class CombatSystem {
                 System.out.print("|");
             System.out.print(RESET_COLOR);
 
-            /* if (lifeBar_slime != vida) {
-                    lifeBar_slime -= vida;
-                    for (int i = 0; i < lifeBar_slime; i++) {
-                        System.out.print("|");
-
-                    }
-    */
             System.out.println(")   |");
             System.out.print("\t\t\t\t");
                 
@@ -125,13 +105,7 @@ public class CombatSystem {
             System.out.print("|");
 
         System.out.print(RESET_COLOR);
-    /* if (lifeBar_slime != vida) {
-            lifeBar_slime -= vida;
-            for (int i = 0; i < lifeBar_slime; i++) {
-                System.out.print("|");
 
-            }
-    */
         System.out.println(")   |");
         System.out.print("\t\t\t\t");
         //Line 5

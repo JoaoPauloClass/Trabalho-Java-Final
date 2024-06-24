@@ -64,9 +64,7 @@ public class Battle {
                     gameOver(player);
                 }
             }
-
-            System.out.println(monster.getHealth() + "slime life");
-            Console.readString("");
+            
 
         } while (monster.getHealth() > 0);
 
