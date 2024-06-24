@@ -1,6 +1,8 @@
 package model.player;
 
 import java.util.ArrayList;
+
+import controller.ArmorController;
 import controller.HabilityController;
 import controller.PotionBag;
 import model.Armor;
@@ -61,7 +63,8 @@ public class Player implements Cloneable, Attackable {
             agility = 9;
             tooling = "Cajado do iniciante";
             try {
-                habilities = HabilityController.initializeWizardHability();
+                initializeHabilities();
+                initializeArmor();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -76,7 +79,8 @@ public class Player implements Cloneable, Attackable {
             agility = 7;
             tooling = "Espada do iniciante";
             try {
-                habilities = HabilityController.initializeWarriorHability();
+                initializeHabilities();
+                initializeArmor();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -92,7 +96,8 @@ public class Player implements Cloneable, Attackable {
             agility = 12;
             tooling = "Adagas de iniciante";
             try {
-                habilities = HabilityController.initializeAssassinHability();
+                initializeHabilities();
+                initializeArmor();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -100,7 +105,47 @@ public class Player implements Cloneable, Attackable {
         }
     }
 
-    private void initializeHabilities(String playerClass) {
+    private void initializeArmor() {
+
+        int armorNumber;
+
+        if(floor <= 4) {
+            armorNumber = 0;
+        } else if (floor <= 8) {
+            armorNumber = 1;
+        } else {
+            armorNumber = 2;
+        }
+
+        if (playerClass.equals("MAGO")) {
+            try {
+                ArmorController.initializaWizardArmor();
+                armor = ArmorController.getList().get(armorNumber);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        } else if (playerClass.equals("GUERREIRO")) {
+
+            try {
+                ArmorController.initializaWarriorArmor();
+                armor = ArmorController.getList().get(armorNumber);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        } else if (playerClass.equals("ASSASSINO")) {
+            try {
+                ArmorController.initializaAssassinArmor();
+                armor = ArmorController.getList().get(armorNumber);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+        }
+    }
+
+    private void initializeHabilities() {
         if (playerClass.equals("MAGO")) {
             try {
                 habilities = HabilityController.initializeWizardHability();
@@ -134,10 +179,6 @@ public class Player implements Cloneable, Attackable {
         this.maxMana = maxMana;
     }
 
-    public int getFloor() {
-        return floor;
-    }
-
     public int getMaxHealth() {
         return maxHealth;
     }
@@ -160,7 +201,8 @@ public class Player implements Cloneable, Attackable {
 
     public void setPlayerClass(String playerClass) {
         this.playerClass = playerClass;
-        initializeHabilities(playerClass);
+        initializeHabilities();
+        initializeArmor();
     }
 
     public String getName() {
@@ -496,12 +538,12 @@ public class Player implements Cloneable, Attackable {
         }
 
         int dano = attack - (target.getDefense() / 3);
-        
+
         Console.printSlowly("Você ataca com sua arma.\n");
         Console.printSlowly("Você acerta o inimigo.\n");
-       
+
         monster.takeDamage(dano);
-        
+
         Console.readString("");
 
     }

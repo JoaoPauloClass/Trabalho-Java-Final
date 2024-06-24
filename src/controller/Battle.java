@@ -11,6 +11,9 @@ public class Battle {
     public static int action = 0;
 
     public static void startBattle(Player player, Monster monster) {
+        
+        Player tempPlayer = PlayerController.calculateAtributes(player);
+
         int lifePlayer = 10;
         GraphicalCombatSystem.setDamage(10);
         GraphicalCombatSystem.setLife(10);
@@ -18,10 +21,10 @@ public class Battle {
         do {
 
             GraphicalCombatSystem.MonsterBattle(monster);
-            GraphicalCombatSystem.playerTable(player);
+            GraphicalCombatSystem.playerTable(tempPlayer);
 
             int option = SelectOption.playerOption();
-            action = SelectOption.readAction(option, player, monster);
+            action = SelectOption.readAction(option, tempPlayer, monster);
 
             if (action == 0)
                 continue;
@@ -30,46 +33,46 @@ public class Battle {
             int used = 0;
             if (option == 2 && lifePlayer > 0){
 
-                habilityBattle(player, monster);
+                habilityBattle(tempPlayer, monster);
                 used = 1;
             }
 
             else if (option == 3 && lifePlayer > 0) {
-                potioBattle(player);
+                potioBattle(tempPlayer);
                 used = 2;
 
             }
             if (action == 0)
                 continue;
             // Verifica quem ataca primeiro
-            if (monster.getAgility() > player.getAgility())
-                attackMonsterFirst(monster, player, used);
+            if (monster.getAgility() > tempPlayer.getAgility())
+                attackMonsterFirst(monster, tempPlayer, used);
                 
              else {
                 if (action == -1) {
                     try {
-                        player.attack(monster);
+                        tempPlayer.attack(monster);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                 }
-                playerAttackFirst(monster, player, used);
+                playerAttackFirst(monster, tempPlayer, used);
                 
                 
                 if (monster.getHealth() <= 0) {
                     break;
                 }
 
-                if (player.getHealth() <= 0) {
-                    gameOver(player);
+                if (tempPlayer.getHealth() <= 0) {
+                    gameOver(tempPlayer);
                 }
             }
             
 
         } while (monster.getHealth() > 0);
 
-        player.setHealth(player.getMaxHealth());
-        player.setMana(player.getMaxMana());
+        tempPlayer.setHealth(tempPlayer.getMaxHealth());
+        tempPlayer.setMana(tempPlayer.getMaxMana());
         System.out.println("Derrotou");
 
     }

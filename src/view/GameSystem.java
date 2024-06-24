@@ -2,6 +2,7 @@ package view;
 
 import java.io.IOException;
 
+import controller.ArmorController;
 import controller.Battle;
 import controller.FloorController;
 import controller.PlayerDataController;
@@ -25,6 +26,8 @@ public abstract class GameSystem {
         initialize();
         Player player = mainMenu();
 
+        showInitialAttributes(player);
+
         for (int i = 0; i < FloorController.getNumberOfFloors(); i++) {
             i = player.getFloorNumber() - 1;
             Floor actualFloor;
@@ -47,6 +50,15 @@ public abstract class GameSystem {
                 return;
             }
 
+            if(player.getFloorNumber() == 4) {
+
+                equipNewArmor(1, player);
+                
+            } else if(player.getFloorNumber() == 8) {
+
+                equipNewArmor(2, player);
+            }
+
             player.addPoints(1);
             player.floorUp();
 
@@ -56,6 +68,24 @@ public abstract class GameSystem {
         }
 
         winMessage();
+    }
+
+    private static void showInitialAttributes(Player player) {
+
+        System.out.println("\033c");
+        player.showStatus();
+        System.out.println(player.getArmor().toString());
+    }
+
+    private static void equipNewArmor(int armorNumber, Player player) {
+        System.out.println("\033c");
+        Console.printSlowly("Após derrotar o monstro, você encontra uma nova armadura e a coloca.\n");
+
+        Console.printSlowly(ArmorController.getList().get(armorNumber).toString());
+    
+        player.setArmor(ArmorController.getList().get(armorNumber));
+        Console.readString("");
+
     }
 
     private static void winMessage() {
