@@ -9,11 +9,11 @@ import view.GraphicalCombatSystem;
 public class Vampire extends Monster {
 
     public Vampire() {
-        super("Vampiro", 12, 10, 16, 11,16);
+        super("Vampiro", 12, 10, 16, 11, 16);
     }
 
     public String getSprite() {
-        
+
         return "            __.......__\r\n" + //
                 "            .-:::::::::::::-.\r\n" + //
                 "          .:::''':::::::''':::.\r\n" + //
@@ -78,11 +78,13 @@ public class Vampire extends Monster {
 
     @Override
     public void takeDamage(int damage) {
+        damage = (damage - defense / 2);
+
         if (damage < 0) {
             damage = 0;
         }
 
-        health -= damage - defense / 2;
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
             GraphicalCombatSystem.setDamage(0);
@@ -90,7 +92,7 @@ public class Vampire extends Monster {
         }
         int temp = ((health * 10) / maxHealth);
         GraphicalCombatSystem.setDamage(temp);
-    
+
     }
 
 }

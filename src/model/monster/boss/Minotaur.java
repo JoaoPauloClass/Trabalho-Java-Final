@@ -11,8 +11,8 @@ import view.GraphicalCombatSystem;
 public class Minotaur extends Boss {
 
     public Minotaur() {
-        
-        super("Minotauro", 16, 14, 25, 6, 25,20);
+
+        super("Minotauro", 16, 14, 25, 6, 25, 20);
         setHabilities();
     }
 
@@ -83,7 +83,7 @@ public class Minotaur extends Boss {
     }
 
     public String getSprite() {
-        
+
         return "                                                                _\r\n" + //
                 "                                                              _( (~\\\r\n" + //
                 "       _ _                        /                          ( \\> > \\\r\n" + //
@@ -147,13 +147,15 @@ public class Minotaur extends Boss {
 
     }
 
-     @Override
+    @Override
     public void takeDamage(int damage) {
+        damage = (damage - defense / 2);
+
         if (damage < 0) {
             damage = 0;
         }
 
-        health -= damage - defense / 2;
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
             GraphicalCombatSystem.setDamage(0);
@@ -161,7 +163,7 @@ public class Minotaur extends Boss {
         }
         int temp = ((health * 10) / maxHealth);
         GraphicalCombatSystem.setDamage(temp);
-    
+
     }
 
 }

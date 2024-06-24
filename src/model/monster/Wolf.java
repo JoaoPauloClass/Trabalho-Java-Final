@@ -9,15 +9,15 @@ import view.GraphicalCombatSystem;
 public class Wolf extends Monster {
 
     public Wolf() {
-        super("Lobo", 8, 6, 10, 12,10);
+        super("Lobo", 8, 6, 10, 12, 10);
     }
 
     public void attack(Player player) throws Exception {
-        
+
     }
 
     public String getSprite() {
-       
+
         return "                              __\r\n" + //
                 "                            .d$$b\r\n" + //
                 "                          .' TO$;\\\r\n" + //
@@ -86,11 +86,13 @@ public class Wolf extends Monster {
     }
 
     public void takeDamage(int damage) {
+        damage = (damage - defense / 2);
+
         if (damage < 0) {
             damage = 0;
         }
 
-        health -= damage - defense / 2;
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
             GraphicalCombatSystem.setDamage(0);
@@ -98,7 +100,7 @@ public class Wolf extends Monster {
         }
         int temp = ((health * 10) / maxHealth);
         GraphicalCombatSystem.setDamage(temp);
-    
+
     }
 
 }

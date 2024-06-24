@@ -9,7 +9,7 @@ import model.player.Player;
 public class Skeleton extends Monster {
 
     public Skeleton() {
-        super("Esqueleto", 9, 4, 10, 6,10);
+        super("Esqueleto", 9, 4, 10, 6, 10);
     }
 
     public String getSprite() {
@@ -92,13 +92,15 @@ public class Skeleton extends Monster {
         }
     }
 
-     @Override
+    @Override
     public void takeDamage(int damage) {
+        damage = (damage - defense / 2);
+
         if (damage < 0) {
             damage = 0;
         }
 
-        health -= damage - defense / 2;
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
             GraphicalCombatSystem.setDamage(0);
@@ -106,6 +108,6 @@ public class Skeleton extends Monster {
         }
         int temp = ((health * 10) / maxHealth);
         GraphicalCombatSystem.setDamage(temp);
-    
+
     }
 }
