@@ -322,6 +322,8 @@ public class Player implements Cloneable, Attackable {
         System.out.print("Agilidade: " + agility);
         System.out.println("\tArma: " + tooling);
 
+        Console.printSlowly(armor.toString());
+
         Console.readString("\nDigite enter para continuar.");
 
     }
