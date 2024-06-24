@@ -5,6 +5,7 @@ import model.player.Player;
 
 public abstract class PlayerController {
 
+    // função para calcular atributos com o bonus da armadura
     public static Player calculateAtributes(Player player) {
 
         Player tempPlayer = new Player();

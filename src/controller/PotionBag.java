@@ -10,15 +10,16 @@ public abstract class PotionBag {
 
     public static ArrayList<Potion> potionBag = new ArrayList<Potion>();
 
+    // inicializa lista de poções
     public static void initialize() {
 
-        Potion lifePotion = new Potion("LIFE", 1);
-        Potion manaPotion = new Potion("MANA", 1);
+        Potion lifePotion = new Potion("LIFE", 2);
+        Potion manaPotion = new Potion("MANA", 2);
 
         potionBag.add(lifePotion);
         potionBag.add(manaPotion);
     }
-
+    // adiciona  uma poção ao determinado tipo
     public static void addPotion(String type) {
         if (type.equals("LIFE")) {
             potionBag.get(0).addQuantity();
@@ -28,6 +29,7 @@ public abstract class PotionBag {
         }
     }
 
+    // usa uma poção
     public static void usePotion(String type) throws Exception {
         if (type.equals("LIFE")) {
             if (potionBag.get(0).getQuantity() > 0) {
@@ -48,6 +50,7 @@ public abstract class PotionBag {
         }
     }
 
+    // utiliza um numero randomico para decidir qual vai ser o drop
     public static void randomPotionDrop() {
 
         Random random = new Random();

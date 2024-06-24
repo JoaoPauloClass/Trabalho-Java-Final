@@ -13,6 +13,8 @@ public abstract class ArmorController {
 
     private static ArrayList<Armor> list = new ArrayList<>();
 
+
+    // funções para inicializar lista de habilidades de cada classe
     public static void initializaWarriorArmor() throws Exception {
 
         String line;

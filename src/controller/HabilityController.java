@@ -13,6 +13,7 @@ public class HabilityController {
     private static final File MINOTAUR_HABILITY = new File("src/database/habilities/minotaur.txt");
     private static final File DEMONKING_HABILITY = new File("src/database/habilities/demonking.txt");
 
+    // funções para inicializar listas de habilidades com base nas classes
     public static ArrayList<Hability> initializeWarriorHability() throws Exception {
 
         String line;
