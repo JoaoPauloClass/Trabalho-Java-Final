@@ -59,6 +59,7 @@ public abstract class GameSystem {
                 equipNewArmor(2, player);
             }
 
+            PotionBag.randomPotionDrop();
             player.addPoints(1);
             player.floorUp();
 
