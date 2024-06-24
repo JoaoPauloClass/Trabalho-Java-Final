@@ -75,9 +75,9 @@ public class DemonKing extends Boss {
             throw new Exception("Nenhuma habilidade ou player foi passado para função");
         }
 
-        System.out.println("O Rei Demônio usa sua habilidade: " + hability.getName());
+        Console.printSlowly("O Rei Demônio usa sua habilidade: " + hability.getName());
         energy -= hability.getEnergyCost();
-        System.out.println("Dano recebido: " + hability.getBaseDamage());
+        Console.printSlowly("Dano recebido: " + hability.getBaseDamage());
         player.takeDamage(hability.getBaseDamage());
 
     }
