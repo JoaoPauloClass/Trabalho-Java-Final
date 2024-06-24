@@ -107,10 +107,20 @@ public class Player implements Cloneable, Attackable {
 
     private void initializeArmor() {
 
+        int armorNumber;
+
+        if(floor <= 4) {
+            armorNumber = 0;
+        } else if (floor <= 8) {
+            armorNumber = 1;
+        } else {
+            armorNumber = 2;
+        }
+
         if (playerClass.equals("MAGO")) {
             try {
                 ArmorController.initializaWizardArmor();
-                armor = ArmorController.getList().get(0);
+                armor = ArmorController.getList().get(armorNumber);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -119,7 +129,7 @@ public class Player implements Cloneable, Attackable {
 
             try {
                 ArmorController.initializaWarriorArmor();
-                armor = ArmorController.getList().get(0);
+                armor = ArmorController.getList().get(armorNumber);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -127,7 +137,7 @@ public class Player implements Cloneable, Attackable {
         } else if (playerClass.equals("ASSASSINO")) {
             try {
                 ArmorController.initializaAssassinArmor();
-                armor = ArmorController.getList().get(0);;
+                armor = ArmorController.getList().get(armorNumber);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -192,6 +202,7 @@ public class Player implements Cloneable, Attackable {
     public void setPlayerClass(String playerClass) {
         this.playerClass = playerClass;
         initializeHabilities();
+        initializeArmor();
     }
 
     public String getName() {

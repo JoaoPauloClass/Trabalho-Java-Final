@@ -26,6 +26,8 @@ public abstract class GameSystem {
         initialize();
         Player player = mainMenu();
 
+        showInitialAttributes(player);
+
         for (int i = 0; i < FloorController.getNumberOfFloors(); i++) {
             i = player.getFloorNumber() - 1;
             Floor actualFloor;
@@ -68,6 +70,13 @@ public abstract class GameSystem {
         }
 
         winMessage();
+    }
+
+    private static void showInitialAttributes(Player player) {
+
+        System.out.println("\033c");
+        player.showStatus();
+        System.out.println(player.getArmor().toString());
     }
 
     private static void equipNewArmor(int armorNumber, Player player) {
