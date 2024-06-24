@@ -52,6 +52,7 @@ public class Player implements Cloneable, Attackable {
         initializePlayer(playerClass);
     }
 
+    // inicializa os atributos, habilidades e armadura com base na classe do player
     private void initializePlayer(String playerClass) {
         if (playerClass.equals("MAGO")) {
             attack = 10;
@@ -105,6 +106,7 @@ public class Player implements Cloneable, Attackable {
         }
     }
 
+    //inicializa armadura com base na classe e equipa com base no andar alcançado
     private void initializeArmor() {
 
         int armorNumber;
@@ -148,6 +150,7 @@ public class Player implements Cloneable, Attackable {
         }
     }
 
+    // inicializa habilidades com base na classe
     private void initializeHabilities() {
         if (playerClass.equals("MAGO")) {
             try {
@@ -308,6 +311,7 @@ public class Player implements Cloneable, Attackable {
         this.armor = armor;
     }
 
+    // mostra o status do player
     public void showStatus() {
 
         // Clear console
@@ -332,6 +336,7 @@ public class Player implements Cloneable, Attackable {
 
     }
 
+    // adiciona pontos de atributos para o player
     public void addPoints(int points) {
         // Clear console
         System.out.println("\033c");
@@ -451,29 +456,39 @@ public class Player implements Cloneable, Attackable {
         }
     }
 
+    // usa uma poção de cura
     public void useHealingPotion() throws Exception {
 
         if (health == maxHealth) {
             throw new Exception("Sua vida está cheia, não há necessidade de usar");
         } else {
             PotionBag.usePotion("LIFE");
+            health += 3;
 
+            if (health > maxHealth) {
+                health = maxHealth;
+            }
             int temp = ((health * 10) / maxHealth);
             GraphicalCombatSystem.setLife(temp);
         }
     }
 
+    // usa uma poção de mana
     public void useManaPotion() throws Exception {
         if (mana == maxMana) {
             throw new Exception("Sua energia está cheia, não há necessidade de usar");
         } else {
             PotionBag.usePotion("MANA");
-            mana += 2;
+            mana += 3;
+            if (mana > maxMana) {
+                mana = maxMana;
+            }
             int temp = ((mana * 10) / maxMana);
             GraphicalCombatSystem.setMana(temp);
         }
     }
 
+    // realiza o gasto de mana no uso de habilidades e atualiza a barra de energia
     public void energyCostBattle(int action) throws Exception {
 
         Hability hability = habilities.get(action - 1);
@@ -488,6 +503,7 @@ public class Player implements Cloneable, Attackable {
         GraphicalCombatSystem.mana = temp;
     }
 
+    // calcula o dano e atualiza a barra de vida
     public void damageBattle(int action, Monster monster, Player player) throws Exception {
 
         Hability hability = habilities.get(action - 1);
@@ -511,11 +527,13 @@ public class Player implements Cloneable, Attackable {
 
     }
 
+    // permite a clonagem do obj Player
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
 
+    // calcula o dano recebido e o reduz da vida do player
     @Override
     public void takeDamage(int damage) {
         if (damage < 0) {
@@ -534,6 +552,7 @@ public class Player implements Cloneable, Attackable {
 
     }
 
+    // realiza o ataque do player
     @Override
     public void attack(Attackable target) throws Exception {
 

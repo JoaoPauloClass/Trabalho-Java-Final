@@ -22,6 +22,8 @@ public abstract class GameSystem {
         }
     }
 
+    // core do game, loop que permite que o jogo continue sendo executado enquanto o player vencer o 10 andar ou morrer
+    // responsavel por chamar todas as funções e menus do jogo
     private static void game() throws Exception {
         initialize();
         Player player = mainMenu();
@@ -61,7 +63,7 @@ public abstract class GameSystem {
 
             PotionBag.randomPotionDrop();
 
-            player.addPoints(3);
+            player.addPoints(2);
             player.floorUp();
 
             if (!saveMenu(player)) {
@@ -78,6 +80,7 @@ public abstract class GameSystem {
         player.showStatus();
     }
 
+    // equipa a nova armadura quando o jogador chegar aos niveis 4 e 8
     private static void equipNewArmor(int armorNumber, Player player) {
         System.out.println("\033c");
         Console.printSlowly("Após derrotar o monstro, você encontra uma nova armadura e a coloca.\n");
