@@ -51,11 +51,9 @@ public abstract class GameSystem {
             }
 
             if(player.getFloorNumber() == 4) {
-                // ao finalizar andar 4 e 8 uma nova armadura será automaticamente equipada
-                //TODO: criar interface quando armadura é equipada;
-                //TODO: criar armaduras
 
                 equipNewArmor(1, player);
+                
             } else if(player.getFloorNumber() == 8) {
 
                 equipNewArmor(2, player);

@@ -7,9 +7,6 @@ import model.monster.boss.Minotaur;
 
 public abstract class Monster implements Attackable {
 
-    // TODO: implementar metodo para dodge 
-    // * ^^^^^^ talvez não seja possivel, ja tentei várias vezes :( ~ class
-
     protected String name;
     protected int attack;
     protected int defense;
