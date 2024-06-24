@@ -219,7 +219,7 @@ public abstract class GameSystem {
         do {
             System.out.println("\033c");
             Console.printSlowly(
-                    "Deseja salvar seu jogo ?\n1) Salvar e continuar\n2) Salvar e sair\n3) Continuar sem salvar\n");
+                    "Deseja salvar seu jogo ?\n1) Salvar e continuar\n2) Salvar e sair\n3) Continuar sem salvar\n4) Mostrar atributos\n");
             op = Console.readInt(">> ");
 
             switch (op) {
@@ -236,6 +236,9 @@ public abstract class GameSystem {
                     break;
                 case 3:
                     break;
+                case 4:
+                    player.showStatus();
+                    Console.readString("");
                 default:
                     Console.printSlowly("Opção inválida.");
                     break;
