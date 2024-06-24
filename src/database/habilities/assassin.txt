@@ -1,1 +1,3 @@
-Backstab, 3, 7
+Backstab, 3, 5
+Ataque furtivo, 5, 6
+Ataque mortal, 12, 11
