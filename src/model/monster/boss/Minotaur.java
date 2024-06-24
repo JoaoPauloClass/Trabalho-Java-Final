@@ -124,7 +124,7 @@ public class Minotaur extends Boss {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d20 >= 6) {
-            System.out.println("O minotauro se qproxima e tenta acertar você com seu machado.");
+            System.out.println("O minotauro se aproxima e tenta acertar você com seu machado.");
             if (d10Dodge < 8) {
                 System.out.println("Você é acertado.");
                 dano = attack - 2;

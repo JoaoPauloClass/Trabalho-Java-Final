@@ -309,20 +309,20 @@ public class Player implements Cloneable, Attackable {
 
         // Clear console
         System.out.println("\033c");
-        System.out.print("\n\nAtaque: " + attack);
-        System.out.println("\tDefesa: " + defense);
-        System.out.print("Vida: " + health);
+        System.out.print("\n\nAtaque: " + Color.getBrightRed() + attack + Color.getResetColor());
+        System.out.println("\tDefesa: " + Color.getBrightBlack() +  defense + Color.getResetColor());
+        System.out.print("Vida: " + Color.getBrightGreen() + health + Color.getResetColor());
         if (playerClass == "MAGO") {
 
-            System.out.println("\tmana: " + mana);
+            System.out.println("\tmana: " + Color.getBlue() + mana + Color.getResetColor());
         } else {
-            System.out.println("\tenergia: " + mana);
+            System.out.println("\tenergia: " + Color.getBrightYellow() + mana + Color.getResetColor());
         }
 
         System.out.print("Agilidade: " + agility);
         System.out.println("\tArma: " + tooling);
 
-        Console.readInt("Deseja voltar ?\n" + "1-Voltar\n");
+        Console.readString("\nDigite enter para continuar.");
 
     }
 
