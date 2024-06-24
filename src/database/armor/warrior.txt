@@ -1,1 +1,2 @@
 Armadura do iniciante, Guerreiro, 2, ATTACK, 3
+Armadura de aco, Guerreiro, 4, HEALTH, 5
