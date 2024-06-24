@@ -4,6 +4,7 @@ import java.util.Random;
 
 import model.Attackable;
 import model.player.Player;
+import view.Console;
 import view.GraphicalCombatSystem;
 
 public class Wolf extends Monster {
@@ -63,24 +64,24 @@ public class Wolf extends Monster {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 9) {
-            System.out.println("O Lobo se enche de raiva e te morde profundamente.");
+            Console.printSlowly("O Lobo se enche de raiva e te morde profundamente.");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack + 2;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         } else {
-            System.out.println("O Lobo te morde raivosamente.");
+            Console.printSlowly("O Lobo te morde raivosamente.");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         }
     }

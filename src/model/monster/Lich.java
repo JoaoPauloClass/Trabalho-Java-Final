@@ -4,6 +4,7 @@ import java.util.Random;
 
 import model.Attackable;
 import model.player.Player;
+import view.Console;
 import view.GraphicalCombatSystem;
 
 public class Lich extends Monster {
@@ -105,37 +106,37 @@ public class Lich extends Monster {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 6) {
-            System.out.println("O Lich canaliza energia mágica em uma poderosa explosão ao seu redor.");
+            Console.printSlowly("O Lich canaliza energia mágica em uma poderosa explosão ao seu redor.");
             if (d10Dodge < 4) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack + (player.getDefense() / 4);
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         } else {
-            System.out.println("O Lich te ataca com sua mão esquelética");
+            Console.printSlowly("O Lich te ataca com sua mão esquelética");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack - 2;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         }
 
         if (this.health == 1) {
-            System.out.println("O Lich está enfraquecido e começa a conjurar uma mágia estranha...");
+            Console.printSlowly("O Lich está enfraquecido e começa a conjurar uma mágia estranha...");
             d10 = rand.nextInt(10);
             if (d10 >= 5) {
-                System.out.println("Sua magia é um sucesso e ele se regenera");
+                Console.printSlowly("Sua magia é um sucesso e ele se regenera");
                 int restoredHealth = 6;
                 this.health += restoredHealth;
-                System.out.println("Vida restaurada: " + restoredHealth);
+                Console.printSlowly("Vida restaurada: " + restoredHealth);
             } else {
-                System.out.println("Sua magia fracassou, nada acontece...");
+                Console.printSlowly("Sua magia fracassou, nada acontece...");
             }
         }
     }

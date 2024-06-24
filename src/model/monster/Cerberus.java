@@ -4,6 +4,7 @@ import java.util.Random;
 
 import model.Attackable;
 import model.player.Player;
+import view.Console;
 import view.GraphicalCombatSystem;
 
 public class Cerberus extends Monster {
@@ -45,28 +46,28 @@ public class Cerberus extends Monster {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 6) {
-            System.out.println("Cérbero ataca com todas as três cabeças simultaneamente.");
+            Console.printSlowly("Cérbero ataca com todas as três cabeças simultaneamente.");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = 0;
                 for (int i = 0; i < 3; i++) {
                     d5 = rand.nextInt(5) + 1;
                     dano += d5;
                 }
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         } else {
-            System.out.println("Cérbero te ataca com sua cauda poderosa");
+            Console.printSlowly("Cérbero te ataca com sua cauda poderosa");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         }
     }

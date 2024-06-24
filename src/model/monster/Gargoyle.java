@@ -4,6 +4,7 @@ import java.util.Random;
 
 import model.Attackable;
 import model.player.Player;
+import view.Console;
 import view.GraphicalCombatSystem;
 
 public class Gargoyle extends Monster {
@@ -64,24 +65,24 @@ public class Gargoyle extends Monster {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 6) {
-            System.out.println("A gárgula se lança contra o você usando seu corpo de pedra como uma arma.");
+            Console.printSlowly("A gárgula se lança contra o você usando seu corpo de pedra como uma arma.");
             if (d10Dodge < 5) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         } else {
-            System.out.println("A gárgula ataca com suas garras afiadas feitas de pedra");
+            Console.printSlowly("A gárgula ataca com suas garras afiadas feitas de pedra");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack - 2;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         }
     }

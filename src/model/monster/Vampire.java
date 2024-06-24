@@ -4,6 +4,7 @@ import java.util.Random;
 
 import model.Attackable;
 import model.player.Player;
+import view.Console;
 import view.GraphicalCombatSystem;
 
 public class Vampire extends Monster {
@@ -50,28 +51,28 @@ public class Vampire extends Monster {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 8) {
-            System.out.println("O vampiro morde o seu pescoço, drenando seu sangue.");
+            Console.printSlowly("O vampiro morde o seu pescoço, drenando seu sangue.");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack - 2;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
                 int restoredHealth = 4;
                 this.health += restoredHealth;
-                System.out.println("Após drenar seu sangue, ele se sente mais forte...");
-                System.out.println("Vida restaurada: " + restoredHealth);
+                Console.printSlowly("Após drenar seu sangue, ele se sente mais forte...");
+                Console.printSlowly("Vida restaurada: " + restoredHealth);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         } else {
-            System.out.println("O vampiro te ataca com suas garras afiadas.");
+            Console.printSlowly("O vampiro te ataca com suas garras afiadas.");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         }
     }

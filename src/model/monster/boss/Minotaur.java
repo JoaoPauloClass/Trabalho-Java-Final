@@ -6,6 +6,7 @@ import controller.HabilityController;
 import model.Attackable;
 import model.Hability;
 import model.player.Player;
+import view.Console;
 import view.GraphicalCombatSystem;
 
 public class Minotaur extends Boss {
@@ -124,24 +125,26 @@ public class Minotaur extends Boss {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d20 >= 6) {
-            System.out.println("O minotauro se aproxima e tenta acertar você com seu machado.");
+            Console.printSlowly("O minotauro se aproxima e tenta acertar você com seu machado.");
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack - 2;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
+                
             }
         } else {
-            System.out.println("O minotauro investe com seus chifres apontados para você.");
+            Console.printSlowly("O minotauro investe com seus chifres apontados para você.");
+            
             if (d10Dodge < 8) {
-                System.out.println("Você é acertado.");
+                Console.printSlowly("Você é acertado.");
                 dano = attack - 2;
-                System.out.println("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                System.out.println("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!");
             }
         }
 
