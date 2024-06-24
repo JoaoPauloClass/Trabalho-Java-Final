@@ -1,7 +1,7 @@
 package view;
 
 public class Color {
-
+    //Usado para ter todas as cores disponiveis pelo terminal
     public static final String RESET_COLOR = "\u001B[0m";
     public static final String RED = "\u001B[31m";
     public static final String GREEN = "\u001B[32m";

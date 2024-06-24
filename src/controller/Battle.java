@@ -14,15 +14,19 @@ public class Battle {
         
         Player tempPlayer = PlayerController.calculateAtributes(player);
 
-        int lifePlayer = 10;
+        //Seta todos as vidas inicial do monstro e do player
         GraphicalCombatSystem.setDamage(10);
         GraphicalCombatSystem.setLife(10);
         GraphicalCombatSystem.setMana(10);
+
+        //Começa o loop da battle
         do {
 
+            //Criar as tabelas
             GraphicalCombatSystem.MonsterBattle(monster);
             GraphicalCombatSystem.playerTable(tempPlayer);
 
+            //Le as opçoes do usuario
             int option = SelectOption.playerOption();
             action = SelectOption.readAction(option, tempPlayer, monster);
 
@@ -31,24 +35,26 @@ public class Battle {
 
             // Action player
             int used = 0;
-            if (option == 2 && lifePlayer > 0){
+            if (option == 2){
 
                 habilityBattle(tempPlayer, monster);
                 used = 1;
             }
 
-            else if (option == 3 && lifePlayer > 0) {
+            else if (option == 3) {
                 potioBattle(tempPlayer);
                 used = 2;
 
             }
+            //Para pular o loop e voltar para a tela inicial sem gerar dano
             if (action == 0)
                 continue;
+
             // Verifica quem ataca primeiro
             if (monster.getAgility() > tempPlayer.getAgility())
                 attackMonsterFirst(monster, tempPlayer, used);
                 
-             else {
+            else {
                 if (action == -1) {
                     try {
                         tempPlayer.attack(monster);
@@ -58,7 +64,7 @@ public class Battle {
                 }
                 playerAttackFirst(monster, tempPlayer, used);
                 
-                
+                //Verifica se o monstro morreu
                 if (monster.getHealth() <= 0) {
                     break;
                 }
@@ -68,7 +74,7 @@ public class Battle {
                 }
             }
             
-
+            
         } while (monster.getHealth() > 0);
 
         tempPlayer.setHealth(tempPlayer.getMaxHealth());
@@ -76,7 +82,7 @@ public class Battle {
         System.out.println("Derrotou");
 
     }
-
+    //Pega a habilidade escolhida pelo player
     public static void habilityBattle(Player player, Monster monster) {
 
         try {
@@ -89,7 +95,7 @@ public class Battle {
         }
 
     }
-
+    //Pega a poção escolhida pelo player
     public static void potioBattle(Player player) {
 
         if (action == 1) {
@@ -111,7 +117,7 @@ public class Battle {
             }
         }
     }
-
+    //Função chamada caso a agilidade do monstro for maior que a do player
     public static void attackMonsterFirst(Monster monster, Player player, int used) {
 
         
@@ -140,7 +146,7 @@ public class Battle {
             }
         }
     }
-
+    //Chamada para terminar o jogo caso o monstro derrote o player
     public static void gameOver(Player player) {
         System.out.println("\033c");
         System.out.println("\nGame Over");
@@ -151,7 +157,7 @@ public class Battle {
         System.exit(0);
 
     }
-
+    //Função chamada caso a agilidade do player for maior que a do monstro
     public static void playerAttackFirst(Monster monster, Player player, int used) {
         if (used == 1) {
             Console.printSlowly("Voce usou uma habilidade!!");
