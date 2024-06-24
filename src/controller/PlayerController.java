@@ -16,8 +16,15 @@ public abstract class PlayerController {
         }
 
         Armor equipedArmor = tempPlayer.getArmor();
+        String playerClass = player.getPlayerClass();
 
-        tempPlayer.setDefense(player.getDefense() + equipedArmor.getDefenseUpgrade());
+        if (playerClass.equals("WARRIOR")) {
+            tempPlayer.setDefense(player.getDefense() + equipedArmor.getClassUpgrade());
+        } else if (playerClass.equals("WIZARD")) {
+            tempPlayer.setMana(player.getMana() + equipedArmor.getClassUpgrade());
+        } else if (playerClass.equals("ASSASSIN")) {
+            tempPlayer.setAttack(player.getAttack() + equipedArmor.getClassUpgrade());
+        }
 
         if (equipedArmor.getTypeUpgrade().equals("ATTACK")) {
             tempPlayer.setAttack(player.getAttack() + equipedArmor.getStatUpgrade());

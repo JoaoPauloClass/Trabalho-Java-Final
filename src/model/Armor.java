@@ -6,14 +6,14 @@ public class Armor {
     private String validClass;
     private int statUpgrade;
     private String typeUpgrade;
-    private int defenseUpgrade;
+    private int classUpgrade;
 
-    public Armor(String name, String validClass, int statUpgrade, String typeUpgrade, int defenseUpgrade) {
+    public Armor(String name, String validClass, int statUpgrade, String typeUpgrade, int classUpgrade) {
         this.name = name;
         this.validClass = validClass;
         this.statUpgrade = statUpgrade;
         this.typeUpgrade = typeUpgrade;
-        this.defenseUpgrade = defenseUpgrade;
+        this.classUpgrade = classUpgrade;
     }
 
     public String getName() {
@@ -48,12 +48,12 @@ public class Armor {
         this.typeUpgrade = typeUpgrade;
     }
 
-    public int getDefenseUpgrade() {
-        return defenseUpgrade;
+    public int getClassUpgrade() {
+        return classUpgrade;
     }
 
-    public void setDefenseUpgrade(int defenseUpgrade) {
-        this.defenseUpgrade = defenseUpgrade;
+    public void setClassUpgrade(int classUpgrade) {
+        this.classUpgrade = classUpgrade;
     }
 
     public static Armor fromString(String line) {
@@ -68,7 +68,7 @@ public class Armor {
     public String toString() {
         String txt = "";
 
-        txt += "Armadura: " + name + "\nClasse: " + validClass + "\nBonus de defesa: " + defenseUpgrade +"\nTipo de bonus: " + typeUpgrade + "\nBonus: " + statUpgrade;
+        txt += "Armadura: " + name + "\nClasse: " + validClass + "\nBonus de classe: " + classUpgrade +"\nTipo de bonus: " + typeUpgrade + "\nBonus: " + statUpgrade;
 
         
         return txt;
