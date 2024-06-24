@@ -8,12 +8,11 @@ import view.GraphicalCombatSystem;
 
 public class Cerberus extends Monster {
     public Cerberus() {
-        super("Cerbero", 25, 12, 28, 14,28);
+        super("Cerbero", 25, 12, 28, 14, 28);
     }
 
-
     public String getSprite() {
-        
+
         return "                            /\\_/\\____,\r\n" + //
                 "                  ,___/\\_/\\ \\  ~     /\r\n" + //
                 "                  \\     ~  \\ )   XXX\r\n" + //
@@ -72,13 +71,15 @@ public class Cerberus extends Monster {
         }
     }
 
-     @Override
+    @Override
     public void takeDamage(int damage) {
+        damage = (damage - defense / 2);
+
         if (damage < 0) {
             damage = 0;
         }
 
-        health -= damage - defense / 2;
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
             GraphicalCombatSystem.setDamage(0);
@@ -86,6 +87,6 @@ public class Cerberus extends Monster {
         }
         int temp = ((health * 10) / maxHealth);
         GraphicalCombatSystem.setDamage(temp);
-    
+
     }
 }

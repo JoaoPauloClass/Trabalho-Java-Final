@@ -11,7 +11,7 @@ import view.GraphicalCombatSystem;
 public class DemonKing extends Boss {
 
     public DemonKing() {
-        super("Rei Demônio", 30, 20, 30, 10, 30,20);
+        super("Rei Demônio", 30, 20, 30, 10, 30, 20);
         setHabilities();
     }
 
@@ -25,7 +25,6 @@ public class DemonKing extends Boss {
             System.out.println(e.getMessage());
         }
     }
-
 
     public void checkHability(Player player) {
         /*
@@ -83,7 +82,7 @@ public class DemonKing extends Boss {
     }
 
     public String getSprite() {
-        
+
         return "   ,    ,    /\\   /\\\r\n" + //
                 "  /( /\\ )\\  _\\ \\_/ /_\r\n" + //
                 "  |\\_||_/| < \\_   _/ >\r\n" + //
@@ -95,13 +94,16 @@ public class DemonKing extends Boss {
                 "     {}  /  \\_/\\=/\\_/  \\";
     }
 
-     @Override
+    @Override
     public void takeDamage(int damage) {
+
+        damage = (damage - defense / 2);
+
         if (damage < 0) {
             damage = 0;
         }
 
-        health -= damage - defense / 2;
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
             GraphicalCombatSystem.setDamage(0);
@@ -109,7 +111,7 @@ public class DemonKing extends Boss {
         }
         int temp = ((health * 10) / maxHealth);
         GraphicalCombatSystem.setDamage(temp);
-    
+
     }
 
     @Override

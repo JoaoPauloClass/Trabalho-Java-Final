@@ -8,11 +8,11 @@ import view.GraphicalCombatSystem;
 
 public class Gargoyle extends Monster {
     public Gargoyle() {
-        super("Gárgula", 20, 22, 20, 8,720);
+        super("Gárgula", 20, 22, 20, 8, 720);
     }
 
     public String getSprite() {
-        
+
         return ",                                                               ,\r\n" + //
                 " \\'.                                                           .'/\r\n" + //
                 "  ),\\                                                         /,(\r\n" + //
@@ -86,13 +86,15 @@ public class Gargoyle extends Monster {
         }
     }
 
-     @Override
+    @Override
     public void takeDamage(int damage) {
+        damage = (damage - defense / 2);
+
         if (damage < 0) {
             damage = 0;
         }
 
-        health -= damage - defense / 2;
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
             GraphicalCombatSystem.setDamage(0);
@@ -100,7 +102,7 @@ public class Gargoyle extends Monster {
         }
         int temp = ((health * 10) / maxHealth);
         GraphicalCombatSystem.setDamage(temp);
-    
+
     }
 
 }
