@@ -6,7 +6,7 @@ public class Console {
 
     public static Scanner scanner = new Scanner(System.in);
 
-
+    //Ler um inteiro
     public static int readInt(String a){
         System.out.print(a);
         int temp =0;
@@ -24,13 +24,13 @@ public class Console {
         }
     }
     }
-
+    //Le uma String
     public static String readString(String a){
         System.out.print(a);
         return scanner.nextLine();
         
     }
-
+    //Printa as letras de forma mais lenta
     public static void printSlowly(String text) {
         for (char c : text.toCharArray()) {
             System.out.print(c);

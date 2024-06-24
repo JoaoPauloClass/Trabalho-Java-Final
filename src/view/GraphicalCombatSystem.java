@@ -8,6 +8,8 @@ public class GraphicalCombatSystem {
     public static int mana = 10;
     public static int damage = 10;
     public static int life = 10;
+
+    //Gera a tabela de vida do monstro
     public static void MonsterBattle(Monster monster) {
 
 
@@ -43,7 +45,8 @@ public class GraphicalCombatSystem {
         if (damage <= 0) {
             damage = 1;
         }
-
+        //Pega o tamanho os caracteres do inteiro tranforma em String para printar na tela de forma automatica sem precisar ficar mudando o tamanho
+        //Manualmente
         if (lifeBar != damage) {
             for (int i = 0; i < damage; i++)
                 System.out.print("|");
@@ -66,6 +69,9 @@ public class GraphicalCombatSystem {
         System.out.println(" ");
     }
 
+
+
+    //Gera a tabela de vida do life
     public static void lifeBarPlayer(Player player) {
 
         int lifeBar = 10;
@@ -139,7 +145,7 @@ public class GraphicalCombatSystem {
 
         System.out.println("|");
     }
-
+    //Cria outra parte da tabela do player versão guerreiro ou assassino
     public static void manaBarPlayer(Player player) {
         int manaBar = 10;
         if (player.getPlayerClass() == "MAGO") {
@@ -200,7 +206,7 @@ public class GraphicalCombatSystem {
             System.out.print("-");
 
     }
-
+    //Gera segunda parte da tabela do mago
     public static void wizardMana(Player player) {
         // Mana
 
@@ -253,7 +259,7 @@ public class GraphicalCombatSystem {
             System.out.print("-");
 
     }
-
+    
     public static void playerTable(Player player) {
 
         lifeBarPlayer(player);

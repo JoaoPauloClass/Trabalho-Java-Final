@@ -8,6 +8,8 @@ import model.player.Player;
 public class Slime extends Monster {
 
     public Slime() {
+
+
         super("Slime", 7, 6, 11, 15, 11);
     }
 
