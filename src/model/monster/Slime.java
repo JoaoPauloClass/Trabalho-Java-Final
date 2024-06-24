@@ -8,7 +8,7 @@ import model.player.Player;
 public class Slime extends Monster {
     
     public Slime(){
-        super("Slime", 15, 3, 30, 4,30);
+        super("Slime", 5, 3, 10, 4,30);
     }
 
     @Override
@@ -35,10 +35,9 @@ public class Slime extends Monster {
                 Console.printSlowly("\nVocê é acertado.");
                 Console.readString("");
                 dano = attack - 2;
-                dano -= player.getDefense();
                 Console.printSlowly("\nDano recebido: " + dano);
                 Console.readString("");
-                target.takeDamage(dano);
+                player.takeDamage(dano);
             } else {
                 Console.printSlowly("\nVocê consegue esquivar!");
             }
@@ -51,13 +50,10 @@ public class Slime extends Monster {
                 Console.printSlowly("\nVocê é acertado.");
                 Console.readString("");
                 dano = attack;
-                dano -= player.getDefense();
                 Console.printSlowly("\nDano recebido: " + dano);
                 Console.readString("");
 
-                if (dano > 0) {
-                    player.takeDamage(dano);
-                }
+                player.takeDamage(dano);
 
             } else {
                 Console.printSlowly("\nVocê consegue esquivar!");
