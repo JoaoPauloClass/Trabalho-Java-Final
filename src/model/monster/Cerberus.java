@@ -8,7 +8,7 @@ import view.GraphicalCombatSystem;
 
 public class Cerberus extends Monster {
     public Cerberus() {
-        super("Cerbero", 8, 8, 15, 6,15);
+        super("Cerbero", 25, 12, 28, 14,28);
     }
 
 

@@ -80,7 +80,7 @@ public class Battle {
     public static void habilityBattle(Player player, Monster monster) {
 
         try {
-            player.damageBattle(action, monster);
+            player.damageBattle(action, monster, player);
             player.energyCostBattle(action);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -159,6 +159,10 @@ public class Battle {
             Console.printSlowly(" Voce usou uma pocao!!");
         }
         Console.readString("");
+
+        if (monster.getHealth() <= 0) {
+            return;
+        }
 
         try {
             monster.attack(player);

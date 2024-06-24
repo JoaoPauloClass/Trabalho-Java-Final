@@ -9,7 +9,7 @@ import view.GraphicalCombatSystem;
 public class Orc extends Monster {
 
     public Orc() {
-        super("Orc", 8, 4, 10, 2,10);
+        super("Orc", 18, 20, 22, 2,22);
     }
 
 
