@@ -1,3 +1,4 @@
+package Main;
 import view.GameSystem;
 
 public class Main {
