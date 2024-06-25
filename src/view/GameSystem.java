@@ -241,7 +241,7 @@ public abstract class GameSystem {
                     break;
                 case 4:
                     player.showStatus();
-                    Console.readString("");
+                    break;
                 default:
                     Console.printSlowly("Opção inválida.");
                     break;
