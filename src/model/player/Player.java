@@ -72,9 +72,9 @@ public class Player implements Cloneable, Attackable {
 
         } else if (playerClass.equals("GUERREIRO")) {
             attack = 10;
-            defense = 14;
-            health = 11;
-            maxHealth = 11;
+            defense = 12;
+            health = 13;
+            maxHealth = 13;
             mana = 8;
             maxMana = 8;
             agility = 7;
