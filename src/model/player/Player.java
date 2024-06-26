@@ -536,10 +536,12 @@ public class Player implements Cloneable, Attackable {
     // calcula o dano recebido e o reduz da vida do player
     @Override
     public void takeDamage(int damage) {
+        
+        damage -= (defense / 2);
         if (damage < 0) {
             damage = 0;
         }
-        health -= damage - (defense / 2);
+        health -= damage;
         if (this.health < 0) {
             this.health = 0;
             GraphicalCombatSystem.setLife(0);
