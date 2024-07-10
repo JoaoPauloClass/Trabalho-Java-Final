@@ -79,7 +79,7 @@ public class DemonKing extends Boss {
         energy -= hability.getEnergyCost();
         Console.printSlowly("Dano recebido: " + hability.getBaseDamage());
         player.takeDamage(hability.getBaseDamage());
-
+        Console.readString("");
     }
 
     public String getSprite() {
@@ -135,28 +135,29 @@ public class DemonKing extends Boss {
         if (d20 >= 6) {
             Console.printSlowly("O rei demônio lança uma bola de magia negra em sua direção.");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("\nVocê é acertado.");
                 
                 dano = attack - 2;
-                Console.printSlowly("Dano recebido: " + dano);
+                Console.printSlowly("\nDano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("\nVocê consegue esquivar!");
                 
             }
         } else {
             Console.printSlowly("O rei demônio invoca uma espada flutuante que voa em sua direção.");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("\nVocê é acertado.");
                 dano = attack - 2;
-                Console.printSlowly("Dano recebido: " + dano);
+                Console.printSlowly("\nDano recebido: " + dano);
                 
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("\nVocê consegue esquivar!");
                 
             }
         }
+        Console.readString("");
     }
 
 }
