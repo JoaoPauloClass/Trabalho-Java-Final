@@ -106,37 +106,37 @@ public class Lich extends Monster {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 6) {
-            Console.printSlowly("O Lich canaliza energia mágica em uma poderosa explosão ao seu redor.");
+            Console.printSlowly("O Lich canaliza energia mágica em uma poderosa explosão ao seu redor.\n");
             if (d10Dodge < 4) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("Você é acertado.\n");
                 dano = attack + (player.getDefense() / 4);
                 Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!\n");
             }
         } else {
-            Console.printSlowly("O Lich te ataca com sua mão esquelética");
+            Console.printSlowly("O Lich te ataca com sua mão esquelética\n");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
                 Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!\n");
             }
         }
 
         if (this.health == 1) {
-            Console.printSlowly("O Lich está enfraquecido e começa a conjurar uma mágia estranha...");
+            Console.printSlowly("O Lich está enfraquecido e começa a conjurar uma mágia estranha...\n");
             d10 = rand.nextInt(10);
             if (d10 >= 5) {
-                Console.printSlowly("Sua magia é um sucesso e ele se regenera");
+                Console.printSlowly("Sua magia é um sucesso e ele se regenera\n");
                 int restoredHealth = 6;
                 this.health += restoredHealth;
                 Console.printSlowly("Vida restaurada: " + restoredHealth);
             } else {
-                Console.printSlowly("Sua magia fracassou, nada acontece...");
+                Console.printSlowly("Sua magia fracassou, nada acontece...\n");
             }
         }
     }

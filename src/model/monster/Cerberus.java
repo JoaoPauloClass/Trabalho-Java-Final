@@ -46,9 +46,9 @@ public class Cerberus extends Monster {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 6) {
-            Console.printSlowly("Cérbero ataca com todas as três cabeças simultaneamente.");
+            Console.printSlowly("Cérbero ataca com todas as três cabeças simultaneamente.\n");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("Você é acertado.\n");
                 dano = 0;
                 for (int i = 0; i < 3; i++) {
                     d5 = rand.nextInt(5) + 1;
@@ -57,17 +57,17 @@ public class Cerberus extends Monster {
                 Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!\n");
             }
         } else {
-            Console.printSlowly("Cérbero te ataca com sua cauda poderosa");
+            Console.printSlowly("Cérbero te ataca com sua cauda poderosa\n");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("Você é acertado.\n");
                 dano = attack;
                 Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!\n");
             }
         }
     }
