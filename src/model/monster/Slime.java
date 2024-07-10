@@ -37,7 +37,7 @@ public class Slime extends Monster {
                 Console.printSlowly("\nVocê é acertado.\n");
                 Console.readString("");
                 dano = attack - 2;
-                Console.printSlowly("\nDano recebido: " + dano);
+                Console.printSlowly("\nDano recebido: " + dano + "\n");
                 Console.readString("");
                 player.takeDamage(dano);
             } else {
@@ -52,7 +52,7 @@ public class Slime extends Monster {
                 Console.printSlowly("\nVocê é acertado.\n");
                 Console.readString("");
                 dano = attack;
-                Console.printSlowly("\nDano recebido: " + dano);
+                Console.printSlowly("\nDano recebido: " + dano + "\n");
                 Console.readString("");
 
                 player.takeDamage(dano);

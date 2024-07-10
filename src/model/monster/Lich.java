@@ -110,7 +110,7 @@ public class Lich extends Monster {
             if (d10Dodge < 4) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack + (player.getDefense() / 4);
-                Console.printSlowly("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano + "\n");
                 player.takeDamage(dano);
             } else {
                 Console.printSlowly("Você consegue esquivar!\n");
@@ -120,7 +120,7 @@ public class Lich extends Monster {
             if (d10Dodge < 8) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
-                Console.printSlowly("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano + "\n");
                 player.takeDamage(dano);
             } else {
                 Console.printSlowly("Você consegue esquivar!\n");
@@ -134,7 +134,7 @@ public class Lich extends Monster {
                 Console.printSlowly("Sua magia é um sucesso e ele se regenera\n");
                 int restoredHealth = 6;
                 this.health += restoredHealth;
-                Console.printSlowly("Vida restaurada: " + restoredHealth);
+                Console.printSlowly("Vida restaurada: " + restoredHealth + "\n");
             } else {
                 Console.printSlowly("Sua magia fracassou, nada acontece...\n");
             }

@@ -69,7 +69,7 @@ public class Gargoyle extends Monster {
             if (d10Dodge < 5) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack;
-                Console.printSlowly("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano + "\n");
                 player.takeDamage(dano);
             } else {
                 Console.printSlowly("Você consegue esquivar!\n");
@@ -79,7 +79,7 @@ public class Gargoyle extends Monster {
             if (d10Dodge < 8) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
-                Console.printSlowly("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano + "\n");
                 player.takeDamage(dano);
             } else {
                 Console.printSlowly("Você consegue esquivar!\n");
