@@ -66,7 +66,7 @@ public class Wolf extends Monster {
         if (d10 >= 9) {
             Console.printSlowly("O Lobo se enche de raiva e te morde profundamente.\n");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.\\n" + //
+                Console.printSlowly("Você é acertado.\n" + //
                                         "");
                 dano = attack + 2;
                 Console.printSlowly("Dano recebido: " + dano);
@@ -75,7 +75,7 @@ public class Wolf extends Monster {
                 Console.printSlowly("Você consegue esquivar!\n");
             }
         } else {
-            Console.printSlowly("O Lobo te morde raivosamente.\\n");
+            Console.printSlowly("O Lobo te morde raivosamente.\n");
             if (d10Dodge < 8) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack;
