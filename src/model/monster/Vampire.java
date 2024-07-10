@@ -51,28 +51,28 @@ public class Vampire extends Monster {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 8) {
-            Console.printSlowly("O vampiro morde o seu pescoço, drenando seu sangue.");
+            Console.printSlowly("O vampiro morde o seu pescoço, drenando seu sangue.\n");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
                 Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
                 int restoredHealth = 4;
                 this.health += restoredHealth;
-                Console.printSlowly("Após drenar seu sangue, ele se sente mais forte...");
+                Console.printSlowly("Após drenar seu sangue, ele se sente mais forte...\n");
                 Console.printSlowly("Vida restaurada: " + restoredHealth);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!\n");
             }
         } else {
-            Console.printSlowly("O vampiro te ataca com suas garras afiadas.");
+            Console.printSlowly("O vampiro te ataca com suas garras afiadas.\n");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("Você é acertado.\n");
                 dano = attack;
                 Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!\n");
             }
         }
     }

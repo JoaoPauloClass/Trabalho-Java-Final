@@ -70,24 +70,24 @@ public class Skeleton extends Monster {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 6) {
-            Console.printSlowly("O Esqueleto atira uma flecha em você.");
+            Console.printSlowly("O Esqueleto atira uma flecha em você.\n");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
                 Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!\n");
             }
         } else {
-            Console.printSlowly("O Esqueleto avança e te corta com uma espada.");
+            Console.printSlowly("O Esqueleto avança e te corta com uma espada.\n");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
                 Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!\n");
             }
         }
     }

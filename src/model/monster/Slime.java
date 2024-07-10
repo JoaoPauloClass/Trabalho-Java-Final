@@ -31,25 +31,25 @@ public class Slime extends Monster {
         int dano = attack;
 
         if (d10 <= 5) {
-            Console.printSlowly("O Slime dipara um Golpe Ácido.");
+            Console.printSlowly("O Slime dipara um Golpe Ácido.\n");
             Console.readString("");
             if (d10Dodge < 8) {
-                Console.printSlowly("\nVocê é acertado.");
+                Console.printSlowly("\nVocê é acertado.\n");
                 Console.readString("");
                 dano = attack - 2;
                 Console.printSlowly("\nDano recebido: " + dano);
                 Console.readString("");
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("\nVocê consegue esquivar!");
+                Console.printSlowly("\nVocê consegue esquivar!\n");
             }
 
         } else {
-            Console.printSlowly("\nO Slime pula em você.");
+            Console.printSlowly("\nO Slime pula em você.\n");
 
             Console.readString("");
             if (d10Dodge < 8) {
-                Console.printSlowly("\nVocê é acertado.");
+                Console.printSlowly("\nVocê é acertado.\n");
                 Console.readString("");
                 dano = attack;
                 Console.printSlowly("\nDano recebido: " + dano);
@@ -58,7 +58,7 @@ public class Slime extends Monster {
                 player.takeDamage(dano);
 
             } else {
-                Console.printSlowly("\nVocê consegue esquivar!");
+                Console.printSlowly("\nVocê consegue esquivar!\n");
                 Console.readString("");
             }
         }

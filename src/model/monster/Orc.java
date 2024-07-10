@@ -175,24 +175,24 @@ public class Orc extends Monster {
         int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10Attack > 7) {
-            Console.printSlowly("O Orc se enfurece e faz uma investida em sua direção.");
+            Console.printSlowly("O Orc se enfurece e faz uma investida em sua direção.\n");
             if (d10Dodge < 5) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("Você é acertado.\n");
                 dano = attack;
                 Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!\n");
             }
         } else {
-            Console.printSlowly("O Orc tenta te acertar com sua maça.");
+            Console.printSlowly("O Orc tenta te acertar com sua maça.\n");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
                 Console.printSlowly("Dano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("Você consegue esquivar!\n");
             }
         }
     }
