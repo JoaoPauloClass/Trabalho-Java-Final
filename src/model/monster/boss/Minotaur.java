@@ -80,6 +80,7 @@ public class Minotaur extends Boss {
         energy -= hability.getEnergyCost();
         Console.printSlowly("Dano recebido: " + hability.getBaseDamage());
         player.takeDamage(hability.getBaseDamage());
+        Console.readString("");
 
     }
 
@@ -127,26 +128,29 @@ public class Minotaur extends Boss {
         if (d20 >= 6) {
             Console.printSlowly("O minotauro se aproxima e tenta acertar você com seu machado.");
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("\nVocê é acertado.");
                 dano = attack - 2;
-                Console.printSlowly("Dano recebido: " + dano);
+                Console.printSlowly("\nDano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("\nVocê consegue esquivar!");
                 
             }
         } else {
             Console.printSlowly("O minotauro investe com seus chifres apontados para você.");
             
             if (d10Dodge < 8) {
-                Console.printSlowly("Você é acertado.");
+                Console.printSlowly("\nVocê é acertado.");
                 dano = attack - 2;
-                Console.printSlowly("Dano recebido: " + dano);
+                Console.printSlowly("\nDano recebido: " + dano);
                 player.takeDamage(dano);
             } else {
-                Console.printSlowly("Você consegue esquivar!");
+                Console.printSlowly("\nVocê consegue esquivar!");
+
             }
         }
+        Console.readString("");
+
 
     }
 

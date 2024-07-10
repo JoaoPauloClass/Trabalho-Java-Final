@@ -575,7 +575,7 @@ public class Player implements Cloneable, Attackable {
 
         monster.takeDamage(dano);
 
-        Console.readString("");
+       
 
     }
 
