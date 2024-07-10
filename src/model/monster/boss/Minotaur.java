@@ -130,19 +130,19 @@ public class Minotaur extends Boss {
             if (d10Dodge < 8) {
                 Console.printSlowly("\nVocê é acertado.");
                 dano = attack - 2;
-                Console.printSlowly("\nDano recebido: " + dano);
+                Console.printSlowly("\nDano recebido: " + dano + "\n");
                 player.takeDamage(dano);
             } else {
                 Console.printSlowly("\nVocê consegue esquivar!");
                 
             }
         } else {
-            Console.printSlowly("O minotauro investe com seus chifres apontados para você.");
+            Console.printSlowly("O minotauro investe com seus chifres apontados para você.\n");
             
             if (d10Dodge < 8) {
                 Console.printSlowly("\nVocê é acertado.");
                 dano = attack - 2;
-                Console.printSlowly("\nDano recebido: " + dano);
+                Console.printSlowly("\nDano recebido: " + dano + "\n");
                 player.takeDamage(dano);
             } else {
                 Console.printSlowly("\nVocê consegue esquivar!");

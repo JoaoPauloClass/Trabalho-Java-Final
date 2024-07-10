@@ -54,7 +54,7 @@ public class Cerberus extends Monster {
                     d5 = rand.nextInt(5) + 1;
                     dano += d5;
                 }
-                Console.printSlowly("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano + "\n");
                 player.takeDamage(dano);
             } else {
                 Console.printSlowly("Você consegue esquivar!\n");
@@ -64,7 +64,7 @@ public class Cerberus extends Monster {
             if (d10Dodge < 8) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack;
-                Console.printSlowly("Dano recebido: " + dano);
+                Console.printSlowly("Dano recebido: " + dano + "\n");
                 player.takeDamage(dano);
             } else {
                 Console.printSlowly("Você consegue esquivar!\n");

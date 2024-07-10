@@ -138,7 +138,7 @@ public class DemonKing extends Boss {
                 Console.printSlowly("\nVocê é acertado.");
                 
                 dano = attack - 2;
-                Console.printSlowly("\nDano recebido: " + dano);
+                Console.printSlowly("\nDano recebido: " + dano + "\n");
                 player.takeDamage(dano);
             } else {
                 Console.printSlowly("\nVocê consegue esquivar!");
@@ -149,7 +149,7 @@ public class DemonKing extends Boss {
             if (d10Dodge < 8) {
                 Console.printSlowly("\nVocê é acertado.");
                 dano = attack - 2;
-                Console.printSlowly("\nDano recebido: " + dano);
+                Console.printSlowly("\nDano recebido: " + dano + "\n");
                 
                 player.takeDamage(dano);
             } else {
