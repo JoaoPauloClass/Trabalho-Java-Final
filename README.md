@@ -1,7 +1,7 @@
 ## Desenvolvido por:
 <ol>
   <li>
-    <a href"https://github.com/JoaoPauloClass">João Paulo Class</a>
+    <a href="https://github.com/JoaoPauloClass">João Paulo Class</a>
   </li>
   <li>
     <a href="https://github.com/joaovbressan">João Bressan</a>
