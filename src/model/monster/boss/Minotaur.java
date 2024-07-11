@@ -13,7 +13,7 @@ public class Minotaur extends Boss {
 
     public Minotaur() {
 
-        super("Minotauro", 16, 14, 23, 6, 23, 20);
+        super("Minotauro", 14, 12, 21, 6, 21, 20);
         setHabilities();
     }
 

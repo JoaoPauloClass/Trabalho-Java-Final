@@ -10,7 +10,7 @@ import view.GraphicalCombatSystem;
 public class Lich extends Monster {
 
     public Lich() {
-        super("Lich", 15, 12, 18, 12, 18);
+        super("Lich", 15, 13, 21, 12, 21);
     }
 
     public String getSprite() {

@@ -9,7 +9,7 @@ import model.player.Player;
 public class Skeleton extends Monster {
 
     public Skeleton() {
-        super("Esqueleto", 9, 8, 10, 6, 10);
+        super("Esqueleto", 9, 11, 15, 6, 15);
     }
 
     public String getSprite() {

@@ -10,7 +10,7 @@ import view.GraphicalCombatSystem;
 public class Wolf extends Monster {
 
     public Wolf() {
-        super("Lobo", 8, 6, 10, 12, 10);
+        super("Lobo", 9, 8, 13, 12, 13);
     }
 
     public void attack(Player player) throws Exception {

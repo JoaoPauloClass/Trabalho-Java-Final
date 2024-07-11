@@ -10,7 +10,7 @@ public class Slime extends Monster {
     public Slime() {
 
 
-        super("Slime", 7, 6, 11, 15, 11);
+        super("Slime", 9, 7, 13, 15, 13);
     }
 
     @Override

@@ -10,7 +10,7 @@ import view.GraphicalCombatSystem;
 public class Vampire extends Monster {
 
     public Vampire() {
-        super("Vampiro", 12, 10, 16, 11, 16);
+        super("Vampiro", 12, 11, 19, 11, 19);
     }
 
     public String getSprite() {
