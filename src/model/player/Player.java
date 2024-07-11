@@ -354,13 +354,13 @@ public class Player implements Cloneable, Attackable {
                     Color.getBrightYellow() + " + 1" +
                     Color.getResetColor() + "\n");
             System.out.print("3) Vida:      " +
-                    Color.getBrightGreen() + health +
+                    Color.getBrightGreen() + maxHealth +
                     Color.getBrightYellow() + " + 1" +
                     Color.getResetColor());
 
             if (playerClass == "MAGO") {
                 System.out.print("\t\t4) mana: " +
-                        Color.getBlue() + mana +
+                        Color.getBlue() + maxMana +
                         Color.getBrightYellow() + " + 1" +
                         Color.getResetColor() + "\n");
             } else {

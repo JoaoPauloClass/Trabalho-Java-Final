@@ -10,13 +10,13 @@ public class Battle {
 
     public static int action = 0;
 
-    public static void startBattle(Player player, Monster monster) {
+    public static Player startBattle(Player player, Monster monster) {
         
         Player tempPlayer = PlayerController.calculateAtributes(player);
 
         //Seta todos as vidas inicial do monstro e do player
         GraphicalCombatSystem.setDamage(10);
-        GraphicalCombatSystem.setLife(10);
+        
         GraphicalCombatSystem.setMana(10);
 
         //Começa o loop da battle
@@ -76,11 +76,16 @@ public class Battle {
             
             
         } while (monster.getHealth() > 0);
+        
 
-        tempPlayer.setHealth(tempPlayer.getMaxHealth());
+        
+        
+
         tempPlayer.setMana(tempPlayer.getMaxMana());
+        
         System.out.println("Derrotou");
-
+        
+        return tempPlayer;
     }
     //Pega a habilidade escolhida pelo player
     public static void habilityBattle(Player player, Monster monster) {
@@ -178,4 +183,18 @@ public class Battle {
         }
     }
 
+    public static void recoverLifePlayer(Player tempPlayer){
+        int recoverHealth = (tempPlayer.getMaxHealth() / 4) + tempPlayer.getHealth();
+
+        if (recoverHealth > tempPlayer.getMaxHealth()) {
+            tempPlayer.setHealth(tempPlayer.getMaxHealth());
+        
+        }
+        else{
+        tempPlayer.setHealth(recoverHealth);
+        int temp = ((recoverHealth * 10) / tempPlayer.getMaxHealth());
+        GraphicalCombatSystem.setLife(temp);
+        
+        }
+    }
 }

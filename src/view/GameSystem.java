@@ -46,7 +46,7 @@ public abstract class GameSystem {
             System.out.println(actualMonster.getSprite());
             Console.readString("Pressione enter para continuar");
 
-            Battle.startBattle(player, actualMonster);
+           player = Battle.startBattle(player, actualMonster);
 
             if (player.getHealth() == 0) {
                 return;
@@ -65,7 +65,7 @@ public abstract class GameSystem {
 
             player.addPoints(2);
             player.floorUp();
-
+            Battle.recoverLifePlayer(player);
             if (!saveMenu(player)) {
                 return;
             }
