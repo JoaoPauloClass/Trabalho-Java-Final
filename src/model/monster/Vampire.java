@@ -48,11 +48,11 @@ public class Vampire extends Monster {
 
         Random rand = new Random();
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
-        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int d10Dodge = (rand.nextInt(100) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 8) {
             Console.printSlowly("O vampiro morde o seu pescoço, drenando seu sangue.\n");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
                 Console.printSlowly("Dano recebido: " + dano + "\n");
@@ -66,7 +66,7 @@ public class Vampire extends Monster {
             }
         } else {
             Console.printSlowly("O vampiro te ataca com suas garras afiadas.\n");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack;
                 Console.printSlowly("Dano recebido: " + dano + "\n");

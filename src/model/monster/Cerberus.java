@@ -43,11 +43,11 @@ public class Cerberus extends Monster {
         Random rand = new Random();
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
         int d5;
-        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int d10Dodge = (rand.nextInt(100) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 6) {
             Console.printSlowly("Cérbero ataca com todas as três cabeças simultaneamente.\n");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = 0;
                 for (int i = 0; i < 3; i++) {
@@ -61,7 +61,7 @@ public class Cerberus extends Monster {
             }
         } else {
             Console.printSlowly("Cérbero te ataca com sua cauda poderosa\n");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack;
                 Console.printSlowly("Dano recebido: " + dano + "\n");

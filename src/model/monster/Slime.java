@@ -27,13 +27,13 @@ public class Slime extends Monster {
 
         Random rand = new Random();
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
-        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int d10Dodge = (rand.nextInt(100) + 1) + (player.getAgility() / 4);
         int dano = attack;
 
         if (d10 <= 5) {
             Console.printSlowly("O Slime dipara um Golpe Ácido.\n");
             Console.readString("");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("\nVocê é acertado.\n");
                 Console.readString("");
                 dano = attack - 2;
@@ -48,7 +48,7 @@ public class Slime extends Monster {
             Console.printSlowly("\nO Slime pula em você.\n");
 
             Console.readString("");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("\nVocê é acertado.\n");
                 Console.readString("");
                 dano = attack;

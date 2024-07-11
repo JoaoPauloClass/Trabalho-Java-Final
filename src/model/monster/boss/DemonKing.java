@@ -130,11 +130,11 @@ public class DemonKing extends Boss {
 
         Random rand = new Random();
         int d20 = rand.nextInt(20) + 1; // Gera um número entre 1 e 20
-        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int d10Dodge = (rand.nextInt(100) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d20 >= 6) {
             Console.printSlowly("O rei demônio lança uma bola de magia negra em sua direção.");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("\nVocê é acertado.");
                 
                 dano = attack - 2;
@@ -146,7 +146,7 @@ public class DemonKing extends Boss {
             }
         } else {
             Console.printSlowly("O rei demônio invoca uma espada flutuante que voa em sua direção.");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("\nVocê é acertado.");
                 dano = attack - 2;
                 Console.printSlowly("\nDano recebido: " + dano + "\n");

@@ -103,11 +103,11 @@ public class Lich extends Monster {
 
         Random rand = new Random();
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
-        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int d10Dodge = (rand.nextInt(100) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 6) {
             Console.printSlowly("O Lich canaliza energia mágica em uma poderosa explosão ao seu redor.\n");
-            if (d10Dodge < 4) {
+            if (d10Dodge < 40) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack + (player.getDefense() / 4);
                 Console.printSlowly("Dano recebido: " + dano + "\n");
@@ -117,7 +117,7 @@ public class Lich extends Monster {
             }
         } else {
             Console.printSlowly("O Lich te ataca com sua mão esquelética\n");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
                 Console.printSlowly("Dano recebido: " + dano + "\n");

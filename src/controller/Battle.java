@@ -186,9 +186,9 @@ public class Battle {
     public static void recoverLifePlayer(Player tempPlayer){
         int recoverHealth = (tempPlayer.getMaxHealth() / 4) + tempPlayer.getHealth();
 
-        if (recoverHealth > tempPlayer.getMaxHealth()) {
+        if (recoverHealth >= tempPlayer.getMaxHealth()) {
             tempPlayer.setHealth(tempPlayer.getMaxHealth());
-        
+            GraphicalCombatSystem.setLife(10);
         }
         else{
         tempPlayer.setHealth(recoverHealth);

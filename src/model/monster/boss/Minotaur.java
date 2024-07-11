@@ -123,11 +123,11 @@ public class Minotaur extends Boss {
 
         Random rand = new Random();
         int d20 = rand.nextInt(20) + 1; // Gera um número entre 1 e 20
-        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int d10Dodge = (rand.nextInt(100) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d20 >= 6) {
             Console.printSlowly("O minotauro se aproxima e tenta acertar você com seu machado.");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("\nVocê é acertado.");
                 dano = attack - 2;
                 Console.printSlowly("\nDano recebido: " + dano + "\n");
@@ -139,7 +139,7 @@ public class Minotaur extends Boss {
         } else {
             Console.printSlowly("O minotauro investe com seus chifres apontados para você.\n");
             
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("\nVocê é acertado.");
                 dano = attack - 2;
                 Console.printSlowly("\nDano recebido: " + dano + "\n");

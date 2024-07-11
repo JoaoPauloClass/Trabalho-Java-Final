@@ -61,11 +61,11 @@ public class Wolf extends Monster {
 
         Random rand = new Random();
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
-        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int d10Dodge = (rand.nextInt(100) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 9) {
             Console.printSlowly("O Lobo se enche de raiva e te morde profundamente.\n");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("Você é acertado.\n" + //
                                         "");
                 dano = attack + 2;
@@ -76,7 +76,7 @@ public class Wolf extends Monster {
             }
         } else {
             Console.printSlowly("O Lobo te morde raivosamente.\n");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack;
                 Console.printSlowly("Dano recebido: " + dano + "\n");
