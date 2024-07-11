@@ -1,3 +1,20 @@
+## Desenvolvido por:
+<ol>
+  <li>
+    <a href"https://github.com/JoaoPauloClass">João Paulo Class</a>
+  </li>
+  <li>
+    <a href="https://github.com/joaovbressan">João Bressan</a>
+  </li>
+  <li>
+    <a href="https://github.com/gustavogogola91">Gustavo Luiz Gogola</a>
+  </li>
+  <li>
+    <a href="https://github.com/GustavoSacoman">Gustavo Sacoman</a>
+  </li>
+</ol>
+
+
 ## Trabalho final java
 
 Trabalho proposto em sala de aula pelo professor Jason com o objetivo de análisar os conhecimentos dos aluno.
