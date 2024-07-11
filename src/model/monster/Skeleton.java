@@ -67,11 +67,11 @@ public class Skeleton extends Monster {
 
         Random rand = new Random();
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
-        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int d10Dodge = (rand.nextInt(100) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 6) {
             Console.printSlowly("O Esqueleto atira uma flecha em você.\n");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
                 Console.printSlowly("Dano recebido: " + dano + "\n");
@@ -81,7 +81,7 @@ public class Skeleton extends Monster {
             }
         } else {
             Console.printSlowly("O Esqueleto avança e te corta com uma espada.\n");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
                 Console.printSlowly("Dano recebido: " + dano + "\n");

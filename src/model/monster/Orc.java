@@ -172,11 +172,11 @@ public class Orc extends Monster {
 
         Random rand = new Random();
         int d10Attack = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
-        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int d10Dodge = (rand.nextInt(100) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10Attack > 7) {
             Console.printSlowly("O Orc se enfurece e faz uma investida em sua direção.\n");
-            if (d10Dodge < 5) {
+            if (d10Dodge < 50) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack;
                 Console.printSlowly("Dano recebido: " + dano + "\n");
@@ -186,7 +186,7 @@ public class Orc extends Monster {
             }
         } else {
             Console.printSlowly("O Orc tenta te acertar com sua maça.\n");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
                 Console.printSlowly("Dano recebido: " + dano + "\n");

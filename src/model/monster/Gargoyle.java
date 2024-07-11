@@ -62,11 +62,11 @@ public class Gargoyle extends Monster {
 
         Random rand = new Random();
         int d10 = rand.nextInt(10) + 1; // Gera um número entre 1 e 10
-        int d10Dodge = (rand.nextInt(10) + 1) + (player.getAgility() / 4);
+        int d10Dodge = (rand.nextInt(100) + 1) + (player.getAgility() / 4);
         int dano = attack;
         if (d10 >= 6) {
             Console.printSlowly("A gárgula se lança contra o você usando seu corpo de pedra como uma arma.\n");
-            if (d10Dodge < 5) {
+            if (d10Dodge < 50) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack;
                 Console.printSlowly("Dano recebido: " + dano + "\n");
@@ -76,7 +76,7 @@ public class Gargoyle extends Monster {
             }
         } else {
             Console.printSlowly("A gárgula ataca com suas garras afiadas feitas de pedra\n");
-            if (d10Dodge < 8) {
+            if (d10Dodge < 80) {
                 Console.printSlowly("Você é acertado.\n");
                 dano = attack - 2;
                 Console.printSlowly("Dano recebido: " + dano + "\n");
