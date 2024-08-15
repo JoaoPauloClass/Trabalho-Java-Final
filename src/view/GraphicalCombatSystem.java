@@ -281,7 +281,7 @@ public class GraphicalCombatSystem {
 
             System.out.print(Color.getResetColor() + ")");
         } else {
-            System.out.println(Color.getBlue());
+            System.out.print(Color.getBlue());
             for (int i = 0; i < mana; i++)
                 System.out.print("|");
             System.out.print(Color.getResetColor() + ")");
